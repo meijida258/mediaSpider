@@ -2,14 +2,19 @@
 from pymongo import MongoClient
 
 class Mongo:
-    def insert_dict(self, need_insert_dict, verify_key, database_collection):
-        if database_collection.find({verify_key:need_insert_dict[verify_key]}).count() == 0:
-            database_collection.insert(need_insert_dict)
-            print ('%s插入一条信息' % str(database_collection))
-            return True
+    def insert_dict(self, need_insert_dict,database_collection,  verify_key=None):
+        if verify_key:
+            if database_collection.find({verify_key:need_insert_dict[verify_key]}).count() == 0:
+                database_collection.insert(need_insert_dict)
+                print ('%s插入一条信息' % str(database_collection))
+                return True
+            else:
+                print ('该条信息已存在')
+                return False
         else:
-            print ('该条信息已存在')
-            return False
+            database_collection.insert(need_insert_dict)
+            return True
+
     def remove_dict(self, verify_key, verify_key_value, database_collection):
         message_count = database_collection.find({verify_key:verify_key_value}).count()
         database_collection.remove({verify_key:verify_key_value})
