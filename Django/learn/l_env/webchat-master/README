@@ -1,0 +1,8 @@
+
+
+基于django开发的web聊天
+
+
+前端使用ajax
+
+后端使用Python自带的queue

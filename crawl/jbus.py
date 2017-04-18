@@ -1,4 +1,4 @@
-import sys, re, random, requests, os, datetime
+import sys, re, random, requests, os, datetime, time
 sys.path.append('..')
 from tool.GetHtml import HtmlPro
 from tool.MongoManagement import MongoSet
@@ -6,7 +6,7 @@ from lxml import etree
 from pymongo import MongoClient
 # from ..tool.GetHtml import HtmlPro
 BASE_URL = 'https://www.javbus.cc/'
-PROXIES = {'http':'http://127.0.0.0:1080'}
+PROXIES = {'https':'https://127.0.0.1:1080'}
 STAR_URL = 'https://www.javbus.cc/star/'
 SERIES_URL = 'https://www.javbus.cc/series/'
 TXT_MAGNET_LIST = [] # 用于输出的list
@@ -16,10 +16,11 @@ class BusMagnet:
         self.base_url = BASE_URL
         self.proxies = PROXIES
 
+
     def get_video_params(self, video_url):
-        print('获取%s的表单数据' % video_url)
         target_url = video_url
         while True:
+            print('获取%s的表单数据' % video_url)
             html = hp.get_html(target_url, self.proxies)
             if html:
                  break
@@ -40,9 +41,10 @@ class BusMagnet:
                    'Referer':referer}
         while True:
             try:
-                result = requests.get(get_magnet_url, headers=headers, params=params).text
+                result = requests.get(get_magnet_url, headers=headers, params=params, timeout = 30).text
                 break
             except Exception as e:
+                time.sleep(2)
                 print('错误信息: %s' % e)
         return result
 
@@ -58,39 +60,36 @@ class BusMagnet:
             magnet_dict['size'] = re.findall(r'\t(.*?) ', size)[0]
             time = td_list[index * 2 - 1].xpath('a/text()')[0]
             magnet_dict['time'] = re.findall(r'\t(.*?) ', time)[0]
+            # 时间太久远的设定已输出为yes，就不再输出了
+            if int(str(datetime.date.today()).split('-')[0]) - int(str(insert_dict['time']).split('-')[0]) < 10:
+                magnet_dict['output'] = 'No'
+            else:
+                magnet_dict['output'] = 'Yes'
             magnet_dict['url'] = video_url
             result.append(magnet_dict)
         return result
 
     def pick_magnet(self, movie_magnet_list, video_url):
         print('选取%s获取的magnet' % video_url)
-        # for each_dict in movie_magnet_list:
-        # # 优先中文
-        #     if each_dict['magnet'].lower().find('cavi') > 0:
-        #         return each_dict
-        # # 其次mkv
-        # for each_dict in movie_magnet_list:
-        #     if each_dict['magnet'].lower().find('mkv') > 0:
-        #         return each_dict
-        # # 再次avi
-        # for each_dict in movie_magnet_list:
-        #     if each_dict['magnet'].lower().find('avi') > 0:
-        #         return each_dict
-        # # 最次MP4
-        # for each_dict in movie_magnet_list:
-        #     if each_dict['magnet'].lower().find('mp4') > 0:
-        #         return each_dict
-        #  # 都没有就返回第一个
-        # return movie_magnet_list[0]
         weight_dict = {}
         for each_dict in movie_magnet_list:
             weight = 0
             # 大小加分
-            if each_dict['size'].lower().find('m'):
-                weight += (int(each_dict['size'].lower().split('m')[0]) / 1024 * 5)
+            if each_dict['size'].lower().find('m') > 0:
+                weight += (float(each_dict['size'].lower().split('m')[0]) / 1024 * 5)
+            else:
+                weight += (float(each_dict['size'].lower().split('g')[0]) * 5)
             # dvd扣分
             if each_dict['magnet'].lower().find('dvd') > 0 or each_dict['magnet'].lower().find('iso') > 0:
                 weight -= 100
+
+             # bd hd 酌情扣分
+            if (each_dict['magnet'].lower().find('bd') > 0 or each_dict['magnet'].lower().find('hd') > 0):
+                if (each_dict['magnet'].lower().find('avi') > 0 or each_dict['magnet'].lower().find('mkv') > 0 or
+                            each_dict['magnet'].lower().find('mp4') > 0):
+                    pass
+                else:
+                    weight -= 100
             # 中文加分
             if each_dict['magnet'].lower().find('cavi') > 0:
                 weight += 100
@@ -98,6 +97,8 @@ class BusMagnet:
             if each_dict['magnet'].lower().find('avi') > 0 or each_dict['magnet'].lower().find('mkv') > 0 or each_dict['magnet'].lower().find('mp4') > 0:
                 weight += 10
             weight_dict[movie_magnet_list.index(each_dict)] = weight
+        result_index = sorted(weight_dict.items(), key=lambda item: item[1])[-1][0]
+        return movie_magnet_list[result_index]
 
     def main(self, url):
         print('获取%s的磁力字典' % url)
@@ -132,7 +133,7 @@ class BusFind:
     def parse_html(self, url):
         while True:
             print('解析%s的页面信息' % url)
-            html = hp.get_html(url, self.proxies)
+            html = hp.get_html(url, proxies=self.proxies)
             if html:
                 break
         xpath_html = etree.HTML(html.text)
@@ -157,9 +158,10 @@ class BusFind:
                 insert_dict['find_num'] = find_num
                 # 储存字典
                 ms.insert_dict(insert_dict, mp.collection, 'url')
-                if int(str(datetime.date.today()).split('-')[0]) - int(str(insert_dict['time']).split('-')[0]) < 10:
-                    # 大于10年的不输出
-                    TXT_MAGNET_LIST.append(insert_dict['magnet']) # 储存到要输出的txt中定义的list中
+                # ---------增加消耗，移除
+                # if int(str(datetime.date.today()).split('-')[0]) - int(str(insert_dict['time']).split('-')[0]) < 10:
+                #     # 大于10年的不输出
+                #     TXT_MAGNET_LIST.append(insert_dict['magnet']) # 储存到要输出的txt中定义的list中
             else:
                 print('%s的相关信息已存在, 跳过该条' % each_link)
 
@@ -173,12 +175,22 @@ class TextOutPut:
     def __init__(self):
         self.text_path = 'C:/Users/Administrator/Desktop/magnet.txt'
 
+    def get_magnet_list(self, url):
+        find_type = url.split('/')[-3]
+        find_num = url.split('/')[-2]
+        # 根据搜索的url，在完成后的数据库中查找相关的magnet
+        output_dicts = mp.collection.find({'find_type':find_type, 'find_num':find_num, 'output':'No'})
+        output_list = []
+        for each_dict in output_dicts:
+            output_list.append(each_dict['magnet'])
+            mp.collection.update({'magnet':each_dict['magnet']}, {'$set':{'output':'Yes'}})
+        return output_list
 
-    def out_put_txt(self):
-        # if os.path.exists(self.text_path):
-        with open(self.text_path, 'w') as fl:
-            for magnet in TXT_MAGNET_LIST:
-                fl.write(magnet)
+    def out_put_txt(self, url):
+        output_list = self.get_magnet_list(url)
+        with open(self.text_path, 'a') as fl:
+            for each_output_magnet in output_list:
+                fl.write(each_output_magnet)
                 fl.write('\n')
         fl.close()
 
@@ -190,9 +202,8 @@ if __name__ == '__main__':
     bm = BusMagnet()
     bf = BusFind()
     # ----查找----
-    # bf.find_by(STAR_URL + 'ngv' + '/1') # 名字查找
-    # # bf.find_by(SERIES_URL + 'okq' + '/1')  # 系列查找
-    # # ----测试----
-    # top.out_put_txt()
-    a = {1:100, 2:23, 3:145}
-    print(sorted(a.items(), key=lambda item:item[1]))
+    target_url = STAR_URL + 'okq' + '/1'
+    bf.find_by(target_url) # 名字查找
+    # bf.find_by(SERIES_URL + 'okq' + '/1')  # 系列查找
+    # ----输出----
+    top.out_put_txt(target_url)

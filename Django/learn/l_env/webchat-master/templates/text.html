@@ -1,0 +1,580 @@
+{% load chatcus %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>超级无敌那么牛逼的web微信聊天开始</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <style rel="stylesheet">
+.comment{width:680px; margin:20px auto; position:relative; background:#fff; padding:20px 50px 50px; border:1px solid #DDD; border-radius:5px;}
+.comment h3{height:28px; line-height:28px}
+.com_form{width:100%; position:relative}
+.input{width:99%; height:60px; border:1px solid #ccc}
+.com_form p{height:28px; line-height:28px; position:relative; margin-top:10px;}
+span.emotion{width:42px; height:20px; background:url(http://www.16code.com/cache/demos/user-say/img/icon.gif) no-repeat 2px 2px; padding-left:20px; cursor:pointer}
+span.emotion:hover{background-position:2px -28px}
+.qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;}
+.qqFace table td{padding:0px;}
+.qqFace table td img{cursor:pointer;border:1px #fff solid;}
+.qqFace table td img:hover{border:1px #0066cc solid;}
+    </style>
+    </head>
+<body>
+{#左侧面板#}
+    <div class="main-chat">
+        <div class="panel">
+                {# 用户信息开始#}
+            <div class="userinfo">
+                <div class="avatar"><img src="{{ request.user.userprofile.head_img | chat_url }}" class="img"></div>
+                <div class="info">
+                    <h3 class="user_name">
+                        <span class="display_name">{{ request.user.userprofile.name }}</span>
+                    </h3>
+                </div>
+            </div>
+            {#  用户信息结束   #}
+        {#   搜索框开始#}
+            <div id="search" class="search">
+                <i class="web-search"></i>
+                    <input class="search_content"  id="search" type="text" placeholder="搜索">
+            </div>
+            <div id="searchhide" class="hide">
+                        <h4 class="contact_title">找不到匹配的结果</h4>
+            </div>
+        {#    搜索结束#}
+        {#  切换 #}
+            <div class="tab">
+    {#            聊天div#}
+                <div class="tab-item">
+                    <a href="#comment-tab" role="tab" data-toggle="tab" style="color: #4cae4c" title="聊天"  ><i class="chat-icon chat-comment"></i></a>
+                </div>
+    {#            联系人div#}
+                <div class="tab-item">
+                    <a href="#user-tab" role="tab" data-toggle="tab" title="通讯录"   ><i class="chat-icon chat-user"></i></a>
+                </div>
+    {#            群主div#}
+                <div class="tab-item">
+                    <a href="#group-tab" role="tab" data-toggle="tab" title="群组" ><i class="chat-icon chat-group"></i></a>
+                </div>
+            </div>
+    {#切换开始-------------------------------------------------------------------------------#}
+        <div class="tab-content">
+            {#用户切换#}
+                <div role="tabpanel" class="tab-pane active " id="comment-tab">
+                    <div class="friends-nav">
+                        {% for friend in request.user.userprofile.friends.select_related %}
+                            <div  contact-type="single" contact-id="{{ friend.id }}" onclick="OpenChatWindow(this)" class="chat_item actives">
+                                <div class="avatar">
+                                        <img class="img" src="{{ friend.head_img | chat_url }}" />
+                                </div>
+                                <div class="info">
+                                    <h3 class="friends-info">
+                                        <span class="friends-name">{{ friend.name }}</span>
+                                        <span style="float: right" class="badge hide">0</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+    {#        聊天切换结束#}
+              {#通讯录切换#}
+                <div role="tabpanel" class="tab-pane" id="user-tab">
+                    <div class="friends-nav ">
+                        {% for friend in request.user.userprofile.friends.select_related %}
+                        <div  contact-type="single" contact-id="{{ friend.id }}" onclick="OpenChatWindow(this)"  class="chat_item actives">
+                            <div class="avatar">
+                                    <img class="img" src="{{ friend.head_img | chat_url }}" />
+                            </div>
+                            <div class="info">
+                                <h3 class="friends-info ">
+                                    <span class="friends-name">{{ friend.name }}</span>
+                                    <span style="float: right" class="badge hide">0</span>
+                                 </h3>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+    {#        通讯录切换结束#}
+                      {#群组切换#}
+                <div role="tabpanel" class="tab-pane" id="group-tab">
+                    <div class="friends-nav">
+                        {% for group  in request.user.userprofile.group_members.select_related %}
+                        <div contact-type="group" contact-id="{{ group.id }}" onclick="OpenChatWindow(this)"  class="chat_item actives">
+                            <div class="avatar">
+                                    <img class="img" src="{{ group.group_img | chat_url }}" />
+                            </div>
+                            <div class="info">
+                                <h3 class="friends-info">
+                                    <span class="friends-name">{{ group.name }}</span>
+                                    <span style="float: right" class="badge hide">0</span>
+                                 </h3>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+    {#        群组切换结束#}
+        </div>
+        </div>
+    {#切换结束-------------------------------------------------------------------------------#}
+    {#  左侧结束 #}
+            <div class="chat-box">
+{#                聊天对方的用户名#}
+                <div class="chat-box-title" contact-type="" contact-id="">
+                    <div class="title-content">
+                        <div class="title-info">
+                            <a class="title-name"></a>
+                        </div>
+                    </div>
+                </div>
+{#                <div class="mmpop  members_wrp slide-down" tabindex="-1">#}
+{#	<div class=" members">#}
+{#		<div class="members_inner ng-scope">#}
+{#			<div class="member">#}
+{#				<img class="avatar" src="">#}
+{#				<p class="nickname ng-binding"">90后</p>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>#}
+{#</div>#}
+{#                    对方用户名结束#}
+{#                对话框开始#}
+                <div class="chat-box-window">
+{#                    聊天创建内容#}
+{#                    <div  style="overflow: hidden;">#}
+{#                        <div class="message me" style="text-align:left;">#}
+{#                            <p class="message-info">#}
+{#                                <span class="content">17:13</span>#}
+{#                            </p>#}
+{#                            <img src="/static/img/img.png" class="me-avatar" style="float: left" title="耀耀"/>#}
+{#                            <div  class="content" style="overflow: hidden;">#}
+{#                                <div class="bubble bubble_primary left">#}
+{#                                    <div class="bubble_cont">#}
+{#                                        <div class="plain">#}
+{#                                                <pre>有号啊 但是错误619</pre>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    聊天窗口内容结束#}
+                </div>
+{#            对话框结束#}
+{#                工具包#}
+                    <div  style="height:4px;">
+      <div class="progress-bar" role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+       0%
+      </div>
+    </div>
+                <div class="chat-box-tools">
+                    <p class="chat-box-tools-emoj emotion"></p>
+                    <a class="chat-box-tools-screencut" title="截屏"></a>
+                    <a   onclick="FileUpload()" class="chat-box-tools-file_img"title="上传"></a>
+                    <input type="file" id="btnfile" style="display: none"/>
+                </div>
+{#                工具包结束#}
+{#                输入框#}
+
+                <div>
+{#                    <div  contenteditable="true"  class="textflex">#}
+{##}
+{#                    </div>#}
+                    <textarea  id="say-emoj" class="textflex"  name="say-emoj"></textarea>
+                </div>
+                <div class="action">
+
+                    <span class="desc">按下Ctrl+Enter换行</span>
+                    <a class="btn btn-send" href="">发送</a>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+
+
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.qqFace.js"></script>
+<script src="/static/js/jq1.7-jq1.9.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script>
+    function replace_em(str){
+	str = str.replace(/\</g,'&lt;');
+	str = str.replace(/\>/g,'&gt;');
+	str = str.replace(/\n/g,'<br/>');
+	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/static/plugins/arclist/$1.gif" border="0" />');
+	return str;
+    }
+    //------------------------------------------------------------------------------------------
+    //定义全局字典 存放一对一聊天记录和群组聊天记录
+    GLOBAL_CHAT_RECORD_DIC = {
+        'single':{},
+        'group':{},
+    };
+    //定义字典结束
+    //------------------------------------------------------------------------------------------
+//csrf跨站请求伪造
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+console.log(csrftoken);
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+//跨站请求伪造结束
+
+//------------------------------------------------------------------------------------------
+//打开页面自动加载
+    $(document).ready(function(){
+        //csef发送
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        //---------------------------------------------------------------
+            $('.emotion').qqFace({
+                assign:'say-emoj', //给输入框赋值
+                path:'/static/plugins/arclist/'    //表情图片存放的路径,
+                });
+{#        getemoj();#}
+        //-----------------------------------------------------------------
+        //发送结束
+        GetNewMsgs();//开始去取消息
+        //发送消息
+        $("body").delegate("textarea", "keydown",function(e){
+            if(e.which == 13) {//Enter key down
+                //send msg button clicked
+                var msg_text = $("textarea").val();
+                if ($.trim(msg_text).length > 0){
+                    console.log(msg_text);
+                    //当接收到消息发送到后端的函数
+                    console.log(msg_text);
+                    SendMsg(msg_text,'text');
+                }
+                //把当前内容发送到对话框里
+                AddSentMsgIntoBox(replace_em(msg_text),'text');
+                $("textarea").val('');
+            }
+        });
+        $("input[id=search]").focus(function() {
+           $('#searchhide').addClass('hide');
+        });
+        //---------------------------测试查找好友-----------------------------
+        $("body").delegate("input[id=search]", "keydown",function(e){
+            if(e.which == 13) {//Enter key down
+                var search_text = $("input[id=search]").val();
+                if ($.trim(search_text).length > 0){
+                     $.post("{% url 'search_firends' %}", {name:JSON.stringify(search_text)},function(callback){
+                        console.log(callback);
+                         if(! callback == 'no'){
+                             $('#searchhide h4').text('您查找的好友不存在');
+                             $('#searchhide').removeClass('hide');
+                         }else{
+                             var obj = JSON.parse(callback);
+                             var friends_name = obj.name;
+                             var friends_img = obj.img;
+                             var obj_msg = "<div style='width:100%;height:100px;'><img style='margin-left:20px;width:40px;height:40px;' src='"+
+                                     friends_img +"'/><a id='addfriends' type='submit' style='margin-left:20px;color:#fff;'>"+friends_name +
+                                     "</a></div>";
+                             $('#searchhide h4').text('');
+                             $('#searchhide h4').append(obj_msg)
+                         }
+
+                        });//end post
+                }else{
+                    $('#searchhide h4').text('您没有输入任何内容');
+                    $('#searchhide').removeClass('hide');
+                }
+            }
+        });
+                //---------------------------测试查找好友-----------------------------
+
+
+        //测试添加
+        $('a[id=addfriends]').click(function(){
+           console.log($('a[id=addfriends]').text());
+        });
+        //测试添加结束
+     });//自动加载结束
+    // 发送到后端函数-----------------------------------------------------------------------------------------------------------------------------
+    function SendMsg(msg_text,file_type){
+        //取出对应好友的id和类型
+        var contact_type = $(".chat-box-title").attr("contact-type");
+        var contact_id = $(".chat-box-title").attr("contact-id");
+        //判断是否为空
+        if (contact_type && contact_id){
+            //把数据发送到的后端的队列
+           var msg_item ={
+                    //来自那个用户
+                    'from': "{{ request.user.userprofile.id }}",
+                    //用户的名字
+                    'form_img':"{{ request.user.userprofile.head_img|chat_url }}",
+                    'from_name': "{{ request.user.userprofile.name }}",
+                    //发送给谁
+                    'to'  :contact_id,
+                    //类型
+                    'type':contact_type,
+                    //内容
+                    'msg' : msg_text
+                };
+            //post请求发送给后端
+            $.post("{% url 'send_msg' %}", {data:JSON.stringify(msg_item)},function(callback){
+                console.log(callback);
+            });//end post
+        }//end if
+    }
+    //发送后端结束---------------------------------------------------------------------------------------------------------------------------
+    //前端显示对话--------------------------------开始---------------------------------------------------
+    function AddSentMsgIntoBox(msg_text,msg_type){
+        if (msg_type == 'text'){
+            var new_msg_ele = "<div  style='overflow: hidden;'>" +
+                        "<div class='message me'>" +
+                            "<p class='message-info'>" +
+                                "<span class='content'>"+ new Date().toLocaleTimeString()+ "</span>" +
+                            "</p>"+
+                            "<img src='"+ '{{ request.user.userprofile.head_img | chat_url }}' + "' class='me-avatar'/>"+
+                            "<div  class='content' style='overflow: hidden;'>"+
+                            "    <div class='bubble bubble_primary right'>"+
+                            "        <div class='bubble_cont'>"+
+                            "            <div class='plain'>"+
+                            "                    <pre>" + msg_text + "</pre>" +
+                            "            </div>"+
+                            "       </div>"+
+                            "    </div>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>";
+        {#        }else if (msg_type.startsWith('image') ){#}
+{#            var new_msg_ele = "<div class='msg-item'>" +#}
+{#                                "<span>" + "{{ request.user.userprofile.name }}"  + "</span>" +#}
+{#                                "<span>"  + new Date().toLocaleTimeString() +"</span>" +#}
+{#                                "<div class='msg-text'><img width='300px' src='/static/" +#}
+{#                                "{{ request.user.userprofile.id }}/" + msg_text + "' /></div>" +#}
+{#                              "</div>"#}
+        }else{
+                        var new_msg_ele = "<div  style='overflow: hidden;'>" +
+                        "<div class='message me'>" +
+                            "<p class='message-info'>" +
+                                "<span class='content'>"+ new Date().toLocaleTimeString()+ "</span>" +
+                            "</p>"+
+                            "<img src='"+ '{{ request.user.userprofile.head_img | chat_url }}' + "' class='me-avatar'/>"+
+                            "<div  class='content' style='overflow: hidden;'>"+
+                            "    <div class='bubble bubble_primary right'>"+
+                            "        <div class='bubble_cont'>"+
+                            "            <div class='plain'>"+
+                            "                    <pre><a href='/static/" +
+                                "{{ request.user.userprofile.id }}/"+ msg_text + "' target='_blank' >"+ msg_text +"</a></pre>" +
+                            "            </div>"+
+                            "       </div>"+
+                            "    </div>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>";
+
+        }
+        $(".chat-box-window").append(new_msg_ele);
+        $('.chat-box-window').animate({
+            scrollTop: $('.chat-box-window')[0].scrollHeight}, 500);
+    }
+ //前端显示对话--------------------------------结束---------------------------------------------------
+
+
+    //当我点击好友事件------------------------------------------------------------------------------------------------------------------
+     function OpenChatWindow(ele){
+            //添加active
+            $(ele).addClass("active");
+            //隐藏其他
+            $(ele).siblings().removeClass("active");
+            var contact_id = $(ele).attr("contact-id");
+            var contact_name = $(ele).find(".friends-name").text();
+            var contact_type = $(ele).attr("contact-type");
+            console.log(contact_id,contact_name,contact_type);
+            //在切换之前把当前的聊天记录保存到字典中
+            var current_session_id = $(".chat-box-title").attr("contact-id");
+            var current_session_type = $(".chat-box-title").attr("contact-type");
+            console.log(current_session_id,current_session_type);
+            //如果有id,那么存入到字典中
+            if (current_session_id){
+                GLOBAL_CHAT_RECORD_DIC[current_session_type][current_session_id] = $('.chat-box-window').html();
+
+            }
+            //把对话框修改成对应的好友
+            $(".chat-box-title").find('.title-name').text(contact_name);
+            //好友id
+            $(".chat-box-title").attr("contact-id",contact_id);
+            //好友类型
+            $(".chat-box-title").attr("contact-type",contact_type);
+            //取出聊天记录
+            var new_contact_chat_record = GLOBAL_CHAT_RECORD_DIC[contact_type][contact_id];
+            //判断聊天记录是否为空
+            if (typeof new_contact_chat_record == 'undefined'){
+                new_contact_chat_record = '';
+            }
+            //不为空那么写入到窗口里
+            $('.chat-box-window').html(new_contact_chat_record);
+            //之后把消息提示隐藏
+            var contact_ele = $(".friends-nav").find(".actives[contact-type='"+ contact_type +"']").filter(".actives[contact-id='"+ contact_id+"']")[0];
+            $(contact_ele).find(".badge").text(0);
+            $(contact_ele).find(".badge").addClass("hide");
+     }
+{#    回话窗口完毕-----------------------------------------------------------------------------------------------------------------#}
+//取数据--------------------------------------------
+    function GetNewMsgs(){
+        console.log('-----开始获取数据-------');
+        $.getJSON("{% url 'get_new_msgs' %}",function(callback){
+            console.log('获取到的------------------------------------'+ callback);
+            ParseNewMsgs(callback); //把新消息进行解析
+            GetNewMsgs();
+        });//end post
+    }//取数据结束--------------------------------------------
+//数据解析-----------------------------------------------------
+    function ParseNewMsgs(callback){
+        //取出当前对话类型
+    var current_session_type = $(".chat-box-title").attr("contact-type");
+        //取出当前对话id
+    var current_session_id = $(".chat-box-title").attr("contact-id");
+        //循环字典
+    for( var i in callback){
+        //字典类型是
+        console.log(callback[i]);
+        //判断是不是个人消息
+        if (callback[i].type == 'single'){
+            var msg_from_contact_id = callback[i]['from'];
+        }else{ //group
+            var msg_from_contact_id = callback[i]['to'];
+        }
+        //时间戳转换函数
+        var newDate = new Date();
+        newDate.setTime(callback[i].timestamp * 1000);
+        var shijian = newDate.toLocaleTimeString();
+        var msg_item_ele = "<div  style='overflow: hidden;'>" +
+            "<div class='message me' style='text-align:left' >" +
+                "<p class='message-info'>" +
+                    "<span class='content'>"+ shijian + "</span>" +
+                "</p>"+
+                "<img src='"+ callback[i].form_img + "' style='float: left' class='me-avatar'/>"+
+                "<div  class='content' style='overflow: hidden;'>"+
+                "    <div class='bubble bubble_primary left'>"+
+                "        <div class='bubble_cont'>"+
+                "            <div class='plain'>"+
+                "                    <pre>" + callback[i].msg + "</pre>" +
+                "            </div>"+
+                "       </div>"+
+                "    </div>"+
+                "</div>"+
+            "</div>"+
+        "</div>";
+        //判断是不是都是正确的
+        if ( msg_from_contact_id == current_session_id && current_session_type == callback[i].type){
+            //此消息的发送方当前正在跟我聊天
+            $(".chat-box-window").append(msg_item_ele);
+        }else{
+            //此消息发送者当前没打开聊天框，消息暂存内存
+            console.log("保存消息");
+            //判断这个id存不存在字典里
+            if (GLOBAL_CHAT_RECORD_DIC[callback[i].type][msg_from_contact_id]){
+                //如果存在那么追加到这个字典里
+                GLOBAL_CHAT_RECORD_DIC[callback[i].type][msg_from_contact_id] +=msg_item_ele;
+            }else{
+                //如果不存在那么直接插入
+                GLOBAL_CHAT_RECORD_DIC[callback[i].type][msg_from_contact_id] = msg_item_ele;
+            }//end if
+
+            //新消息提醒
+            //取出对应的消息地址
+            var contact_ele = $(".friends-nav").find(".actives[contact-type='"+ callback[i].type +"']").filter(".actives[contact-id='"+msg_from_contact_id+"']")[0];
+            //获取
+            var current_new_msg_num = $(contact_ele).find(".badge").text();
+            //移除hide 让他显示出来
+            $(contact_ele).find(".badge").removeClass("hide");
+            //每次来一条消息就刷新
+            $(contact_ele).find(".badge").text(parseInt(current_new_msg_num)+1);
+        }
+    }
+}
+{#     function getemoj() {#}
+{#         console.log('------------------获取表情---------------------------------');#}
+{#         if($('#say-emoj').val().length == 0){#}
+{#             console.log('say-emoj为空');#}
+{#             getemoj()#}
+{#         }else{#}
+{#             console.log('say-emoj不为空');#}
+{#             alert($('.textflex').append(replace_em($('#say-emoj').val())));#}
+{#                $('#say-emoj').val('');#}
+{#             getemoj()#}
+{#         }#}
+{##}
+{#        }#}
+
+    //数据解析完毕------------------------------------------------------------------------------------------------
+    //-----------------文件上传---------------------------------------------------------------------------------------------------------
+        function FileUpload(){
+                var ie = !-[1,];
+                    if(ie){
+                        jQuery('input:file').trigger('click').trigger('change');
+                        ajaxpull()
+                    }else{
+                        jQuery('input:file').trigger('click');
+                        ajaxpull()
+                    }
+        GetFileUploadProgress($('#btnfile')[0].files[0]);
+    }
+    function ajaxpull(){
+        var formData = new FormData();
+            console.log($('#btnfile')[0].files[0]);
+            formData.append('file', $('#btnfile')[0].files[0]);
+            $.ajax({
+                   url : "{% url 'file_upload' %}",
+                   type : 'POST',
+                   data : formData,
+                   processData: false,
+                   contentType: false,
+                   success : function(data) {
+                       console.log(data);
+                   }
+        });//end ajax
+    }
+        function GetFileUploadProgress(file_obj){
+        var UploadProgressRefresh = setInterval(function () {
+            $.getJSON("{% url 'file_upload_progress' %}",{filename:file_obj.name},function(callback){
+                console.log("upload progress:" + callback.recv_size);
+                if (file_obj.size == callback.recv_size ){
+                    //upload done
+                    clearInterval(UploadProgressRefresh);
+                    SendMsg(file_obj.name,file_type);
+                    AddSentMsgIntoBox(file_obj.name, file_obj.type);
+                    $.get("{% url 'delete_cache_key' %}",{cache_key:file_obj.name},function(callback){
+                         console.log(callback);
+                    });
+                }
+                var current_percent = (callback.recv_size/file_obj.size)*100 +"%";
+                $(".progress-bar").css("width",current_percent);
+                $(".progress-bar").text(current_percent);
+            })
+        },1000);
+    }
+
+    //-----------------文件上传-----------------------------------------------------------------结束--
+</script>
