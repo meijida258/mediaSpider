@@ -8,22 +8,29 @@ class HtmlPro:
         headers_dict['User-Agent'] = str(ua_.random)
         return headers_dict
 
-    def get_html(self, url, proxies=None, timeout=None, retry_time=None):
+    def get_html(self, url, proxies=None, timeout=30, referer=None,retry_time=None, random_ua=False):
         if not retry_time:
             retry_time = 1
+        # 随机ua
+        if random_ua:
+            headers = self.get_headers()
+        else:
+            headers = {'User-Agent':'User-Agent:Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50'}
+        if referer:
+            headers['Referer'] = referer
         time.sleep(retry_time * 1)
         link_time = 1
         while link_time <= retry_time:
             try:
-                html = requests.get(url, headers=self.get_headers(), proxies=proxies, timeout=timeout)
-                return html
+                html = requests.get(url, headers=headers, proxies=proxies, timeout=timeout)
+                return html # 未确定格式的response
             except Exception:
                 if link_time < retry_time:
                     print ('第%s次连接出错，等待重试' % str(link_time))
                     link_time += 1
                 elif link_time == retry_time:
                     print('超出重试次数，无法连接')
-
+                    return ''
 if __name__ == '__main__':
     hp = HtmlPro()
     ua_ = UserAgent()

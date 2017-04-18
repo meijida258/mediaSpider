@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import sys
+import sys, threading
 sys.path.append('C:/mediaSpider/tool')
 from get_html import hp
 from Mongo_pro import mon
@@ -76,12 +76,13 @@ class MongoSet:
             result = mon.insert_dict(data, save_collection, verify_key)
             if not result:
                 self.update_data(data, save_collection, verify_key)
+
     def update_data(self, data, save_collection,verify_key):
         origin_data = save_collection.find({verify_key:data[verify_key]})
         update_dict = {}
         if origin_data:
             for key in origin_data:
-
+                s
 if __name__ == '__main__':
     ste = Steam()
     ste.game_base_info_from_store_list('vr', '0', 'TopSellers')

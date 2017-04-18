@@ -43,7 +43,7 @@ class DownLoad():
         with open(savePlaceTotal, 'wb') as fl:
             fl.write(html)
         fl.close()
-        print '保存成功'
+        print ('保存成功')
 
 class Mongo():
     def __init__(self):
