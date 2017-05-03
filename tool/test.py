@@ -1,16 +1,14 @@
-import asyncio, time
+import socket, sys
+url = 'www.baidu.com'
+port = 80
+sock = socket.socket()
 
-loop = asyncio.get_event_loop()
-asyncio.set_event_loop(loop)
-start_time = time.time()
-async def compute(a, b):
-    print("Computing {} + {}...".format(a, b))
-    await asyncio.sleep(a+b)
-    return a+b
-task = []
-for i, j in zip(range(3), range(3)):
-    print(i, j)
-    task.append(compute(i, j))
-loop.run_until_complete(asyncio.gather(*task))
-loop.close()
-print(time.time() - start_time)
+sock.connect((url, port))
+
+try:
+    sock.send(('GET {} HTTP/1.1\r\nHost: localhost\r\n\r\n'.format(url)).encode())
+except Exception as e:
+    print(e)
+    sys.exit()
+reply = sock.recv(4096)
+print(reply)

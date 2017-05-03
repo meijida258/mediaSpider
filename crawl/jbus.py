@@ -61,7 +61,7 @@ class BusMagnet:
             time = td_list[index * 2 - 1].xpath('a/text()')[0]
             magnet_dict['time'] = re.findall(r'\t(.*?) ', time)[0]
             # 时间太久远的设定已输出为yes，就不再输出了
-            if int(str(datetime.date.today()).split('-')[0]) - int(str(insert_dict['time']).split('-')[0]) < 10:
+            if int(str(datetime.date.today()).split('-')[0]) - int(str(magnet_dict['time']).split('-')[0]) < 10:
                 magnet_dict['output'] = 'No'
             else:
                 magnet_dict['output'] = 'Yes'
@@ -125,7 +125,8 @@ class BusFind:
         next_page = page_parse_result['xpath_next_page']
         if next_page:
             # 有下一页则迭代
-            self.find_by_start(next_page)
+            next_url = 'https://www.javbus.cc' + next_page
+            self.find_by(next_url)
         else:
             # 没有下一页，结束
             print('查找完成')
@@ -188,7 +189,7 @@ class TextOutPut:
 
     def out_put_txt(self, url):
         output_list = self.get_magnet_list(url)
-        with open(self.text_path, 'a') as fl:
+        with open(self.text_path, 'w') as fl:
             for each_output_magnet in output_list:
                 fl.write(each_output_magnet)
                 fl.write('\n')
@@ -202,7 +203,7 @@ if __name__ == '__main__':
     bm = BusMagnet()
     bf = BusFind()
     # ----查找----
-    target_url = STAR_URL + 'okq' + '/1'
+    target_url = STAR_URL + 'q8v' + '/1'
     bf.find_by(target_url) # 名字查找
     # bf.find_by(SERIES_URL + 'okq' + '/1')  # 系列查找
     # ----输出----

@@ -3,8 +3,17 @@ import requests, random, time
 from fake_useragent import UserAgent
 
 class HtmlPro:
+    def __init__(self):
+        self.headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Encoding':'gzip, deflate, sdch',
+            'Accept-Language': 'en',
+            'Cache-Control':'max-age=0',
+            'Connection':'keep-alive',
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+        }
     def get_headers(self):
-        headers_dict = {}
+        headers_dict = self.headers
         headers_dict['User-Agent'] = str(ua_.random)
         return headers_dict
 
@@ -15,7 +24,7 @@ class HtmlPro:
         if random_ua:
             headers = self.get_headers()
         else:
-            headers = {'User-Agent':'User-Agent:Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50'}
+            headers = self.headers
         if referer:
             headers['Referer'] = referer
         time.sleep(retry_time * 1)

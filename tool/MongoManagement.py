@@ -1,5 +1,11 @@
 from pymongo import MongoClient
-
+''' mongodb命令符
+    $gt -------- greater than
+    $gte --------- gt equal
+    $lt -------- less than
+    $lte --------- lt equal
+    $ne ----------- not equal
+'''
 class MongoSet:
     # insert_dict args 1.要保存的数据 2.要保存的数据库集合名 3.用来验证的key
     def insert_dict(self, need_insert_data,database_collection,  verify_key=None):
