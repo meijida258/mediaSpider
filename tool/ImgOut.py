@@ -1,4 +1,5 @@
 import os, time, random
+from pymongo import MongoClient
 class ImgOutPut:
     def random_output(self, output_path, source_collection):
         st = time.time()
@@ -17,5 +18,9 @@ class ImgOutPut:
 
 if __name__ == '__main__':
     iop = ImgOutPut()
+    client = MongoClient('localhost', 27017)
+    db = client.MMjpg
+    collection = db.Image1
+    iop.random_output('C:/Users/Administrator/Desktop', collection)
 else:
     iop = ImgOutPut()
