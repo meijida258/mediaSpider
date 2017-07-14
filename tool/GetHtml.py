@@ -17,7 +17,7 @@ class HtmlPro:
         headers_dict['User-Agent'] = str(ua_.random)
         return headers_dict
 
-    def get_html(self, url, proxies=None, timeout=30, referer=None,retry_time=None, random_ua=False):
+    def get_html(self, url, proxies=None, timeout=30, add_headers={},retry_time=None, random_ua=False):
         if not retry_time:
             retry_time = 1
         # 随机ua
@@ -25,8 +25,9 @@ class HtmlPro:
             headers = self.get_headers()
         else:
             headers = self.headers
-        if referer:
-            headers['Referer'] = referer
+        if add_headers:
+            for a in add_headers.keys():
+                headers[a] = add_headers[a]
         time.sleep(retry_time * 1)
         link_time = 1
         while link_time <= retry_time:

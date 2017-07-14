@@ -3,7 +3,7 @@ from lxml import etree
 from multiprocessing.dummy import Pool
 from pymongo import MongoClient
 from PIL import Image
-from ..Tool.ImgOut import iop
+from tool.ImgOut import iop
 
 client = MongoClient('localhost', 27017)
 db = client.MMjpg
@@ -45,6 +45,7 @@ def insert_pic(i, save_collection = collection4):
             save_collection.insert(insert_dict)
             print('录入一张图片，来自%s的第%s张图片，耗时%s' % (insert_dict['set_name'], insert_dict['img_num'], str(time.time() - start_time)))
 
+exit()
 b = requests.get('http://imgs.aixifan.com/live/1493028073796/1493028073796.jpg').content
 
 fl = open('a.txt', 'wb')

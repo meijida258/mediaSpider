@@ -33,6 +33,7 @@ class ProxyGet:
     def parse_links_xici(self, html):
         xpath_html = etree.HTML(html)
         today_date = str(datetime.date.today())[2:]
+        yesterday_date = today_date.replace(today_date[-2:], str(int(today_date[-2:]) - 1))
         # 定义一个日期判断bool值，根据日期判断是否要继续，在for循环中每次获取ip都进行判断
         # 日期不等直接return false，相等则继续
         date_judge = False
@@ -42,7 +43,7 @@ class ProxyGet:
             ip_dict['type'] = each_tr_tag.xpath('td[6]/text()')[0]
             ip_dict['time'] = each_tr_tag.xpath('td[10]/text()')[0]
 
-            date_judge = ip_dict['time'].split(' ')[0] == today_date
+            date_judge = ip_dict['time'].split(' ')[0] != yesterday_date
             if date_judge:
                 mon.insert_dict(ip_dict, mop.sourceProxies, 'proxy')
             else:
@@ -71,12 +72,13 @@ class ProxyGet:
     def parse_links_kuai(self, html):
         xpath_html = etree.HTML(html)
         today_time = str(datetime.date.today())
+        yesterday_date = today_time.replace(today_time[-2:], str(int(today_time[-2:]) - 1))
         for each_tr in xpath_html.xpath('//*[@id="list"]/table/tbody/tr'):
             ip_dict = {}
             ip_dict['proxy'] = each_tr.xpath('td[1]/text()')[0] + ':' + each_tr.xpath('td[2]/text()')[0]
             ip_dict['type'] = each_tr.xpath('td[4]/text()')[0]
             ip_dict['time'] = each_tr.xpath('td[7]/text()')[0]
-            judge_result = today_time == ip_dict['time'].split(' ')[0]
+            judge_result = yesterday_date == ip_dict['time'].split(' ')[0]
             if judge_result:
                 mon.insert_dict(ip_dict, mop.sourceProxies, 'proxy')
             else:
@@ -85,7 +87,7 @@ class ProxyGet:
 
     def main(self):
         # 获取网站上的所有代理
-        # self.get_source_from_html_xici('http://www.xicidaili.com/nn/page')
+        self.get_source_from_html_xici('http://www.xicidaili.com/nn/page')
         self.get_source_from_html_kuai('http://www.kuaidaili.com/free/inha/page/')
 class ProxyCheck:
     def __init__(self):
@@ -191,100 +193,6 @@ class ProxyCheck_:
         for each_result in result:
             self.check_proxy(each_result)
 
-class ProxyManage:
-    def manage_proxy(self):
-        # 将dealProxy中的代理转移到usefulProxy中一起验证
-        print('开始进行有效代理的维护')
-        deal_proxy_dicts = mop.dealProxies.find()
-        if deal_proxy_dicts.count() > 0:
-            for deal_proxy_dict in deal_proxy_dicts:
-
-                mon.insert_dict(self.make_new_dict(deal_proxy_dict), mop.usefulProxies, 'proxy')
-                mon.remove_dict({'proxy':deal_proxy_dict['proxy']}, mop.dealProxies)
-        useful_proxy_dicts = mop.usefulProxies.find(no_cursor_timeout=True)
-        # 验证代理有效性
-        start_time = time.time()
-        pool2 = ThreadingPool(8)
-        result = pool2.map(self.check_store_proxy, useful_proxy_dicts)
-        pool2.close()
-        pool2.join()
-        useful_http, useful_https, failed_http, failed_https, remove_http, remove_https = 0, 0, 0, 0, 0, 0
-        for each_return in result:
-            if each_return == 1:
-                useful_http += 1
-            elif each_return ==2:
-                useful_https += 1
-            elif each_return == 3:
-                remove_http += 1
-            elif each_return == 4:
-                remove_https += 1
-            elif each_return == 5:
-                failed_http += 1
-            elif each_return == 6:
-                failed_https += 1
-        print('验证完成，耗时%s，结果如下：' % str(time.time() - start_time))
-        print('有效代理数：http共%s个， https共%s个' % (str(useful_http), str(useful_https)))
-        print('失效代理数：http共%s个， https共%s个' % (str(remove_http), str(remove_https)))
-        print('访问失败代理数：http共%s个， https共%s个' % (str(failed_http), str(failed_https)))
-        with open('proxy_manage.txt', 'a') as fl:
-            fl.write('%s代理维护结果如下-------------------------%s' % (str(datetime.date.today()), '\n'))
-            fl.write('有效代理数：http共%s个， https共%s个%s' % (str(useful_http), str(useful_https), '\n'))
-            fl.write('失效代理数：http共%s个， https共%s个%s' % (str(remove_http), str(remove_https), '\n'))
-            fl.write('访问失败代理数：http共%s个， https共%s个%s' % (str(failed_http), str(failed_https), '\n'))
-        fl.close()
-
-    def check_store_proxy(self, proxy_dict):
-        # 根据代理的type调用proxyCheck中的方法
-        result = proc.check_http(proxy_dict)
-        # 根据返回的result，保存、移除代理字典及更新信息
-        if result:# 代理有效
-            # 更新代理存活时间
-            live_time = self.count_live_time(proxy_dict['time'])
-            proxy_dict['live_time'] = str(live_time)
-            mop.update_dict({'proxy':proxy_dict['proxy']}, {'live_time':proxy_dict['live_time'], 'succeed':str(int(proxy_dict['succeed']) + 1)}, mop.usefulProxies)
-            print('代理%s可用, 更新信息' % proxy_dict['proxy'])
-            # 根据代理类型返回相应值，用于结束时总结
-            if proxy_dict['type'].lower() == 'http':
-                return 1 # http有效
-            else:
-                return 2 # https有效
-        else:# 代理访问失败
-            # failed+1
-            if int(proxy_dict['failed']) + 1 > 5:
-                if int(proxy_dict['succeed']) <= 5:
-                    mon.remove_dict({'proxy': proxy_dict['proxy']}, mop.usefulProxies)
-                    print('代理%s失效' % proxy_dict['proxy'])
-                else:
-                    mop.usefulProxies.update({'proxy':proxy_dict['proxy']}, {'$set':{'succeed':'0'}})
-                if proxy_dict['type'].lower() == 'http':
-                    return 3 # http代理失败数，超过3次
-                else:
-                    return 4 # https代理失败数，超过3次
-            else:
-                mop.update_dict({'proxy': proxy_dict['proxy']}, {'failed':str(int(proxy_dict['failed']) + 1)}, mop.usefulProxies)
-                print('代理%s访问失败， failed次数+1' % proxy_dict['proxy'])
-                if proxy_dict['type'].lower() == 'http':
-                    return 5 # http代理失败数+1
-                else:
-                    return 6 # https代理失败数+1
-
-    def count_live_time(self, str_time):
-        live_time = ((int(time.strftime('%m', time.localtime())) - int(str_time.split(' ')[0].split('-')[1])) * 30 +
-                     (int(time.strftime('%d', time.localtime())) - int(str_time.split(' ')[0].split('-')[2]))) * 24 + \
-                    (int(time.strftime('%H', time.localtime())) - int(str_time.split(' ')[1].split(':')[0]))
-        return live_time
-
-    def make_new_dict(self, deal_proxy_dict):
-        new_dict = {}
-        new_dict['type'] = deal_proxy_dict['type']
-        new_dict['time'] = deal_proxy_dict['time']
-        new_dict['proxy'] = deal_proxy_dict['proxy']
-        new_dict['live_time'] = '0' # 存活时间
-        new_dict['canVisit'] = 'None'
-        new_dict['failed'] = '0'
-        new_dict['succeed'] = '0'
-        return new_dict
-
 class ProxyManage_:
     def __init__(self):
         self.test_urls = {'http':'http://1212.ip138.com/ic.asp',
@@ -302,8 +210,8 @@ class ProxyManage_:
         new_dict['proxy'] = deal_proxy_dict['proxy']
         new_dict['live_time'] = '0' # 存活时间
         new_dict['canVisit'] = 'None'
-        new_dict['failed'] = '0'
-        new_dict['succeed'] = '0'
+        new_dict['failed'] = 0
+        new_dict['succeed'] = 0
         return new_dict
 
     def update_data(self, result_dict):
@@ -311,7 +219,7 @@ class ProxyManage_:
             live_time = self.count_live_time(result_dict['proxy_dict']['time'])
             result_dict['proxy_dict']['live_time'] = str(live_time)
             mop.update_dict({'proxy': result_dict['proxy_dict']['proxy']},
-                            {'live_time': result_dict['proxy_dict']['live_time'], 'succeed': str(int(result_dict['proxy_dict']['succeed']) + 1)},
+                            {'live_time': result_dict['proxy_dict']['live_time'], 'succeed': result_dict['proxy_dict']['succeed'] + 1},
                             mop.usefulProxies)
             print('代理%s可用, 更新信息' % result_dict['proxy_dict']['proxy'])
             # 根据代理类型返回相应值，用于结束时总结
@@ -321,19 +229,19 @@ class ProxyManage_:
                 return 2  # https有效
         else:
             # failed+1
-            if int(result_dict['proxy_dict']['failed']) + 1 > 5:
-                if int(result_dict['proxy_dict']['succeed']) <= 5:
+            if result_dict['proxy_dict']['failed'] + 1 > 5:
+                if result_dict['proxy_dict']['succeed'] <= 5:
                     mon.remove_dict({'proxy': result_dict['proxy_dict']['proxy']}, mop.usefulProxies)
                     print('代理%s失效' % result_dict['proxy_dict']['proxy'])
                 else:
                     # pass
-                    mop.usefulProxies.update({'proxy':result_dict['proxy_dict']['proxy']}, {'$set':{'succeed':'0'}})
+                    mop.usefulProxies.update({'proxy':result_dict['proxy_dict']['proxy']}, {'$set':{'succeed':0}})
                 if result_dict['proxy_dict']['type'].lower() == 'http':
                     return 3 # http代理失败数，超过3次
                 else:
                     return 4 # https代理失败数，超过3次
             else:
-                mop.update_dict({'proxy': result_dict['proxy_dict']['proxy']}, {'failed':str(int(result_dict['proxy_dict']['failed']) + 1)}, mop.usefulProxies)
+                mop.update_dict({'proxy': result_dict['proxy_dict']['proxy']}, {'failed':result_dict['proxy_dict']['failed'] + 1}, mop.usefulProxies)
                 print('代理%s访问失败， failed次数+1' % result_dict['proxy_dict']['proxy'])
                 if result_dict['proxy_dict']['type'].lower() == 'http':
                     return 5 # http代理失败数+1
@@ -438,14 +346,16 @@ class ProxyUse:
             mop.update_dict({'proxy': proxy}, {'live_time': proxy_dict['live_time']}, mop.usefulProxies)
         else:
             # 失败次数+1，并记录
-            failed_count = int(proxy_dict['failed']) + 1
-            if failed_count > 5:
+            failed_count = proxy_dict['failed'] + 1
+            if failed_count > 10:
                 # 失败次数超过上限，删除
                 mop.usefulProxies.remove({'proxy':proxy})
             else:
                 # 失败次数未超上限，更新记录
-                mop.usefulProxies.update({'proxy': proxy},{'$set':{'failed':str(failed_count)}})
+                mop.usefulProxies.update({'proxy': proxy},{'$set':{'failed':failed_count}})
 
+    def get_proxy_queue(self, type):
+        proxy_dicts = mop.usefulProxies.find({'type': type.upper()})
 
 if __name__ == '__main__':
     mop = MongoPro()
@@ -459,6 +369,6 @@ if __name__ == '__main__':
 else:
     mop = MongoPro()
     prog = ProxyGet()
-    proc = ProxyCheck()
-    prom = ProxyManage()
+    proc = ProxyCheck_()
+    prom = ProxyManage_()
     prou = ProxyUse()

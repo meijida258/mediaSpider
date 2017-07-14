@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>qqqqqqqqq</title>
+</head>
+<script type="text/JavaScript">
+            function sm1(){
+                vat a = document.getElementById("form1");
+                a.setAttribute("type", "login")
+                alert(document.getElementById("form1").type.value)
+                document.getElementById("form1").submit();
+            }
+
+            function sm2(){
+                document.getElementById("form1").value.append("type", "login");
+                document.getElementById("form1").submit();
+            }
+            function sm3(){
+                alert(1)
+            }
+    </script>
+<body>
+
+    <form action="http://127.0.0.1:8080/" method="post" id="form1">
+        username:<input type="text" name="username"><br>
+        password:<input type="password" name="password" id="1"><br>
+        <input type="submit" value="login" onclick="sm1()">
+        <input type="submit" value="register" onclick="sm2()">
+    </form>
+    <button onclick="sm3()">memeda</button>
+</body>
+</html>
