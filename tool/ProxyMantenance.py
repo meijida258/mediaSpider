@@ -7,21 +7,52 @@ import datetime, time, random
 import asyncio, aiohttp
 class ProxyGet:
     def __init__(self):
-        self.urls = {'xici':'http://www.xicidaili.com/wt/page',
+        self.urls = {'xici':'http://www.xicidaili.com/nn/page',
                      'kuai':'http://www.kuaidaili.com/free/inha/page/',
                      }
+        self.xici_headers = {
+                       'Referer':'http://www.xicidaili.com/nn/',
+                       'Host':'www.xicidaili.com'
+                   }
+
+    def get_proxies(self):
+        proxy_dicts = mop.usefulProxies.find()
+        proxy_count = proxy_dicts.count()
+        while True:
+            proxy_dict = proxy_dicts[random.randint(0, proxy_count - 1)]
+            if int(proxy_dict['live_time']) > 30:
+                return {'http':'http://%s' % proxy_dict['proxy']}
+            else:
+                pass
 
     def get_source_from_html_xici(self, url):
         if url.find('page') > 0:
             _url = url.replace('page', '1')
         else:
             _url = url
-        while True:
+        retry_count = 0
+        while retry_count < 10:
+            if retry_count == 9:
+                proxies = {}
+            else:
+                proxies = self.get_proxies()
             try:
-                html = hp.get_html(_url).text
-                break
+
+                result = hp.get_html(_url, proxies=proxies, add_headers=self.xici_headers)
+                print(result)
+                if result:
+                    html = result.text
+                    break
+                else:
+                    if retry_count < 10:
+                        print('获取%s失败，重试%s次' %(_url, str(retry_count)))
+                        retry_count += 1
+                        html = ''
             except Exception as e:
                 print(e)
+                html = ''
+        if not html and retry_count >= 10:
+            return
         print('获取到%s的html' % _url)
         if self.parse_links_xici(html):
             this_page = _url.split('/')[-1]
@@ -39,15 +70,18 @@ class ProxyGet:
         date_judge = False
         for each_tr_tag in xpath_html.xpath('//*[@id="ip_list"]/tr')[1:]:
             ip_dict = {}
-            ip_dict['proxy'] = each_tr_tag.xpath('td[2]/text()')[0] + ':' + each_tr_tag.xpath('td[3]/text()')[0]
-            ip_dict['type'] = each_tr_tag.xpath('td[6]/text()')[0]
-            ip_dict['time'] = each_tr_tag.xpath('td[10]/text()')[0]
+            try:
+                ip_dict['proxy'] = each_tr_tag.xpath('td[2]/text()')[0] + ':' + each_tr_tag.xpath('td[3]/text()')[0]
+                ip_dict['type'] = each_tr_tag.xpath('td[6]/text()')[0]
+                ip_dict['time'] = each_tr_tag.xpath('td[10]/text()')[0]
 
-            date_judge = ip_dict['time'].split(' ')[0] != yesterday_date
-            if date_judge:
-                mon.insert_dict(ip_dict, mop.sourceProxies, 'proxy')
-            else:
-                return date_judge
+                date_judge = ip_dict['time'].split(' ')[0] != yesterday_date
+                if date_judge:
+                    mon.insert_dict(ip_dict, mop.sourceProxies, 'proxy')
+                else:
+                    return date_judge
+            except:
+                return False
 
         print('将该页html中的SourceProxies存入数据库中')
         return date_judge
@@ -61,6 +95,8 @@ class ProxyGet:
             html = hp.get_html(_url)
             if html:
                 break
+            else:
+                return
         print('获取到%s的html' % _url)
         if self.parse_links_kuai(html.text):
             this_page = _url.split('/')[-2]
@@ -88,7 +124,7 @@ class ProxyGet:
     def main(self):
         # 获取网站上的所有代理
         self.get_source_from_html_xici('http://www.xicidaili.com/nn/page')
-        self.get_source_from_html_kuai('http://www.kuaidaili.com/free/inha/page/')
+        # self.get_source_from_html_kuai('http://www.kuaidaili.com/free/inha/page/')
 class ProxyCheck:
     def __init__(self):
         self.first_check_url_http = 'http://www.7kk.com'
@@ -160,6 +196,7 @@ class ProxyCheck:
 
 class ProxyCheck_:
     def __init__(self):
+        # http://www.yxkfw.com/?fromuid=87246     http://1212.ip138.com/ic.asp
         self.test_urls = {'http':'http://1212.ip138.com/ic.asp',
                           'https':'https://jinshuju.net/f/YqBTlv'}
 

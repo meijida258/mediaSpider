@@ -1,7 +1,8 @@
 <xml>
-<ToUserName><![CDATA[{{ toUser }}]]></ToUserName>
-<FromUserName><![CDATA[{{ fromUser }}]]></FromUserName>
-<CreateTime>{{ nowtime }}</CreateTime>
-<MsgType><![CDATA[text]]></MsgType>
-<Content><![CDATA[{{ content }}]]></Content>
+    <ToUserName><![CDATA[ojpX_jig-gyi3_Q9fHXQ4rdHniQs]]></ToUserName>
+    <FromUserName><![CDATA[gh_204936aea56d]]></FromUserName>
+    <CreateTime>1500372529</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[1+1]]></Content>
+    <MsgId>1234567890abcdef</MsgId>
 </xml>
