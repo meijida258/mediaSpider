@@ -1,0 +1,2 @@
+2017/04/17 18:05:41 [emerg] 42920#42188: "location" directive is not allowed here in C:\mediaSpider\Django\learn\l_env\django-chatroom-master\nginx-1.12.0/conf/nginx.conf:118
+2017/04/17 18:54:18 [emerg] 62148#62044: "location" directive is not allowed here in C:\mediaSpider\Django\learn\l_env\django-chatroom-master\nginx-1.12.0/conf/nginx.conf:118

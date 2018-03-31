@@ -17,7 +17,7 @@ class HtmlPro:
         headers_dict['User-Agent'] = str(ua_.random)
         return headers_dict
 
-    def get_html(self, url, proxies=None, timeout=30, add_headers={},retry_time=None, random_ua=False):
+    def get_html(self, url, proxies=None, timeout=30, add_headers={},retry_time=None, random_ua=False, retry_sleep=None):
         if not retry_time:
             retry_time = 1
         # 随机ua
@@ -31,6 +31,8 @@ class HtmlPro:
         time.sleep(retry_time * 1)
         link_time = 1
         while link_time <= retry_time:
+            if retry_sleep:
+                time.sleep(retry_sleep)
             try:
                 html = requests.get(url, headers=headers, proxies=proxies, timeout=timeout)
                 return html # 未确定格式的response

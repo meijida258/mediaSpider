@@ -1,5 +1,6 @@
 import os, time, random
 from pymongo import MongoClient
+
 class ImgOutPut:
     def random_output(self, output_path, source_collection):
         st = time.time()

@@ -1,0 +1,3 @@
+# mongorestore -h 127.0.0.1:27017 -d sparrow_main --dir D:\数据库备份\home\text\Documents\backups\mongodb\sparrow
+# mongorestore -h 127.0.0.1:27017 -d sparrow_agent --dir D:\数据库备份\home\text\Documents\backups\mongodb\sparrow_agent
+# mongorestore -h 127.0.0.1:27017 -d sparrow_coin_trader --dir D:\数据库备份\home\hello\Documents\backups\mongodb\sparrow_agent

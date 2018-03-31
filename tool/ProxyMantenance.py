@@ -1,10 +1,12 @@
-from lxml import etree
+﻿from lxml import etree
 from pymongo import MongoClient
 from GetHtml import hp
 from MongoManagement import mon
 from multiprocessing.dummy import Pool as ThreadingPool
 import datetime, time, random
 import asyncio, aiohttp
+import requests, re
+
 class ProxyGet:
     def __init__(self):
         self.urls = {'xici':'http://www.xicidaili.com/nn/page',
@@ -26,6 +28,7 @@ class ProxyGet:
                 pass
 
     def get_source_from_html_xici(self, url):
+        print(url)
         if url.find('page') > 0:
             _url = url.replace('page', '1')
         else:
@@ -54,6 +57,10 @@ class ProxyGet:
         if not html and retry_count >= 10:
             return
         print('获取到%s的html' % _url)
+        # 以获取到的ip数量，判断是否结束
+        if mop.sourceProxies.find().count() > 4500:
+            return
+        # 以获取到的ip时间，判断是否结束
         if self.parse_links_xici(html):
             this_page = _url.split('/')[-1]
             next_url = _url.replace(this_page, str(int(this_page) + 1))
@@ -121,9 +128,48 @@ class ProxyGet:
                 return judge_result
         return judge_result
 
+    def gatherprorxy_control(self):
+        for page in range(1, 6):
+            html = self.get_source_from_html_gatherproxy(page)
+            # print(html)
+            if html:
+               self.parse_links_gather(html)
+
+    def get_source_from_html_gatherproxy(self, page):
+        headers = {
+            'Host': "www.gatherproxy.com",  # 需要修改为当前网站主域名
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Connection": "keep-alive",
+            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:39.0) Gecko/20100101 Firefox/39.0",
+            "referer": 'http://www.gatherproxy.com/zh/proxylist/country/?c=China'  # 随意的伪造值
+        }
+        try_count = 1
+        while try_count < 5:
+            try:
+                html = requests.post('http://www.gatherproxy.com/zh/proxylist/country/?c=china',proxies={'http': 'http://192.168.2.100:8081'}, headers=headers,data={"Country": "china", "PageIdx": str(page)}).text
+                return html
+            except:
+                try_count += 1
+        return None
+
+    def parse_links_gather(self, html):
+        ip_list = re.findall(r"document\.write\('(.*?)'\)", html)
+        port_list = re.findall(r"document\.write\(gp\.dep\('(.*?)'\)\)", html)
+        if len(ip_list) != len(port_list) or not ip_list or not port_list:
+            return
+        for ip in ip_list:
+            ip_dict = {}
+            ip_dict['proxy'] = ip + ':' + str(int(port_list[ip_list.index(ip)], 16))
+            ip_dict['type'] = 'HTTP'
+            ip_dict['time'] = str(datetime.datetime.now())[2:-10]
+            mon.insert_dict(ip_dict, mop.sourceProxies, 'proxy')
+
     def main(self):
         # 获取网站上的所有代理
         self.get_source_from_html_xici('http://www.xicidaili.com/nn/page')
+        self.gatherprorxy_control()
         # self.get_source_from_html_kuai('http://www.kuaidaili.com/free/inha/page/')
 class ProxyCheck:
     def __init__(self):
@@ -197,7 +243,7 @@ class ProxyCheck:
 class ProxyCheck_:
     def __init__(self):
         # http://www.yxkfw.com/?fromuid=87246     http://1212.ip138.com/ic.asp
-        self.test_urls = {'http':'http://1212.ip138.com/ic.asp',
+        self.test_urls = {'http':'http://www.ip138.com/',
                           'https':'https://jinshuju.net/f/YqBTlv'}
 
     async def manage_proxy(self, proxy_dict, result):
@@ -221,18 +267,29 @@ class ProxyCheck_:
             mon.remove_dict({'proxy': result_dict['proxy_dict']['proxy']}, mop.sourceProxies)
             print('代理%s不可用' % result_dict['proxy_dict']['proxy'])
 
-    def main(self):
+    def do_get(self):
         proxy_dicts = mop.sourceProxies.find()
+        if proxy_dicts.count() > 1000:
+            result = proxy_dicts[:1000]
+        elif proxy_dicts.count() == 0:
+            return None
+        else:
+            result = proxy_dicts
+        return result
+    def main(self):
+        proxy_dicts = self.do_get()
+        if not proxy_dicts:
+            return
         loop = asyncio.get_event_loop()
         result = []
         tasks = [self.manage_proxy(proxy_dict, result) for proxy_dict in proxy_dicts]
         loop.run_until_complete(asyncio.wait(tasks))
         for each_result in result:
             self.check_proxy(each_result)
-
+        self.main()
 class ProxyManage_:
     def __init__(self):
-        self.test_urls = {'http':'http://1212.ip138.com/ic.asp',
+        self.test_urls = {'http':'http://www.ip138.com/',
                           'https':'https://jinshuju.net/f/YqBTlv',}
     def count_live_time(self, str_time):
         live_time = ((int(time.strftime('%m', time.localtime())) - int(str_time.split(' ')[0].split('-')[1])) * 30 +
@@ -266,8 +323,8 @@ class ProxyManage_:
                 return 2  # https有效
         else:
             # failed+1
-            if result_dict['proxy_dict']['failed'] + 1 > 5:
-                if result_dict['proxy_dict']['succeed'] <= 5:
+            if result_dict['proxy_dict']['failed'] + 1 > 3:
+                if result_dict['proxy_dict']['succeed'] <= 3:
                     mon.remove_dict({'proxy': result_dict['proxy_dict']['proxy']}, mop.usefulProxies)
                     print('代理%s失效' % result_dict['proxy_dict']['proxy'])
                 else:
@@ -319,22 +376,42 @@ class ProxyManage_:
             fl.write('访问失败代理数：http共%s个， https共%s个%s' % (str(failed_http), str(failed_https), '\n'))
         fl.close()
 
+    def main_loop(self, useful_proxy_dicts, start_time):
+        result = []
+        tasks = [self.manage_proxy(proxy, result) for proxy in useful_proxy_dicts]
+        loop2 = asyncio.get_event_loop()
+        loop2.run_until_complete(asyncio.wait(tasks))
+        return result
+
     def main(self):
         start_time = time.time()
         # 获取所有的有效代理
         print('开始进行有效代理的维护')
+        #先把deal里的ip放进useful里面
         deal_proxy_dicts = mop.dealProxies.find()
         if deal_proxy_dicts.count() > 0:
             for deal_proxy_dict in deal_proxy_dicts:
 
                 mon.insert_dict(self.make_new_dict(deal_proxy_dict), mop.usefulProxies, 'proxy')
                 mon.remove_dict({'proxy':deal_proxy_dict['proxy']}, mop.dealProxies)
-        useful_proxy_dicts = mop.usefulProxies.find(no_cursor_timeout=True)
+        useful_proxy_dicts_temp = mop.usefulProxies.find(no_cursor_timeout=True)
+        useful_proxy_dicts = []
+        for i in useful_proxy_dicts_temp:
+            useful_proxy_dicts.append(i)
+        #
         result = []
-        tasks = [self.manage_proxy(proxy, result) for proxy in useful_proxy_dicts]
-        loop2 = asyncio.get_event_loop()
-        loop2.run_until_complete(asyncio.wait(tasks))
-        loop2.close()
+        callback_time = 0
+        while True:
+            try:
+                temp_useful_proxy_dicts = useful_proxy_dicts[callback_time*500:(callback_time+1)*500]
+            except:
+                temp_useful_proxy_dicts = useful_proxy_dicts[callback_time * 500:]
+            if len(temp_useful_proxy_dicts) == 0:
+                break
+            temp_result = []
+            for each_result in self.main_loop(temp_useful_proxy_dicts, temp_result):
+                result.append(each_result)
+            callback_time += 1
         note_result = []
         for each_result in result:
             note_result.append(self.update_data(each_result))
@@ -359,8 +436,17 @@ class ProxyUse:
     def get_random_proxy(self, type):
         proxy_dicts = mop.usefulProxies.find({'type':type.upper()})
         # 返回一个符合要求的代理
-        proxy_dict = proxy_dicts[random.randint(0, proxy_dicts.count())]
-        return {type:'http://%s' % proxy_dict['proxy']}
+        while True:
+            try:
+                proxy_dict = proxy_dicts[random.randint(0, proxy_dicts.count())]
+                break
+            except Exception as e:
+                print(e)
+        if random.randint(0, 100) > 10:
+            result = {type:'http://%s' % proxy_dict['proxy']}
+        else:
+            result = {}
+        return result
 
     def get_all_proxy(self, type):
         # 返回符合要求的所有代理
@@ -384,7 +470,7 @@ class ProxyUse:
         else:
             # 失败次数+1，并记录
             failed_count = proxy_dict['failed'] + 1
-            if failed_count > 10:
+            if failed_count > 5:
                 # 失败次数超过上限，删除
                 mop.usefulProxies.remove({'proxy':proxy})
             else:
@@ -406,6 +492,4 @@ if __name__ == '__main__':
 else:
     mop = MongoPro()
     prog = ProxyGet()
-    proc = ProxyCheck_()
-    prom = ProxyManage_()
     prou = ProxyUse()

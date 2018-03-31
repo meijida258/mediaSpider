@@ -29,6 +29,7 @@ def random_output(output_path, source_collection):
         img.close()
     print('输出完毕，耗时%s' % str(time.time()-st))
 # iop.random_output(out_path, collection4)
+
 def insert_pic(i, save_collection = collection4):
     img_name_list = os.listdir(set_path + os.path.sep + i)
     for each_img in img_name_list:
@@ -45,13 +46,33 @@ def insert_pic(i, save_collection = collection4):
             save_collection.insert(insert_dict)
             print('录入一张图片，来自%s的第%s张图片，耗时%s' % (insert_dict['set_name'], insert_dict['img_num'], str(time.time() - start_time)))
 
-exit()
-b = requests.get('http://imgs.aixifan.com/live/1493028073796/1493028073796.jpg').content
 
-fl = open('a.txt', 'wb')
-fl.write(b)
-fl.close()
-fl = open('a.txt', 'rb')
-with open('b.jpg', 'wb') as c:
-    c.write(fl.read())
-c.close()
+def up_photos():
+    collection = [collection1, collection2, collection3, collection4]
+    save_file = out_path + os.sep + 'photos'
+    for i in collection:
+        pic_list = i.find()
+        collection_count = 0
+        while True:
+            try:
+                save_pic_count = len(os.listdir(save_file))
+                save_path = save_file + os.sep + 'img_%s.' % str(save_pic_count + 1) + pic_list[collection_count]['img_type']
+                with open(save_path, 'wb') as pic:
+                    pic.write(pic_list[collection_count]['img_data'])
+                pic.close()
+                collection_count += 2
+            except:
+                break
+
+up_photos()
+# exit()
+
+# b = requests.get('http://imgs.aixifan.com/live/1493028073796/1493028073796.jpg').content
+#
+# fl = open('a.txt', 'wb')
+# fl.write(b)
+# fl.close()
+# fl = open('a.txt', 'rb')
+# with open('b.jpg', 'wb') as c:
+#     c.write(fl.read())
+# c.close()
