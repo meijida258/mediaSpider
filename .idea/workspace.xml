@@ -6,48 +6,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3ac1401-568b-4951-9883-97554d245317" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/gjcq.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/jackpot.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/daily_analysis.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/file_operate.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/longtime_analysis.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/operate_commend" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/sparrow_main_ex.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/sparrow_query.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DA/sparrow/user_behaviors_analysis.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Django/learn/l_env/Slot/fruit/slot_simulation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Django/learn/l_env/Slot/fruit/templates/slot.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Django/learn/l_env/dj_dwebsocket-master/dj_websocket/demo/slot_simulation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/QAgame.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/control_center.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/resource/snake_AI_code.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/snake_bfs.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/snake_curses.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/snake_practice.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/tanchis.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Image/gif_make.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawl/QQphotos.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawl/ssc.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/study/algorithm.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/study/redis/redis_study.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/study/requests_html.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tool/checkio.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tool/ewm_file.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tool/matplot.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tool/space_file.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tool/text_file.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tool/test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tool/wordclound_stopword.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/mongoconn.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/redis.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/crawl/smzdm/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/normal_version/cloud_music.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/cloud_music.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/normal_version/comment_anlysis.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/comment_anlysis.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/normal_version/music_comment.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/music_comment.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/crawl/smzdm.py" afterPath="$PROJECT_DIR$/crawl/smzdm/smzdm.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawl/mmjpg.py" afterPath="$PROJECT_DIR$/crawl/mmjpg.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tool/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/GetHtml.py" afterPath="$PROJECT_DIR$/tool/GetHtml.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/ImgOut.py" afterPath="$PROJECT_DIR$/tool/ImgOut.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/ProxyMantenance.py" afterPath="$PROJECT_DIR$/tool/ProxyMantenance.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/proxy_manage.txt" afterPath="$PROJECT_DIR$/tool/proxy_manage.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/QAgame.py" afterPath="$PROJECT_DIR$/Game/QAgame.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/items.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/items.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/middlewares.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/middlewares.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/settings.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py" afterPath="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/geckodriver.log" afterPath="$PROJECT_DIR$/tool/geckodriver.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/space_file.py" afterPath="$PROJECT_DIR$/tool/space_file.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -65,22 +38,80 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cloudmusic.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cloudmusic.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="550">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redis.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/redis.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mongoconn.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/mongoconn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="items.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="middlewares.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/middlewares.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="59" column="61" lean-forward="true" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
+              <folding>
+                <element signature="e#168#194#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="440">
+              <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="111" column="29" lean-forward="false" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="space_file.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tool/space_file.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,14 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>agg</find>
-      <find>save_time</find>
-      <find>date_data</find>
-      <find>save_date</find>
-      <find>users_log</find>
-      <find>int</find>
-      <find>finish_task_count</find>
-      <find>print</find>
       <find>get_ext_data</find>
       <find>2018</find>
       <find>2255   90.982    0.040   90.982    0.040 {method 'recv' of '_socket.socket' objects}</find>
@@ -137,6 +160,14 @@
       <find>params</find>
       <find>encSecKey</find>
       <find>buk1x</find>
+      <find>etree</find>
+      <find>xpath</find>
+      <find>httpca</find>
+      <find>/artist?id</find>
+      <find>doc</find>
+      <find>artist</find>
+      <find>536622304</find>
+      <find>lemon</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -145,13 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/littleG.py" />
-        <option value="$PROJECT_DIR$/crawl/smzdm.py" />
-        <option value="$PROJECT_DIR$/crawl/QQphotos.py" />
-        <option value="$PROJECT_DIR$/DA/jackpot.py" />
-        <option value="$PROJECT_DIR$/Django/learn/l_env/django-chatroom-master/project/settings.py" />
-        <option value="$PROJECT_DIR$/Django/learn/l_env/Slot/fruit/models.py" />
-        <option value="$PROJECT_DIR$/Django/learn/l_env/Slot/fruit/slot_simulation.py" />
         <option value="$PROJECT_DIR$/Django/learn/l_env/dj_dwebsocket-master/dj_websocket/demo/views.py" />
         <option value="$PROJECT_DIR$/Django/learn/l_env/Slot/Slot/urls.py" />
         <option value="$PROJECT_DIR$/Django/learn/l_env/dj_dwebsocket-master/dj_websocket/templates/index.html" />
@@ -190,18 +214,25 @@
         <option value="$PROJECT_DIR$/DA/sparrow/daily_analysis.py" />
         <option value="$PROJECT_DIR$/tool/gif_make.py" />
         <option value="$PROJECT_DIR$/Image/gif_make.py" />
-        <option value="$PROJECT_DIR$/tool/space_file.py" />
         <option value="$PROJECT_DIR$/study/algorithm.py" />
         <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/cloud_music.py" />
         <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/music_comment.py" />
         <option value="$PROJECT_DIR$/study/redis/redis_study.py" />
+        <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/items.py" />
+        <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/redis.py" />
+        <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/mongoconn.py" />
+        <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/music_comment.py" />
+        <option value="$PROJECT_DIR$/Game/QAgame.py" />
+        <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/settings.py" />
+        <option value="$PROJECT_DIR$/tool/space_file.py" />
+        <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/middlewares.py" />
         <option value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="616" />
-    <option name="y" value="211" />
+    <option name="x" value="393" />
+    <option name="y" value="116" />
     <option name="width" value="1471" />
     <option name="height" value="987" />
   </component>
@@ -224,6 +255,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -233,6 +265,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mediaSpider" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mediaSpider" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mediaSpider" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,62 +423,28 @@
               <option name="myItemId" value="CloudMusic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scrapy_version" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scrapy_version" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spiders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mediaSpider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mediaSpider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crawl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="media_spider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CloudMusic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="F:/haipproxy" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/mediaSpider/crawl/smzdm.py" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\mediaSpider\Django\learn\l_env\dj_dwebsocket-master\dj_websocket\demo" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\mediaSpider\crawl\smzdm" />
       <recent name="C:\mediaSpider\Image" />
       <recent name="C:\mediaSpider\DA\sparrow" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\mediaSpider\Django\learn\l_env\dj_dwebsocket-master\dj_websocket\demo" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.redis_study">
+  <component name="RunManager" selected="Python.space_file">
     <configuration default="false" name="space_file" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -446,40 +458,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="mediaSpider" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tool/space_file.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="daily_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DA/sparrow" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="mediaSpider" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DA/sparrow/daily_analysis.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="gif_make" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tool" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="mediaSpider" />
-      <option name="SCRIPT_NAME" value="C:\mediaSpider\Image\gif_make.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -514,6 +492,40 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="mediaSpider" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/study/redis/redis_study.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="music_comment" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="mediaSpider" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/music_comment.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="QAgame" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Game" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="mediaSpider" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Game/QAgame.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -672,18 +684,18 @@
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.control_center" />
       <item index="1" class="java.lang.String" itemvalue="Python.space_file" />
-      <item index="2" class="java.lang.String" itemvalue="Python.daily_analysis" />
-      <item index="3" class="java.lang.String" itemvalue="Python.gif_make" />
-      <item index="4" class="java.lang.String" itemvalue="Python.algorithm" />
-      <item index="5" class="java.lang.String" itemvalue="Python.redis_study" />
+      <item index="2" class="java.lang.String" itemvalue="Python.algorithm" />
+      <item index="3" class="java.lang.String" itemvalue="Python.redis_study" />
+      <item index="4" class="java.lang.String" itemvalue="Python.music_comment" />
+      <item index="5" class="java.lang.String" itemvalue="Python.QAgame" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.redis_study" />
-        <item index="1" class="java.lang.String" itemvalue="Python.algorithm" />
-        <item index="2" class="java.lang.String" itemvalue="Python.space_file" />
-        <item index="3" class="java.lang.String" itemvalue="Python.gif_make" />
-        <item index="4" class="java.lang.String" itemvalue="Python.daily_analysis" />
+        <item index="0" class="java.lang.String" itemvalue="Python.space_file" />
+        <item index="1" class="java.lang.String" itemvalue="Python.QAgame" />
+        <item index="2" class="java.lang.String" itemvalue="Python.music_comment" />
+        <item index="3" class="java.lang.String" itemvalue="Python.redis_study" />
+        <item index="4" class="java.lang.String" itemvalue="Python.algorithm" />
       </list>
     </recent_temporary>
   </component>
@@ -727,7 +739,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="616" y="211" width="1471" height="987" extended-state="0" />
+    <frame x="393" y="116" width="1471" height="987" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17097" sideWeight="0.49320388" order="0" side_tool="false" content_ui="combo" />
@@ -735,18 +747,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40098402" sideWeight="0.504714" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45081967" sideWeight="0.495286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296433" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15741584" sideWeight="0.5067961" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35362998" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45081967" sideWeight="0.495286" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35411766" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -769,102 +781,11 @@
           <properties exception="BaseException" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="113" />
+      <option name="time" value="115" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/crawl/ssc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DA/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DA/sparrow/file_operate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/matplotlib/axes/_axes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="2114" column="0" lean-forward="false" selection-start-line="2114" selection-start-column="0" selection-end-line="2114" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Python35/Lib/site-packages/pymongo-3.4.0-py3.5-win-amd64.egg!/bson/objectid.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/abc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Python35/Lib/site-packages/pymongo-3.4.0-py3.5-win-amd64.egg!/pymongo/cursor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Python35/Lib/site-packages/pymongo-3.4.0-py3.5-win-amd64.egg!/pymongo/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/matplotlib/axis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="1464" column="8" lean-forward="false" selection-start-line="1464" selection-start-column="8" selection-end-line="1464" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python35/Lib/site-packages/matplotlib/axes/_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-112">
-          <caret line="3009" column="33" lean-forward="false" selection-start-line="3009" selection-start-column="33" selection-end-line="3009" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DA/sparrow/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tool/ImgOut.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tool/aiohttp_text.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-466">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tool/checkio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1050,13 +971,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/cloud_music.py" />
-    <entry file="file://$PROJECT_DIR$/tool/space_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="73" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/music_comment.py" />
     <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/comment_anlysis.py" />
     <entry file="file://$PROJECT_DIR$/DA/sparrow/sparrow_main_ex.py">
@@ -1081,11 +995,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Python35/Lib/site-packages/scrapy/http/request/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="18" column="64" lean-forward="false" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/cloud_music.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/study/redis/redis_study.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/bilibili/bilibili_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/tieba/biaoqingbao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="31" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tool/MongoManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-154">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1097,19 +1060,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py">
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/my_version/music_comment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="228">
+          <caret line="322" column="20" lean-forward="false" selection-start-line="322" selection-start-column="20" selection-end-line="322" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/redis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/QAgame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="97" column="12" lean-forward="false" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#22#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="111" column="29" lean-forward="false" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/items.py">
+    <entry file="file://C:/Python35/Lib/site-packages/selenium/webdriver/remote/errorhandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="220">
+          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tool/space_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/mongoconn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/middlewares.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="59" column="61" lean-forward="true" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
+          <folding>
+            <element signature="e#168#194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawl/media_spider/CloudMusic/scrapy_version/scrapy_version/spiders/cloudmusic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

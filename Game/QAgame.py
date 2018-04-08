@@ -90,9 +90,12 @@ def main():
         result_2.append(get_answer_append(each_result))
     return result_1, result_2
 
-img = img_read('C:/Users\Administrator\Desktop/index.jpg')
+img = img_read('C:/Users\Administrator\Desktop/1.jpg')
 img_content = img_ocr(img)
-print(img_content)
+result = ''
+for i in img_content:
+    result += i['words']
+print(result)
 exit()
 
 while True:

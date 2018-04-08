@@ -12,3 +12,17 @@ class ScrapyVersionItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+class ArtistItem(scrapy.Item):
+    artist_name = scrapy.Field()
+    artist_id = scrapy.Field()
+
+class MusicItem(scrapy.Item):
+    music_name = scrapy.Field()
+    music_id = scrapy.Field()
+    music_author_name = scrapy.Field()
+    music_author_id = scrapy.Field()
+    music_lyric = scrapy.Field()
+    music_comments_count = scrapy.Field()
+    music_hot_comments = scrapy.Field()
+    music_mv_id = scrapy.Field()
