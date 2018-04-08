@@ -1,0 +1,110 @@
+1523173420959	geckodriver	INFO	geckodriver 0.20.0
+1523173420973	geckodriver	INFO	Listening on 127.0.0.1:52747
+1523173424001	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.SPKfu1VaoFUh"
+*** You are running in headless mode.
+1523173424882	Marionette	INFO	Enabled via --marionette
+[GFX1-]: ClientLayerManager::BeginTransaction with IPC channel down. GPU process may have died.
+1523173426564	Marionette	INFO	Listening on port 52755
+1523173427328	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523173511900	geckodriver	INFO	geckodriver 0.20.0
+1523173511911	geckodriver	INFO	Listening on 127.0.0.1:52849
+1523173514941	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.kg6CuHaQBPLf"
+*** You are running in headless mode.
+1523173515852	Marionette	INFO	Enabled via --marionette
+[GFX1-]: ClientLayerManager::BeginTransaction with IPC channel down. GPU process may have died.
+1523173517810	Marionette	INFO	Listening on port 52857
+1523173518072	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+1523173603681	geckodriver	INFO	geckodriver 0.20.0
+1523173603694	geckodriver	INFO	Listening on 127.0.0.1:52939
+1523173606704	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.gbIQdJ3Fl86I"
+*** You are running in headless mode.
+1523173608204	Marionette	INFO	Enabled via --marionette
+1523173612042	Marionette	INFO	Listening on port 52948
+1523173612434	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+1523174057380	geckodriver	INFO	geckodriver 0.20.0
+1523174057392	geckodriver	INFO	Listening on 127.0.0.1:53179
+1523174060302	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.qSWRJbdF8YOD"
+*** You are running in headless mode.
+1523174062270	Marionette	INFO	Enabled via --marionette
+1523174065756	Marionette	INFO	Listening on port 53188
+1523174066032	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+1523174217203	geckodriver	INFO	geckodriver 0.20.0
+1523174217215	geckodriver	INFO	Listening on 127.0.0.1:53319
+1523174220064	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.qIAWQ0TUpDGV"
+*** You are running in headless mode.
+1523174222392	Marionette	INFO	Enabled via --marionette
+1523174226182	Marionette	INFO	Listening on port 53327
+1523174226290	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+JavaScript warning: https://s3.music.126.net/web/s/core.js?6ada41836c02af3a3635a4a8917375c6, line 94: unreachable code after return statement
+1523177323164	geckodriver	INFO	geckodriver 0.20.0
+1523177323176	geckodriver	INFO	Listening on 127.0.0.1:64047
+1523177326136	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.Lu7GeNj0gx8j"
+*** You are running in headless mode.
+1523177328758	Marionette	INFO	Enabled via --marionette
+1523177331726	Marionette	INFO	Listening on port 64056
+1523177331960	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523177962315	geckodriver	INFO	geckodriver 0.20.0
+1523177962329	geckodriver	INFO	Listening on 127.0.0.1:54060
+1523177965277	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.Pih6Re6ikEQT"
+*** You are running in headless mode.
+1523177967864	Marionette	INFO	Enabled via --marionette
+1523177974812	Marionette	INFO	Listening on port 54069
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 13600, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 14680, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1523177975328	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523178003808	geckodriver	INFO	geckodriver 0.20.0
+1523178003820	geckodriver	INFO	Listening on 127.0.0.1:54109
+1523178006707	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.IagcHyrFsXmN"
+*** You are running in headless mode.
+1523178008258	Marionette	INFO	Enabled via --marionette
+1523178011850	Marionette	INFO	Listening on port 54117
+1523178011938	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523178266793	geckodriver	INFO	geckodriver 0.20.0
+1523178266805	geckodriver	INFO	Listening on 127.0.0.1:50813
+1523178269478	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.P17XgaXuCL2f"
+*** You are running in headless mode.
+1523178277546	Marionette	INFO	Enabled via --marionette
+1523178287836	Marionette	INFO	Listening on port 50821
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 14132, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1523178288336	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523178327809	geckodriver	INFO	geckodriver 0.20.0
+1523178327823	geckodriver	INFO	Listening on 127.0.0.1:50902
+1523178330846	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.lkoQiPKr5jce"
+*** You are running in headless mode.
+1523178331900	Marionette	INFO	Enabled via --marionette
+1523178338724	Marionette	INFO	Listening on port 50911
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 16104, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 16104, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1523178339190	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523179821778	geckodriver	INFO	geckodriver 0.20.0
+1523179821791	geckodriver	INFO	Listening on 127.0.0.1:51828
+1523179824547	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.Hjcx39dYgsA4"
+*** You are running in headless mode.
+1523179829756	Marionette	INFO	Enabled via --marionette
+1523179838152	Marionette	INFO	Listening on port 51837
+1523179838194	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523180263246	geckodriver	INFO	geckodriver 0.20.0
+1523180263258	geckodriver	INFO	Listening on 127.0.0.1:62923
+1523180265964	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.7OuIxwk5On4r"
+*** You are running in headless mode.
+1523180273944	Marionette	INFO	Enabled via --marionette
+1523180297690	Marionette	INFO	Listening on port 62931
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 18348, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1523180306858	Marionette	WARN	TLS certificate errors will be ignored for this session
+1523180342660	addons.productaddons	WARN	Failed downloading via XHR, status: 0, reason: error

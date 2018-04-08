@@ -59,16 +59,18 @@ class ScrapyVersionSpiderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
-class PhantomJSMiddleware(object):
+class FirefoxMiddleware(object):
+    options = webdriver.FirefoxOptions()  # 指定使用的浏览器
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    driver = webdriver.Firefox(options=options)
+
     @classmethod
     def process_request(self, request, spider):
-        if 'PhantomJS' in request.meta:
-            print("PhantomJS is starting...")
-            driver = webdriver.PhantomJS()  # 指定使用的浏览器
-            driver.get(request.url)
-            driver.switch_to.frame('contentFrame')
-            body = driver.page_source
-            driver.close()
+        if 'firefox' in request.meta:
+            self.driver.get(request.url)
+            self.driver.switch_to.frame('contentFrame')
+            body = self.driver.page_source
             return HtmlResponse(request.url, body=body, encoding='utf-8', request=request)
         else:
             return

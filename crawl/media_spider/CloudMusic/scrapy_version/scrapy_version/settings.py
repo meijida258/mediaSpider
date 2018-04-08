@@ -88,28 +88,19 @@ HTTPCACHE_DIR = 'httpcache'
 HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# redis设置
-# SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# REDIS_HOST = '127.0.0.1'
-# REDIS_PORT = 6379
-# REDIS_PASSWORD = 'cjljc'
+#redis设置
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+REDIS_PASSWORD = 'cjljc'
 
-# phantomjs设置
-JS_BIN="spiders\\phantomjs.exe"
 
-LOGIN_TYPE="myCrawl"
-
-ROBOTSTXT_OBEY = True
-#反爬机制
-ROBOTSTXT_OBEY = False
-#设置取消Cookes
-COOKIES_ENABLED = False
 
 DOWNLOAD_DELAY = 3
 CONCURRENT_REQUESTS=100
 
 #取消默认的useragent,使用新的useragent
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy_version.middlewares.PhantomJSMiddleware': 100
+    'scrapy_version.middlewares.FirefoxMiddleware': 100
 }

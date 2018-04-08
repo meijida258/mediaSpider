@@ -8,9 +8,7 @@ class Mongo:
         self.artist_collection = self.db.Artist
         self.music_collection = self.db.Music
 
-
 if __name__ == '__main__':
     mongo = Mongo()
-
 else:
     mongo = Mongo()
