@@ -61,7 +61,7 @@ class ScrapyVersionSpiderMiddleware(object):
 
 class FirefoxMiddleware(object):
     options = webdriver.FirefoxOptions()  # 指定使用的浏览器
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Firefox(options=options)
 
@@ -73,4 +73,4 @@ class FirefoxMiddleware(object):
             body = self.driver.page_source
             return HtmlResponse(request.url, body=body, encoding='utf-8', request=request)
         else:
-            return
+            return None

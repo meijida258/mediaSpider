@@ -13,8 +13,8 @@ class ScrapyVersionItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
-class ArtistItem(scrapy.Item):
-    artist_name = scrapy.Field()
+class ArtistMusicItem(scrapy.Item):
+    music_id = scrapy.Field()
     artist_id = scrapy.Field()
 
 class MusicItem(scrapy.Item):

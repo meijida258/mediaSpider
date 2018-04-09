@@ -8,7 +8,7 @@ from pymongo import MongoClient
 from .redis import conn_reds
 import json
 
-class ScrapyVersionPipeline(object):
+class MyRedisPipeline(object):
 
     def __init__(self):
         self.reds = conn_reds.get_redis_conn(2)
