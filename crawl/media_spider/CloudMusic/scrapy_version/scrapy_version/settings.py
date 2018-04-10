@@ -90,11 +90,11 @@ HTTPCACHE_IGNORE_HTTP_CODES = []
 HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 #redis设置
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = 6379
-REDIS_PASSWORD = 'cjljc'
+# SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# REDIS_HOST = '127.0.0.1'
+# REDIS_PORT = 6379
+# REDIS_PASSWORD = 'cjljc'
 
 
 

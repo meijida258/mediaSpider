@@ -1,1 +1,1 @@
-{'url': 'http://music.163.com/#/discover/artist/cat?id=1001&initial=%3Cgenerator%20object%20CloudMusicSpider.get_all_artist_url_list.%3Clocals%3E.%3Cgenexpr%3E%20at%200x000000000609DAF0%3E', 'response_url': 'http://music.163.com/', 'timestamp': 1522656746.254389, 'method': 'GET', 'status': 200}
+{'timestamp': 1523343716.5947452, 'response_url': 'http://music.163.com/#/artist?id=159300', 'url': 'http://music.163.com/#/artist?id=159300', 'status': 200, 'method': 'GET'}
