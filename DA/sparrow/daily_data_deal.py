@@ -1,3 +1,8 @@
+#-------------------------------------------------------------------------
+#   程序：daily_data_deal
+#   日期：2018.2.12
+#   功能：处理每天的数据
+#-------------------------------------------------------------------------
 import sys
 import os
 
@@ -64,7 +69,7 @@ class Mongo:
         self.store_orders = self.db.store_orders
         self.users = self.db.users
         self.user_tags = self.db.user_tags
-        self.player_recharge_from_coin_trader_log = self.coin_trader_db.player_recharge_log
+        # self.player_recharge_from_coin_trader_log = self.coin_trader_db.player_recharge_log
         # 保存筛选后的数据集
         self.users_data = self.db2.users_date_data
         self.game_daily_log = self.db2.game_daily_log
@@ -105,7 +110,7 @@ class Analysis:
         users_data = self.get_users()
         # 用户行为数据, 均为DataFrame格式
         # 支付
-        third_pay_log_data, apple_pay_log_data, coin_trader_pay_log_data = self.get_users_pay_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
+        third_pay_log_data, apple_pay_log_data = self.get_users_pay_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
                                                                                                   end_date=[self.end_year, self.end_month, self.end_day, 20, 0])
         # 游戏
         ext_log_data = self.get_users_ext_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
@@ -121,10 +126,10 @@ class Analysis:
                                             end_date=[self.end_year, self.end_month, self.end_day, 20, 0])
         # 礼物
         # 送
-        normal_gift_log_data, special_gift_log_data = self.get_users_gift_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
+        normal_gift_log_data= self.get_users_gift_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
                                             end_date=[self.end_year, self.end_month, self.end_day, 20, 0])
         # 收
-        receive_normal_gift_log_data, receive_special_gift_log_data = self.get_users_receive_gift_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
+        receive_normal_gift_log_data = self.get_users_receive_gift_log(st_date=[self.st_year, self.st_month, self.st_day, 20, 0],
                                             end_date=[self.end_year, self.end_month, self.end_day, 20, 0])
         # 非机器人的游戏数据
         users_game_data = {}
@@ -147,22 +152,21 @@ class Analysis:
                 save_data['channel'] = '官方'
             save_data['save_time'] = self.save_date
             # 通过save_data中的用户名查询当天的充值情况
-            print('查询%s的行为数据' % save_data['user_id'])
+            print('查询%s' % save_data['user_id'])
             save_data = self.add_data_to_dict(source_data=third_pay_log_data, save_dict=save_data, source_keys=['pay_count', 'pay_amount'], save_keys=['third_pay_count', 'third_pay_amount'])
             save_data = self.add_data_to_dict(source_data=apple_pay_log_data, save_dict=save_data, source_keys=['pay_count', 'pay_amount'], save_keys=['apple_pay_count', 'apple_pay_amount'])
-            save_data = self.add_data_to_dict(source_data=coin_trader_pay_log_data, save_dict=save_data, source_keys=['pay_count', 'pay_amount'], save_keys=['coin_trader_pay_count', 'coin_trader_pay_amount'])
             # 查询当天的任务领取情况
             save_data = self.add_data_to_dict(source_data=task_log_data, save_dict=save_data, source_keys=['finish_task_count', 'task_reward'], save_keys=['finish_task_count', 'task_reward'])
             # 查询当天的打赏情况
             save_data = self.add_data_to_dict(source_data=normal_gift_log_data, save_dict=save_data, source_keys=['send_gift_count', 'send_gift_amount'], save_keys=['send_normal_gift_count', 'send_normal_gift_amount'])
-            save_data = self.add_data_to_dict(source_data=special_gift_log_data, save_dict=save_data, source_keys=['send_gift_count', 'send_gift_amount'], save_keys=['send_special_gift_count', 'send_special_gift_amount'])
+            # save_data = self.add_data_to_dict(source_data=special_gift_log_data, save_dict=save_data, source_keys=['send_gift_count', 'send_gift_amount'], save_keys=['send_special_gift_count', 'send_special_gift_amount'])
             # 收礼
             save_data = self.add_data_to_dict(source_data=receive_normal_gift_log_data, save_dict=save_data,
                                               source_keys=['receive_gift_count', 'receive_gift_amount'],
                                               save_keys=['receive_normal_gift_count', 'receive_normal_gift_amount'])
-            save_data = self.add_data_to_dict(source_data=receive_special_gift_log_data, save_dict=save_data,
-                                              source_keys=['receive_gift_count', 'receive_gift_amount'],
-                                              save_keys=['receive_special_gift_count', 'receive_special_gift_amount'])
+            # save_data = self.add_data_to_dict(source_data=receive_special_gift_log_data, save_dict=save_data,
+            #                                   source_keys=['receive_gift_count', 'receive_gift_amount'],
+            #                                   save_keys=['receive_special_gift_count', 'receive_special_gift_amount'])
             # 查询当天的在线领取、签到情况
             save_data = self.add_data_to_dict(source_data=online_reward_data, save_dict=save_data, source_keys=['reward_count', 'reward_amount'], save_keys=['online_count', 'online_reward'])
             save_data = self.add_data_to_dict(source_data=sign_in_reward_data, save_dict=save_data, source_keys=['sign_in_days', 'sign_in_reward'], save_keys=['sign_in_days', 'sign_in_reward'])
@@ -173,31 +177,39 @@ class Analysis:
                 if mongo.users_daily_log.find({'save_time':save_data['save_time'], 'user_id':save_data['user_id']}).count() == 0:
                     mongo.users_daily_log.insert(save_data)
             else:
-                return save_data
+                pass
 
+            # query_time = time.clock()
             # 记录非机器人的游戏数据
-            user_game_data = list(mongo.extension_log.aggregate(
-                [
-                    {'$match':{'user_id':save_data['user_id'], 'date':{'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0),
-                                 '$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}},
-                    {'$group':{'_id':'$user_id', 'ext_id':{'$push':'$ext_id'}, 'consume':{'$push':'$consume'}}}
-                ]
-            ))
-            if user_game_data:
-                ext_id_list = user_game_data[0]['ext_id']
-                consume_list = user_game_data[0]['consume']
-                for x, y in zip(ext_id_list, consume_list):
-                    if analy_tool.datetime_to_timestamp(str(datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0))) >= analy_tool.datetime_to_timestamp(str(save_data['regist_date']).split('.')[0]) >= analy_tool.datetime_to_timestamp(str(datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0))):
-                        users_game_data['new_user_play_count'][x-1] += 1
-                        users_game_data['new_user_play_amount'][x-1] += y
-                    else:
-                        users_game_data['old_user_play_count'][x - 1] += 1
-                        users_game_data['old_user_play_amount'][x - 1] += y
-        if mongo.game_daily_log.find({'save_time':self.save_date}).count() == 0:
-            mongo.game_daily_log.insert(users_game_data)
+            # user_game_data = list(mongo.extension_log.aggregate(
+            #     [
+            #         {'$match':{'user_id':save_data['user_id'], 'date':{'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0),
+            #                      '$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}},
+            #         {'$group':{'_id':'$user_id', 'ext_id':{'$push':'$ext_id'}, 'consume':{'$push':'$consume'}}}
+            #     ]
+            # ))
+            # print('查询耗时:{}'.format(time.clock() - query_time))
+            # deal_time = time.clock()
+            # if user_game_data:
+            #     print(user_game_data)
+            #     ext_id_list = user_game_data[0]['ext_id']
+            #     consume_list = user_game_data[0]['consume']
+            #     for x, y in zip(ext_id_list, consume_list):
+            #         if analy_tool.datetime_to_timestamp(str(datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0))) >= analy_tool.datetime_to_timestamp(str(save_data['regist_date']).split('.')[0]) >= analy_tool.datetime_to_timestamp(str(datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0))):
+            #             users_game_data['new_user_play_count'][x-1] += 1
+            #             users_game_data['new_user_play_amount'][x-1] += y
+            #         else:
+            #             users_game_data['old_user_play_count'][x - 1] += 1
+            #             users_game_data['old_user_play_amount'][x - 1] += y
+            # print('处理耗时:{}'.format(time.clock()-deal_time))
+        # if mongo.game_daily_log.find({'save_time':self.save_date}).count() == 0:
+        #     mongo.game_daily_log.insert(users_game_data)
+
     def add_data_to_dict(self, source_data, save_dict, source_keys, save_keys):
         if not source_data.empty:
-            target_data = source_data[source_data['_id']==save_dict['user_id']]
+            # start_time = time.clock()
+            target_data = source_data[source_data['_id'].isin([save_dict['user_id']])]
+            # print('{}耗时：{}'.format(save_keys[0],time.clock() - start_time))
             for key in source_keys:
                 if not target_data.empty:
                     save_dict[save_keys[source_keys.index(key)]] = target_data.ix[target_data.index[0], key] if not isinstance(target_data.ix[target_data.index[0], key], numpy.int64) else int(target_data.ix[target_data.index[0], key])
@@ -206,6 +218,8 @@ class Analysis:
         else:
             for key in source_keys:
                 save_dict[save_keys[source_keys.index(key)]] = 0
+
+
         return save_dict
 
     # --------------------------------------
@@ -237,17 +251,17 @@ class Analysis:
             apple_pay_log_data['pay_count'].append(each_log['pay_count'])
             apple_pay_log_data['pay_amount'].append(each_log['pay_amount'])
         # 银商购买
-        coin_trader_pay_log = mongo.recharge_orders.aggregate([
-            {'$match':{'date':{'$gte':datetime.datetime(st_date[0], st_date[1], st_date[2], st_date[3], 0),
-                                                  '$lte':datetime.datetime(end_date[0], end_date[1], end_date[2], end_date[3], 0)}}},
-            {'$group':{'_id':'$target','pay_count':{'$sum':1}, 'pay_amount':{'$sum':'$amount'}}}
-        ])
-        coin_trader_pay_log_data = {'_id': [], 'pay_count': [], 'pay_amount': []}
-        for each_log in coin_trader_pay_log:
-            coin_trader_pay_log_data['_id'].append(each_log['_id'])
-            coin_trader_pay_log_data['pay_count'].append(each_log['pay_count'])
-            coin_trader_pay_log_data['pay_amount'].append(each_log['pay_amount'])
-        return pandas.DataFrame(third_pay_log_data), pandas.DataFrame(apple_pay_log_data), pandas.DataFrame(coin_trader_pay_log_data)
+        # coin_trader_pay_log = mongo.recharge_orders.aggregate([
+        #     {'$match':{'date':{'$gte':datetime.datetime(st_date[0], st_date[1], st_date[2], st_date[3], 0),
+        #                                           '$lte':datetime.datetime(end_date[0], end_date[1], end_date[2], end_date[3], 0)}}},
+        #     {'$group':{'_id':'$target','pay_count':{'$sum':1}, 'pay_amount':{'$sum':'$amount'}}}
+        # ])
+        # coin_trader_pay_log_data = {'_id': [], 'pay_count': [], 'pay_amount': []}
+        # for each_log in coin_trader_pay_log:
+        #     coin_trader_pay_log_data['_id'].append(each_log['_id'])
+        #     coin_trader_pay_log_data['pay_count'].append(each_log['pay_count'])
+        #     coin_trader_pay_log_data['pay_amount'].append(each_log['pay_amount'])
+        return pandas.DataFrame(third_pay_log_data), pandas.DataFrame(apple_pay_log_data)
     # 任务
     def get_users_task_log(self, st_date, end_date):
         task_log = mongo.daily_task_log.aggregate(
@@ -291,18 +305,18 @@ class Analysis:
             normal_gift_log_data['send_gift_count'].append(each_log['send_gift_count'])
             normal_gift_log_data['send_gift_amount'].append(each_log['send_gift_amount'])
 
-        special_gift_log = mongo.gift_log.aggregate([
-            {'$match': {'date': {'$gte': datetime.datetime(st_date[0], st_date[1], st_date[2], st_date[3], 0),
-                                 '$lte': datetime.datetime(end_date[0], end_date[1], end_date[2], end_date[3], 0)},
-                        'gift.special':True}},
-            {'$group': {'_id': '$source', 'send_gift_count': {'$sum': 1}, 'send_gift_amount': {'$sum': '$gift.price'}}}
-        ])
-        special_gift_log_data = {'_id': [], 'send_gift_count': [], 'send_gift_amount': []}
-        for each_log in special_gift_log:
-            special_gift_log_data['_id'].append(each_log['_id'])
-            special_gift_log_data['send_gift_count'].append(each_log['send_gift_count'])
-            special_gift_log_data['send_gift_amount'].append(each_log['send_gift_amount'])
-        return pandas.DataFrame(normal_gift_log_data), pandas.DataFrame(special_gift_log_data)
+        # special_gift_log = mongo.gift_log.aggregate([
+        #     {'$match': {'date': {'$gte': datetime.datetime(st_date[0], st_date[1], st_date[2], st_date[3], 0),
+        #                          '$lte': datetime.datetime(end_date[0], end_date[1], end_date[2], end_date[3], 0)},
+        #                 'gift.special':True}},
+        #     {'$group': {'_id': '$source', 'send_gift_count': {'$sum': 1}, 'send_gift_amount': {'$sum': '$gift.price'}}}
+        # ])
+        # special_gift_log_data = {'_id': [], 'send_gift_count': [], 'send_gift_amount': []}
+        # for each_log in special_gift_log:
+        #     special_gift_log_data['_id'].append(each_log['_id'])
+        #     special_gift_log_data['send_gift_count'].append(each_log['send_gift_count'])
+        #     special_gift_log_data['send_gift_amount'].append(each_log['send_gift_amount'])
+        return pandas.DataFrame(normal_gift_log_data)
 
         # 手礼物
     def get_users_receive_gift_log(self, st_date, end_date):
@@ -319,19 +333,19 @@ class Analysis:
             normal_gift_log_data['receive_gift_count'].append(each_log['receive_gift_count'])
             normal_gift_log_data['receive_gift_amount'].append(each_log['receive_gift_amount'])
 
-        special_gift_log = mongo.gift_log.aggregate([
-                {'$match': {'date': {'$gte': datetime.datetime(st_date[0], st_date[1], st_date[2], st_date[3], 0),
-                                     '$lte': datetime.datetime(end_date[0], end_date[1], end_date[2], end_date[3], 0)},
-                            'gift.special': True}},
-                {'$group': {'_id': '$target', 'receive_gift_count': {'$sum': 1},
-                            'receive_gift_amount': {'$sum': '$gift.price'}}}
-            ])
-        special_gift_log_data = {'_id': [], 'receive_gift_count': [], 'receive_gift_amount': []}
-        for each_log in special_gift_log:
-            special_gift_log_data['_id'].append(each_log['_id'])
-            special_gift_log_data['receive_gift_count'].append(each_log['receive_gift_count'])
-            special_gift_log_data['receive_gift_amount'].append(each_log['receive_gift_amount'])
-        return pandas.DataFrame(normal_gift_log_data), pandas.DataFrame(special_gift_log_data)
+        # special_gift_log = mongo.gift_log.aggregate([
+        #         {'$match': {'date': {'$gte': datetime.datetime(st_date[0], st_date[1], st_date[2], st_date[3], 0),
+        #                              '$lte': datetime.datetime(end_date[0], end_date[1], end_date[2], end_date[3], 0)},
+        #                     'gift.special': True}},
+        #         {'$group': {'_id': '$target', 'receive_gift_count': {'$sum': 1},
+        #                     'receive_gift_amount': {'$sum': '$gift.price'}}}
+        #     ])
+        # special_gift_log_data = {'_id': [], 'receive_gift_count': [], 'receive_gift_amount': []}
+        # for each_log in special_gift_log:
+        #     special_gift_log_data['_id'].append(each_log['_id'])
+        #     special_gift_log_data['receive_gift_count'].append(each_log['receive_gift_count'])
+        #     special_gift_log_data['receive_gift_amount'].append(each_log['receive_gift_amount'])
+        return pandas.DataFrame(normal_gift_log_data)
     # 签到
     def get_users_sign_in_log(self, st_date, end_date):
         sign_in_log = mongo.sign_in_log.aggregate([
@@ -368,14 +382,12 @@ if __name__ == '__main__':
     analy_tool = Analysis_Tools()
     #54开始
 
-    for off_day in range(66, 70):
+    for off_day in range(4, 5):
         st_time = time.time()
-        # analy.main(off_day)
         # cProfile.run("analy.main(off_day)")
         analy.main(off_day)
-        # daily_aly.main(off_day)
+        daily_aly.main(off_day)
         print(time.time() - st_time)
-    start_time = time.time()
 
 
 else:
