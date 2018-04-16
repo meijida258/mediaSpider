@@ -6,7 +6,7 @@ import time, csv, os, datetime
 from bson.objectid import ObjectId
 
 
-all_users_keys = ['gift_purchase', 'apple_pay_amount', 'sign_in_reward', 'play_count', 'task_reward', 'send_normal_gift_amount', 'save_time', 'nickname', 'send_special_gift_amount', 'receive_special_gift_count', 'finish_task_count', 'regist_date', 'login_date', 'send_special_gift_count', 'receive_normal_gift_count', 'channel', 'online_count', 'coin_trader_pay_amount', 'play_amount', 'send_normal_gift_count', 'receive_normal_gift_amount', 'money', 'coin_trader_pay_count', 'level', 'third_pay_count', 'online_reward', 'username', 'user_id', 'apple_pay_count', 'sign_in_days', 'third_pay_amount', 'receive_special_gift_amount']
+all_users_keys = ['gift_purchase', 'apple_pay_amount', 'sign_in_reward', 'play_count', 'task_reward', 'send_normal_gift_amount', 'save_time', 'nickname', 'finish_task_count', 'regist_date', 'login_date', 'receive_normal_gift_count', 'channel', 'online_count', 'play_amount', 'send_normal_gift_count', 'receive_normal_gift_amount', 'money', 'level', 'third_pay_count', 'online_reward', 'username', 'user_id', 'apple_pay_count', 'sign_in_days', 'third_pay_amount']
 
 daily_data = {}
 
@@ -24,7 +24,8 @@ class Mongo:
         self.beginner_card_log = self.db2.beginner_card_log
         self.users = self.db2.users
         self.ext_log = self.db2.extension_log
-
+        self.recharge_orders = self.db2.recharge_orders
+        self.apple_iap_log = self.db2.apple_iap_log
 
 class Analysis:
 
@@ -95,10 +96,10 @@ class Analysis:
                 new_user[0] += 1
                 if csv_content.ix[each_row, 'play_count'] > 0:
                     new_user[1] += 1
-                if csv_content.ix[each_row, 'coin_trader_pay_count'] > 0 or csv_content.ix[
+                if  csv_content.ix[
                     each_row, 'apple_pay_count'] > 0 or csv_content.ix[each_row, 'third_pay_count'] > 0:
                     new_user[2] += 1
-                if csv_content.ix[each_row, 'send_special_gift_count'] > 0 or csv_content.ix[
+                if  csv_content.ix[
                     each_row, 'send_normal_gift_count'] > 0:
                     new_user[3] += 1
                 if csv_content.ix[each_row, 'finish_task_count'] > 0:
@@ -107,21 +108,21 @@ class Analysis:
                 old_user[0] += 1
                 if csv_content.ix[each_row, 'play_count'] > 0:
                     old_user[1] += 1
-                if csv_content.ix[each_row, 'coin_trader_pay_count'] > 0 or csv_content.ix[
+                if  csv_content.ix[
                     each_row, 'apple_pay_count'] > 0 or \
                                 csv_content.ix[each_row, 'third_pay_count'] > 0:
                     old_user[2] += 1
-                if csv_content.ix[each_row, 'send_special_gift_count'] > 0 or csv_content.ix[
+                if  csv_content.ix[
                     each_row, 'send_normal_gift_count'] > 0:
                     old_user[3] += 1
                 if csv_content.ix[each_row, 'finish_task_count'] > 0:
                     old_user[4] += 1
-        begin_card_use_count = self.get_begin_card_use_log(
-                mongo.users.find({'$and': [{'username': {'$regex': r'^(?!robot_[0-9]{5})'}}, {
-                    'regist_date': {'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0),
-                                    '$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}]}))
+        # begin_card_use_count = self.get_begin_card_use_log(
+        #         mongo.users.find({'$and': [{'username': {'$regex': r'^(?!robot_[0-9]{5})'}}, {
+        #             'regist_date': {'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0),
+        #                             '$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}]}))
 
-        return old_user, new_user, begin_card_use_count
+        return old_user, new_user
 
     def get_begin_card_use_log(self, users):
         user_count = 0
@@ -131,51 +132,36 @@ class Analysis:
 
     # 获取支付数据
     def get_pay_data(self):
-        pay_count, pay_amount = [[0] * 3, [0] * 3], [[0] * 3, [0] * 3]
-        new_regist_pay_data = mongo.users_daily_log.aggregate(
+        recharge_orders_data = list(mongo.recharge_orders.aggregate(
             [
-                {'$match':{'save_time':self.save_date, 'regist_date':{'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0)
+                {'$match':{'pay_date':{'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0)
                     ,'$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}},
-                {'$group':{'_id':'$save_time','third_pay_count':{'$sum':'$third_pay_count'},'apple_pay_count':{'$sum':'$apple_pay_count'},'coin_trader_pay_count':{'$sum':'$coin_trader_pay_count'},
-                           'third_pay_amount': {'$sum': '$third_pay_amount'},
-                           'apple_pay_amount': {'$sum': '$apple_pay_amount'},
-                           'coin_trader_pay_amount': {'$sum': '$coin_trader_pay_amount'}
-                           }}
-
+                {'$group':{'_id':'$price','pay_count':{'$sum':1},'pay_amount':{'$sum':'$amount'}, 'user_id':{'$push':'$source'}}}
             ]
-        )
-        old_regist_pay_data = mongo.users_daily_log.aggregate(
+        ))
+        apple_iap_data = list(mongo.apple_iap_log.aggregate(
             [
-                {'$match': {'save_time': self.save_date,
-                            'regist_date': {'$lte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0)}}},
-                {'$group': {'_id': '$save_time', 'third_pay_count': {'$sum': '$third_pay_count'},
-                            'apple_pay_count': {'$sum': '$apple_pay_count'},
-                            'coin_trader_pay_count': {'$sum': '$coin_trader_pay_count'},
-                            'third_pay_amount': {'$sum': '$third_pay_amount'},
-                            'apple_pay_amount': {'$sum': '$apple_pay_amount'},
-                            'coin_trader_pay_amount': {'$sum': '$coin_trader_pay_amount'}
-                            }}
+                {'$match':{'date':{'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0)
+                    ,'$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}},
+                {'$group':{'_id':'$price','pay_count':{'$sum':1},'pay_amount':{'$sum':'$amount'}, 'user_id':{'$push':'$source'}}}
             ]
-        )
-        for x, y in zip(old_regist_pay_data, new_regist_pay_data):
-            pay_count[0][0], pay_count[1][0] = x['apple_pay_count'], y['apple_pay_count']
-            pay_count[0][1], pay_count[1][1] = x['third_pay_count'], y['third_pay_count']
-            pay_count[0][2], pay_count[1][2] = x['coin_trader_pay_count'], y['coin_trader_pay_count']
-            pay_amount[0][0], pay_amount[1][0] = x['apple_pay_amount'], y['apple_pay_amount']
-            pay_amount[0][1], pay_amount[1][1] = x['third_pay_amount'], y['third_pay_amount']
-            pay_amount[0][2], pay_amount[1][2] = x['coin_trader_pay_amount'], y['coin_trader_pay_amount']
-        return pay_count, pay_amount
+        ))
+        return recharge_orders_data + apple_iap_data
 
     # 获取游戏数据, 新老用户下注次数、豆子
     def get_ext_data(self):
-        ext_data = mongo.game_daily_log.find({'save_time':self.save_date})
-        if ext_data.count() > 0:
-            data = ext_data[0]
-            ext_count = numpy.array(data['new_user_play_count']) + numpy.array(data['old_user_play_count'])
-            ext_consume = numpy.array(data['new_user_play_amount']) + numpy.array(data['old_user_play_amount'])
-        else:
-            ext_count = [0] * 5
-            ext_consume = [0] * 5
+        ext_count = [0] * 5
+        ext_consume = [0] * 5
+        ext_log = mongo.ext_log.aggregate(
+            [
+                {'$match': {'date': {'$gte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0)
+                    ,'$lte': datetime.datetime(self.end_year, self.end_month, self.end_day, 20, 0)}}},
+                {'$group': {'_id': '$ext_id', 'play_count': {'$sum': 1}, 'play_amount': {"$sum": '$consume'}}}
+            ]
+        )
+        for each_game_log in ext_log:
+            ext_count[each_game_log['_id']-1] = each_game_log['play_count']
+            ext_consume[each_game_log['_id'] - 1] = each_game_log['play_amount']
         return ext_count, ext_consume
 
     # 获取礼物相关数据
@@ -190,7 +176,6 @@ class Analysis:
                 {'$group': {'_id': '$save_time', 'send_normal_gift_count': {'$sum': '$send_normal_gift_count'},
                             'send_special_gift_count': {'$sum': '$send_special_gift_count'},
                             'send_normal_gift_amount': {'$sum': '$send_normal_gift_amount'},
-                            'send_special_gift_amount': {'$sum': '$send_special_gift_amount'}
                             }}
             ]
         )
@@ -200,9 +185,7 @@ class Analysis:
                             'regist_date': {
                                 '$lte': datetime.datetime(self.st_year, self.st_month, self.st_day, 20, 0)}}},
                 {'$group': {'_id': '$save_time', 'send_normal_gift_count': {'$sum': '$send_normal_gift_count'},
-                            'send_special_gift_count': {'$sum': '$send_special_gift_count'},
                             'send_normal_gift_amount': {'$sum': '$send_normal_gift_amount'},
-                            'send_special_gift_amount': {'$sum': '$send_special_gift_amount'}
                             }}
             ]
         )
@@ -210,8 +193,6 @@ class Analysis:
         for x, y in zip(old_regist_gift_data, new_regist_gift_data):
             send_count[0][0], send_count[0][1] = x['send_normal_gift_count'], x['send_special_gift_count']
             send_count[1][0], send_count[1][1] = y['send_normal_gift_count'], y['send_special_gift_count']
-            send_amount[0][0], send_amount[0][1] = x['send_normal_gift_amount'], x['send_special_gift_amount']
-            send_amount[1][0], send_amount[1][1] = y['send_normal_gift_amount'], y['send_special_gift_amount']
         return send_count, send_amount
 
     # 画图表
@@ -221,7 +202,7 @@ class Analysis:
         fig.suptitle('%s——统计图' %(str(time.strftime('%Y-%m-%d', time.localtime(int(time.mktime((self.end_year, self.end_month, self.end_day, 4, 0, 0, 0, 0, 0))))))),fontsize=16)
         # 在线人数
         name_list = ['登录人数', '参与游戏人数', '充值人数', '礼物消费人数', '完成过任务人数']
-        old_users, new_users, begin_card_use_count = self.get_dau_data()
+        old_users, new_users = self.get_dau_data()
         old_users_array, new_users_array = numpy.array(old_users), numpy.array(new_users)
         ax1 = fig.add_subplot(221)
         # 声明底部位置
@@ -235,19 +216,26 @@ class Analysis:
         # 图例显示
         ax1.legend(loc="upper right", shadow=True)
         # 标题显示
-        ax1.set_title('登录用户\n新：%s 使用新手卡：%s' % (str(new_users[0]), str(begin_card_use_count)))
+        ax1.set_title('登录用户\n新：%s' % (str(new_users[0])))
         # 柱状图添加数值
         for x,y,z in zip(range(len(old_users)), old_users, new_users):
             ax1.text(x-0.1, y-12, y, color='white')
             ax1.text(x-0.1, y+1+z,z)
 
         # 读取充值数据
-        pay_way_list = ['苹果支付','第三方支付', '银商处购买']
-        pay_count, pay_amount = self.get_pay_data()
-        pay_count_all = numpy.array(pay_count[0]) + numpy.array(pay_count[1])
-        pay_amount_all = numpy.array(pay_amount[0]) + numpy.array(pay_amount[1])
+        pay_way_list = ['苹果支付','第三方支付']
+        pay_data = self.get_pay_data()
+        # 列出所有单价，排序
+        price_list = []
+        for each_price_log in pay_data:
+            price_list.append(each_price_log['_id'])
+        price_list.sort()
+        # 列出单价对应的订单
+        for each_price_log in pay_data:
+            
         for i in range(len(pay_count_all)):
             pay_way_list[i] = pay_way_list[i] + ': %s次' %(str(pay_count_all[i]))
+
         # 2画支付图
         ax2 = fig.add_subplot(222)
         def make_autopct(values):
@@ -257,7 +245,7 @@ class Analysis:
                 return '{p: .2f} % ({v: d})'.format(p=pct, v=val)
             return my_autopct
         ax2.pie(pay_amount_all,labels=pay_way_list, autopct=make_autopct(pay_amount_all), colors='rgb')
-        ax2.set_title('支付总计：%s, 银商出售：%s  (豆子)' %(str(sum(pay_amount_all[:-1])),str(pay_amount_all[-1])))
+        ax2.set_title('支付总计：%s,' %(str(sum(pay_amount_all[:-1]))))
 
         # 读取csv获取游戏数据
         ext_count, ext_consume = self.get_ext_data()
@@ -275,14 +263,14 @@ class Analysis:
         ax3.set_ylabel('游戏次数(次)')
 
         # 获取礼物数据
-        gift_type = ['普通礼物', '特殊礼物']
-        gift_count, gift_amount = self.get_gift_data()
-        gift_amount_all = numpy.array(gift_amount[0]) + numpy.array(gift_amount[1])
-        ax4 = fig.add_subplot(224)
-        ax4.set_title('礼物统计 总计:%s  (豆子)' %str(sum(gift_amount_all)))
-        ax4.pie(gift_amount_all,labels=gift_type, autopct=make_autopct(gift_amount_all), colors=['cyan', 'violet'])
+        # gift_type = ['普通礼物', '特殊礼物']
+        # gift_count, gift_amount = self.get_gift_data()
+        # gift_amount_all = numpy.array(gift_amount[0]) + numpy.array(gift_amount[1])
+        # ax4 = fig.add_subplot(224)
+        # ax4.set_title('礼物统计 总计:%s  (豆子)' %str(sum(gift_amount_all)))
+        # ax4.pie(gift_amount_all,labels=gift_type, autopct=make_autopct(gift_amount_all), colors=['cyan', 'violet'])
         # 保存、展示图表
-        plt.savefig(self.data_file_save_path+'/daily_chart1.jpg')
+        plt.savefig(self.data_file_save_path+'/user_chart.jpg')
         # plt.show()
 
 
@@ -359,8 +347,9 @@ class Analysis:
         # self.daily_chart_users()
 
 class AnalysisTools:
-
-
+    # 写入csv，
+    # params：
+    # file_path 保存路径/ head 首行 /keys data的键 /data 保存的数据
     def write_csv(self, file_path, head, keys, data):
         if os.path.exists(file_path):
             pass
@@ -372,7 +361,10 @@ class AnalysisTools:
                     # 查询游戏消费
                     write_data = []
                     for each_key in keys:
-                        write_data.append(each_data[each_key])
+                        try:
+                            write_data.append(each_data[each_key])
+                        except:
+                            continue
                     writer.writerow(write_data)
             fl.close()
 
@@ -384,12 +376,12 @@ class AnalysisTools:
 
     def datetime_to_timestamp(self, time_str):
         return time.mktime(time.strptime(time_str, '%Y-%m-%d %H:%M:%S'))
-q
+
 if __name__ == '__main__':
     mongo = Mongo()
     aly = Analysis()
     at = AnalysisTools()
-    for day in range(12, 70):
+    for day in range(4, 5):
         start_time = time.clock()
         aly.main(day)
         print(time.clock()-start_time)
