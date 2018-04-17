@@ -231,21 +231,8 @@ class Analysis:
             price_list.append(each_price_log['_id'])
         price_list.sort()
         # 列出单价对应的订单
-        for each_price_log in pay_data:
-            
-        for i in range(len(pay_count_all)):
-            pay_way_list[i] = pay_way_list[i] + ': %s次' %(str(pay_count_all[i]))
+        # for each_price_log in pay_data:
 
-        # 2画支付图
-        ax2 = fig.add_subplot(222)
-        def make_autopct(values):
-            def my_autopct(pct):
-                total = sum(values)
-                val = int(round(pct * total / 100.0))
-                return '{p: .2f} % ({v: d})'.format(p=pct, v=val)
-            return my_autopct
-        ax2.pie(pay_amount_all,labels=pay_way_list, autopct=make_autopct(pay_amount_all), colors='rgb')
-        ax2.set_title('支付总计：%s,' %(str(sum(pay_amount_all[:-1]))))
 
         # 读取csv获取游戏数据
         ext_count, ext_consume = self.get_ext_data()

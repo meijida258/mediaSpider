@@ -56,9 +56,9 @@ class UsersRemain:
 
     # 查询某天登录的用户
     def login_user_query(self, off_day):
-        start_date = get_datetime(time.time(), off_day)
-        end_date = get_datetime(time.time(), off_day-1)
-        print('查询新用户{}留存情况'.format(start_date))
+        start_date = get_datetime(time.time(), off_day+1)
+        end_date = get_datetime(time.time(), off_day)
+        print('查询{}新用户留存情况'.format(start_date))
         login_users = mon.users_login_log.aggregate(
             [
                 {'$match':{'date':{'$gte':datetime.datetime(start_date[0], start_date[1], start_date[2], 0, 0),
@@ -97,7 +97,12 @@ class UsersRemain:
         dataframe.to_csv(file_path, index=False, sep=',')
         print('保存{}完成'.format(file_path.split('/')[-1]))
 
+    def main(self, off_day, remain_query_list):
+        result = self.remain_user_query(off_day, remain_query_list)
+        keys, data = self.deal_remain_result_to_chart(result)
 
+        data_frame = self.deal_remain_result_to_dataframe(data=data, keys=keys)
+        return data_frame
 class Mongo:
     def __init__(self):
         self.client = MongoClient('localhost', 27017)
@@ -105,6 +110,7 @@ class Mongo:
         self.db = self.client.sparrow_analysis
         self.game_daily_log = self.db.game_daily_log
         self.users_daily_log = self.db.users_daily_log
+        self.reamin_data = self.db.users_remain
         # 主数据集
         self.db2 = self.client.sparrow_main
         self.users = self.db2.users
@@ -116,10 +122,8 @@ if __name__ == '__main__':
     # 查询的时间，向前推off_day天，remain_query_list隔天
     off_day = 10
     remain_query_list = [1,3,7]
-    result = ur.remain_user_query(off_day, remain_query_list)
-    keys, data = ur.deal_remain_result_to_chart(result)
-    data_frame = ur.deal_remain_result_to_dataframe(data=data, keys=keys)
-
+    data_frame = ur.main(off_day=off_day, remain_query_list=remain_query_list)
+    print(data_frame)
     ur.write_result_to_csv('a.csv', data_frame)
 else:
     ur = UsersRemain()
