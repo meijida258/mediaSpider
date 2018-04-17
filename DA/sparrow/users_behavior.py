@@ -30,7 +30,7 @@ class Mongo:
         self.daily_data = self.db.daily_deal_data
         self.third_pay = self.db.recharge_orders
         self.daily_task_log = self.db.daily_task_log
-
+        self.lottery_log = self.db.lottery_log
         self.db2 = self.client.sparrow_analysis
 
 class UserPayAnalysis:
@@ -136,18 +136,37 @@ class UserPayAnalysis:
                 ax11.text(i, pay_average[i], 0)
             ax1.text(i-0.05 ,pay_proportion[i]+0.001, '%.2f%%' %(pay_proportion[i]*100))
         pic_path = file_save_path+'{}.jpg'.format(self.pic_name)
+
         plt.savefig(pic_path)
         plt.show()
 
     def get_datetime_list(self, iso_datetime):
         return [iso_datetime.year, iso_datetime.month, iso_datetime.day, iso_datetime.hour]
 
+class UserLotteryLog:
+    def __init__(self, start_date, end_date):
+        self.start_date = start_date
+        self.end_date = end_date
 
+    def get_lottery_log(self):
+        lottery_log = mongo.lottery_log.aggregate(
+            [
+                {'$match':{'date':{'$gte':datetime.datetime(self.start_date[0],self.start_date[1],self.start_date[2],0,0),
+                                   '$lte':datetime.datetime(self.end_date[0],self.end_date[1],self.end_date[2],0,0)}}},
+                {'$group':{'_id':'$source', 'lottery_date':{'$push':'$date'}}}
+            ]
+        )
+        return list(lottery_log)
+
+    # def lottery_analysis(self, lottery_log):
+    #     for lottery_data in lottery_log:
 
 if __name__ == '__main__':
     mongo = Mongo()
     behaviors_analysis = UserPayAnalysis(off_day=15, pic_name='30', csv_name='30天支付')
-    start_time = time.time()
-    behaviors_analysis.user_pay_data()
-    behaviors_analysis.user_pay_analysis()
-    print(time.time()-start_time)
+    # behaviors_analysis.user_pay_data()
+    # behaviors_analysis.user_pay_analysis()
+    # -----------
+    start_date, end_date = [2018,4,7], [2018,4,8]
+    ull = UserLotteryLog(start_date=start_date, end_date=end_date)
+    print(ull.get_lottery_log())
