@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------
 #   程序：users_behavior
 #   日期：2018.4.12
-#   功能：获取特定行为的数据
+#   功能：获取消费行为的数据
 #-------------------------------------------------------------------------
 import sys
 import os
@@ -15,7 +15,7 @@ import time, datetime
 import pandas, numpy
 import os, csv, re
 import matplotlib.pyplot as plt
-from sparrow.tools import get_datetime, get_timestamp, write_csv
+from tools import get_datetime, get_timestamp, write_csv
 
 source_data_path = 'D:/sparrow_data/'
 file_save_path = 'D:/sparrow_data/main_analysis/'
@@ -143,48 +143,8 @@ class UserPayAnalysis:
     def get_datetime_list(self, iso_datetime):
         return [iso_datetime.year, iso_datetime.month, iso_datetime.day, iso_datetime.hour]
 
-class UserLotteryLog:
-    def __init__(self, start_date, end_date):
-        self.start_date = start_date
-        self.end_date = end_date
-
-    def get_users_lottery_data(self):
-        users_lottery_data = mongo.lottery_log.find(
-            {'date': {'$gte': datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
-                      '$lte': datetime.datetime(self.end_date[0], self.end_date[1], self.end_date[2], 0, 0)}},
-            {'date': 1, 'source': 1, '_id': 0})
-        return list(users_lottery_data)
-
-    def lottery_analysis(self, users_lottery_data):
-        users_lottery_df = pandas.DataFrame(users_lottery_data)
-        users_lottery_df.rename(columns={'source': 'user_id', 'date': 'lottery_date'}, inplace=True)
-        users_lottery_df['lottery_date_day'] = users_lottery_df['lottery_date'].apply(lambda x: str(x).split(' ')[0])
-        lottery_data = users_lottery_df['lottery_date'].groupby(
-            [users_lottery_df['user_id'], users_lottery_df['lottery_date_day']]).count()
-        lottery_data.to_csv('lottery_data.csv')
-
-    def get_lottery_award(self):
-        lottery_log = mongo.lottery_log.aggregate(
-            [
-                {'$match': {'date': {
-                    '$gte': datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
-                    '$lte': datetime.datetime(self.end_date[0], self.end_date[1], self.end_date[2], 0, 0)}}},
-                {'$group': {'_id': '', 'lottery_times': {'$sum': 1}, 'lottery_award':{'$sum':'$lottery_award.reward'}, 'user_id':{'$push':'$source'}}}
-            ]
-        )
-        return list(lottery_log)
 if __name__ == '__main__':
     mongo = Mongo()
     behaviors_analysis = UserPayAnalysis(off_day=15, pic_name='30', csv_name='30天支付')
-    # behaviors_analysis.user_pay_data()
-    # behaviors_analysis.user_pay_analysis()
-    # -----------
-    start_date, end_date = [2018,3,17], [2018,4,10]
-    ull = UserLotteryLog(start_date=start_date, end_date=end_date)
-    users_lottery_data = ull.get_users_lottery_data()
-    ull.lottery_analysis(users_lottery_data)
-
-    # lottery_award_data = ull.get_lottery_award()
-    # print(len(set(lottery_award_data[0]['user_id'])))
-    # print(lottery_award_data[0]['lottery_award'])
-    # print(lottery_award_data[0]['lottery_award'] / lottery_award_data[0]['lottery_times'])
+    behaviors_analysis.user_pay_data()
+    behaviors_analysis.user_pay_analysis()

@@ -7,12 +7,12 @@
 import sys
 import os
 
-PACKAGE_PARENT = '..'
+PACKAGE_PARENT = '.'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
-from sparrow.daily_analysis import at
-from sparrow.tools import get_datetime
+from daily_analysis import at
+from tools import get_datetime
 from pymongo import MongoClient
 import time, datetime
 import bson, pandas, numpy
