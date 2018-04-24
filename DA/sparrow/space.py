@@ -12,14 +12,29 @@ import os, csv, re
 import matplotlib.pyplot as plt
 from tools import get_datetime, get_timestamp, write_csv
 
-df1 = pandas.DataFrame([['a', 122], ['b', 222]],
-                   columns=['user_id', 'date'])
 
-df3 = pandas.DataFrame([['c', 312], ['b', 123],['a', 222],['a', 333]],
-                    columns=['user_id', 'date'])
 
-df4 = pandas.DataFrame([['a'], ['b'],['d']], columns=['user_id'])
-print(df4)
-print(df3)
-print(pandas.merge(df4, pandas.concat([df1, df3]), how='outer'))
+def time_clock(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.clock()
+        result = func(*args, **kwargs)
+        print(func.__name__)
+        print(time.clock() - start_time)
+        return result
+    return wrapper
+class M:
+    @time_clock
+    def a(self):
+        time.sleep(1)
+
+    @time_clock
+    def b(self, t):
+        if t:
+            time.sleep(t)
+        else:
+            time.sleep(1)
+m = M()
+m.a()
+m.b(None)
+
 

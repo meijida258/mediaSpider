@@ -13,7 +13,15 @@ sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 import pandas, numpy
 from pymongo import MongoClient
-import datetime
+import datetime, time
+
+def time_clock(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.clock()
+        r = func(*args, **kwargs)
+        print('{}()耗时{}'.format(func.__name__, time.clock()-start_time))
+        return r
+    return wrapper
 
 class Mongo:
     def __init__(self):
@@ -37,6 +45,7 @@ class UserMoney:
         self.end_date = end_date
 
     # 获取时间段内的记录
+    @time_clock
     def get_pay_log(self)-> pandas.DataFrame():
         # 查询时间段内的数据，只返回用户id，价格，时间
         apple_pay_log = mongo.apple_pay_log.find({'date':{'$gte':datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
@@ -57,6 +66,7 @@ class UserMoney:
 
         return users_pay_df
 
+    @time_clock
     def get_user_pay_sum(self, data):
         # 根据user_id返回求和的数据
         pay_sum = data['price'].groupby(data['user_id']).sum()
@@ -65,6 +75,7 @@ class UserMoney:
         pay_sum_df.rename(columns={'price':'pay_price'}, inplace=True)
         return pay_sum_df
 
+    @time_clock
     def get_play_log(self):
         play_log = mongo.ext_log.aggregate(
             [
@@ -78,24 +89,33 @@ class UserMoney:
 
         return play_df
 
+    @time_clock
     def get_gift_log(self):
-        gitf_log = mongo.gift_log.find({'date':{'$gte':datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
+        gift_log = mongo.gift_log.find({'date':{'$gte':datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
                                    '$lte':datetime.datetime(self.end_date[0], self.end_date[1], self.end_date[2], 0, 0)}},
                                        {'_id':0, 'date':1, 'source':1, 'gift.price':1})
-        gift_df = pandas.DataFrame(list(gitf_log))
+        gift_df = pandas.DataFrame(list(gift_log))
         gift_df.rename(columns={'source': 'user_id', 'gift':'gift_price'}, inplace=True)  # 修改列名
         gift_df['gift_price'] = gift_df['gift_price'].apply(lambda x:x['price'])
         return gift_df
 
+    @time_clock
     def get_user_gift_sum(self, data):
         gift_sum = data['gift_price'].groupby(data['user_id']).sum() # 根据user_id求gift_price的和
         gift_sum_df = gift_sum.to_frame() # series格式转dataframe
         gift_sum_df['user_id'] = gift_sum_df.index
         return gift_sum_df
 
+    @time_clock
+    def get_normal_users(self):
+        users = mongo.users.find({'username':{'$regex':r'^(?!robot_[0-9]{5})'}}, {'_id':1})
+        users_df = pandas.DataFrame(list(users))
+        users_df.rename(columns={'_id':'user_id'}, inplace=True)
+        users_df['user_id'] = users_df['user_id'].apply(lambda x:str(x))
+        return users_df
 if __name__ == '__main__':
     mongo = Mongo()
-    um = UserMoney(start_date=[2018, 3, 21, 0,0], end_date=[2018,4,10,0,0])
+    um = UserMoney(start_date=[2018, 4, 1, 0,0], end_date=[2018,4,10,0,0])
     # 充值
     pay_df = um.get_pay_log()
     pay_sum_df = um.get_user_pay_sum(data=pay_df)
@@ -104,8 +124,12 @@ if __name__ == '__main__':
     # 礼物
     gift_df = um.get_gift_log()
     gift_sum_df = um.get_user_gift_sum(gift_df)
-
+    # 合并数据
     pay_and_play_log = pandas.merge(play_df, pay_sum_df, how='outer',on=['user_id'])
-    result = pandas.merge(pay_and_play_log, gift_sum_df, how='outer',on=['user_id']).fillna(0)
+    all_users_result = pandas.merge(pay_and_play_log, gift_sum_df, how='outer',on=['user_id']).fillna(0)
+    # 剔除非人
+    normal_users = um.get_normal_users()
+    result = pandas.merge(normal_users, all_users_result, how='inner', on=['user_id'])
+
     result.to_csv('user_pp.csv')
     mongo.client.close()
