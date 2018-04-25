@@ -33,14 +33,15 @@ class Mongo:
 
 
 class UserLotteryLog:
-    def __init__(self, start_date, end_date):
-        self.start_date = start_date
-        self.end_date = end_date
+    def __init__(self):
+        # self.start_date = start_date
+        # self.end_date = end_date
+        pass
 
-    def get_users_lottery_data(self):
+    def get_users_lottery_data(self, start_date, end_date):
         users_lottery_data = mongo.lottery_log.find(
-            {'date': {'$gte': datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
-                      '$lte': datetime.datetime(self.end_date[0], self.end_date[1], self.end_date[2], 0, 0)}},
+            {'date': {'$gte': datetime.datetime(start_date[0], start_date[1], start_date[2], 0, 0),
+                      '$lte': datetime.datetime(end_date[0], end_date[1], end_date[2], 0, 0)}},
             {'date': 1, 'source': 1, '_id': 0})
         return list(users_lottery_data)
 
@@ -52,12 +53,12 @@ class UserLotteryLog:
             [users_lottery_df['user_id'], users_lottery_df['lottery_date_day']]).count()
         lottery_data.to_csv('lottery_data.csv')
 
-    def get_lottery_award(self):
+    def get_lottery_award(self, start_date, end_date):
         lottery_log = mongo.lottery_log.aggregate(
             [
                 {'$match': {'date': {
-                    '$gte': datetime.datetime(self.start_date[0], self.start_date[1], self.start_date[2], 0, 0),
-                    '$lte': datetime.datetime(self.end_date[0], self.end_date[1], self.end_date[2], 0, 0)}}},
+                    '$gte': datetime.datetime(start_date[0], start_date[1], start_date[2], 0, 0),
+                    '$lte': datetime.datetime(end_date[0], end_date[1], end_date[2], 0, 0)}}},
                 {'$group': {'_id': '', 'lottery_times': {'$sum': 1}, 'lottery_award':{'$sum':'$lottery_award.reward'}, 'user_id':{'$push':'$source'}}}
             ]
         )
@@ -65,12 +66,12 @@ class UserLotteryLog:
 
 if __name__ == '__main__':
     mongo = Mongo()
-    start_date, end_date = [2018,3,17], [2018,4,10]
-    ull = UserLotteryLog(start_date=start_date, end_date=end_date)
-    users_lottery_data = ull.get_users_lottery_data()
+    start_date, end_date = [2018,3,17], [2018,4,20]
+    ull = UserLotteryLog()
+    users_lottery_data = ull.get_users_lottery_data(start_date, end_date)
     ull.lottery_analysis(users_lottery_data)
 
-    lottery_award_data = ull.get_lottery_award()
+    lottery_award_data = ull.get_lottery_award(start_date, end_date)
     print(len(set(lottery_award_data[0]['user_id'])))
     print(lottery_award_data[0]['lottery_award'])
     print(lottery_award_data[0]['lottery_award'] / lottery_award_data[0]['lottery_times'])
