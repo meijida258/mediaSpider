@@ -13,7 +13,8 @@ from scrapy.http import HtmlResponse
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware
+from .user_agents import FakeChromeUA
 class ScrapyCloudmusicSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
@@ -67,7 +68,7 @@ class FirefoxMiddleware(object):
     # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Firefox(options=options)
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(11)
 
     @classmethod
     def process_request(self, request, spider):
@@ -82,10 +83,17 @@ class FirefoxMiddleware(object):
             except:
                 self.driver.get(request.url)
             windows = self.driver.window_handles
+            if len(windows) >= 5: # 窗口过多，关闭之前的窗口
+                self.driver.switch_to.window(window_name=windows[0])
+                self.driver.close()
             self.driver.switch_to.window(window_name=windows[-1])
             # driver.switch_to.frame('contentFrame')
-            WebDriverWait(driver=self.driver, timeout=20, poll_frequency=0.5).until(
+            WebDriverWait(driver=self.driver, timeout=10, poll_frequency=0.5).until(
                 EC.presence_of_element_located((By.NAME, 'contentFrame')))
             return HtmlResponse(request.url, body=body, encoding='utf-8', request=request)
         else:
             return None
+
+class MyUserAgentMiddleware(UserAgentMiddleware):
+    def process_request(self, request, spider):
+        request.headers.setdefault('User-Agent', FakeChromeUA.get_ua)

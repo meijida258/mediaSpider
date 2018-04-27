@@ -226,3 +226,333 @@ Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr
 [Child 6816, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 [Child 5936, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 [Child 5936, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524736055892	geckodriver	INFO	geckodriver 0.20.0
+1524736056007	geckodriver	INFO	Listening on 127.0.0.1:63866
+1524736058976	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.47WpnWywJZkz"
+1524736063694	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 7520, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7952, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524736073708	Marionette	INFO	Listening on port 63894
+1524736075294	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+[Parent 7520, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 8528, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 7520, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 8304, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8304, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 7520, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 2704, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524736492683	geckodriver	INFO	geckodriver 0.20.0
+1524736492695	geckodriver	INFO	Listening on 127.0.0.1:64326
+1524736495698	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.PzwzyjcRkYvl"
+1524736496772	Marionette	INFO	Enabled via --marionette
+1524736500026	Marionette	INFO	Listening on port 64335
+1524736501332	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9180, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9180, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8764, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8764, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+1524797268908	geckodriver	INFO	geckodriver 0.20.0
+1524797269000	geckodriver	INFO	Listening on 127.0.0.1:62579
+1524797271872	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.HReqphCtF2eS"
+1524797276720	Marionette	INFO	Enabled via --marionette
+1524797283894	Marionette	INFO	Listening on port 62602
+1524797284180	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 6760, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7576, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7576, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 6760, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7220, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7220, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6540, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524797737932	geckodriver	INFO	geckodriver 0.20.0
+1524797737944	geckodriver	INFO	Listening on 127.0.0.1:64210
+1524797740973	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.d484MbdBzPZn"
+1524797742018	Marionette	INFO	Enabled via --marionette
+1524797743854	Marionette	INFO	Listening on port 64218
+1524797744102	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 4348, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5184, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5184, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 4348, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 5852, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+tp://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 5240, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 8924, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 2436, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9196, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9196, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524800334288	geckodriver	INFO	geckodriver 0.20.0
+1524800334300	geckodriver	INFO	Listening on 127.0.0.1:63440
+1524800337344	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.I72wiO4CyKu8"
+1524800338372	Marionette	INFO	Enabled via --marionette
+1524800340250	Marionette	INFO	Listening on port 63448
+1524800340472	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 8912, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6672, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 8912, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6536, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 8912, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 1996, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524800573829	geckodriver	INFO	geckodriver 0.20.0
+1524800573841	geckodriver	INFO	Listening on 127.0.0.1:63736
+1524800576855	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.UWVmfTa1MWdQ"
+1524800577868	Marionette	INFO	Enabled via --marionette
+1524800580258	Marionette	INFO	Listening on port 63744
+1524800580482	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 681524801027134	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.ldUUSyLlv6MH"
+1524801028170	Marionette	INFO	Enabled via --marionette
+1524801029988	Marionette	INFO	Listening on port 55650
+1524801030320	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7688, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7688, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 8656, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6340, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6340, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7760, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7760, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524801320638	geckodriver	INFO	geckodriver 0.20.0
+1524801320650	geckodriver	INFO	Listening on 127.0.0.1:55981
+1524801323685	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.6sDArf2JYvA3"
+1524801324730	Marionette	INFO	Enabled via --marionette
+1524801326660	Marionette	INFO	Listening on port 55989
+1524801326902	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 8592, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 9008, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8684, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 9008, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 1996, Chrome_CJavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+[Child 7152, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7152, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 7164, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9296, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9296, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1524811468914	geckodriver	INFO	geckodriver 0.20.0
+1524811468926	geckodriver	INFO	Listening on 127.0.0.1:57724
+1524811471938	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.XWHr4xVrrWnU"
+1524811472962	Marionette	INFO	Enabled via --marionette
+1524811474854	Marionette	INFO	Listening on port 57732
+1524811475080	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 6608, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9392, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9972, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9972, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 6608, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9896, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524811704763	geckodriver	INFO	geckodriver 0.20.0
+1524811704775	geckodriver	INFO	Listening on 127.0.0.1:57870
+1524811707819	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.YTB1rtUbanX0"
+1524811708794	Marionette	INFO	Enabled via --marionette
+1524811710674	Marionette	INFO	Listening on port 57878
+1524811711050	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 6360, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 6360, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9364, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 8720, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8720, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 6360, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7756, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524811945322	geckodriver	INFO	geckodriver 0.20.0
+1524811945333	geckodriver	INFO	Listening on 127.0.0.1:58091
+1524811948361	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.XTmWMmaa3TvL"
+1524811949342	Marionette	INFO	Enabled via --marionette
+1524811951106	Marionette	INFO	Listening on port 58099
+1524811951506	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 7776, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7232, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7232, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 7776, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8520, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9632, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524812139676	geckodriver	INFO	geckodriver 0.20.0
+1524812139688	geckodriver	INFO	Listening on 127.0.0.1:58316
+1524812142713	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.AQlPJqI7aaqx"
+1524812143684	Marionette	INFO	Enabled via --marionette
+1524812145448	Marionette	INFO	Listening on port 58325
+1524812145850	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 5828, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9488, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 5828, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9652, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9652, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 5828, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524813212879	geckodriver	INFO	geckodriver 0.20.0
+1524813212891	geckodriver	INFO	Listening on 127.0.0.1:59293
+1524813215897	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.01pGY4cVZDy3"
+1524813216914	Marionette	INFO	Enabled via --marionette
+1524813218836	Marionette	INFO	Listening on port 59301
+1524813219066	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 8740, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 8740, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 8112, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8348, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8348, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 8740, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 5116, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5116, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1524813351518	geckodriver	INFO	geckodriver 0.20.0
+1524813351530	geckodriver	INFO	Listening on 127.0.0.1:59413
+1524813354547	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.lWP61vAFkBTk"
+1524813355562	Marionette	INFO	Enabled via --marionette
+1524813357532	Marionette	INFO	Listening on port 59421
+1524813357690	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 9860, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 9500, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9500, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9332, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9332, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1524813409156	geckodriver	INFO	geckodriver 0.20.0
+1524813409168	geckodriver	INFO	Listening on 127.0.0.1:59508
+1524813412192	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.XhnXxbyOBMIS"
+1524813413220	Marionette	INFO	Enabled via --marionette
+1524813415048	Marionette	INFO	Listening on port 59516
+1524813415328	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?8976c135030c06788fdd7aa9d1569933, line 94: unreachable code after return statement
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: resource://devtools/shared/base-loader.js -> resource://devtools/client/shared/demangle.js, line 0: Successfully compiled asm.js code (total compilation time 93ms; unable to cache asm.js in synchronous scripts; try loading asm.js via <script async> or createElement('script'))
+console.error: 
+  Message: TypeError: this.ownerNode is null
+  Stack:
+    _getText@resource://devtools/shared/base-loader.js -> resource://devtools/server/actors/stylesheets.js:385:11
+getText@resource://devtools/shared/base-loader.js -> resource://devtools/server/actors/stylesheets.js:360:12
+handler@resource://devtools/shared/base-loader.js -> resource://devtools/shared/protocol.js:1106:19
+onPacket@resource://devtools/shared/base-loader.js -> resource://devtools/server/main.js:1788:15
+receiveMessage@resource://devtools/shared/base-loader.js -> resource://devtools/shared/transport/transport.js:761:7
+
+_getText@resource://devtools/shared/base-loader.js -> resource://devtools/server/actors/stylesheets.js:385:11
+getText@resource://devtools/shared/base-loader.js -> resource://devtools/server/actors/stylesheets.js:360:12
+handler@resource://devtools/shared/base-loader.js -> resource://devtools/shared/protocol.js:1106:19
+onPacket@resource://devtools/shared/base-loader.js -> resource://devtools/server/main.js:1788:15
+receiveMessage@resource://devtools/shared/base-loader.js -> resource://devtools/shared/transport/transport.js:761:7
+console.error: 
+  Protocol error (unknownError): this.ownerNode is null
+JavaScript error: , line 0: uncaught exception: Protocol error (unknownError): this.ownerNode is null
+console.error: 
+  Protocol error (noSuchActor): No such actor for ID: server1.conn0.child1/memoryActor11
+[Parent 9748, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 9748, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 1032, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1032, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1428, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6780, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346

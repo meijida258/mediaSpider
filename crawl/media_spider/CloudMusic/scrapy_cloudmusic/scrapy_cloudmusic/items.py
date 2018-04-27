@@ -15,3 +15,5 @@ class ScrapyCloudmusicItem(scrapy.Item):
 
 class MusicItem(scrapy.Item):
     music_total_comment = scrapy.Field()
+    hot_comments = scrapy.Field()
+    music_id = scrapy.Field()
