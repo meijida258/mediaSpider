@@ -23,27 +23,27 @@ headers = {'User-Agent': 'okhttp/3.8.1',
 
 ip_proxy = {'http':'http://218.59.139.238:8090'}
 
-# top_list_url = 'http://123.206.219.117/peipeindex/top/getlist?type=3'
-url = 'http://www.acfun.cn/'
+top_list_url = 'http://123.206.219.117/peipeindex/top/getlist?type=3'
+
 async def my_request(proxy_dict):
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get(url=url,
+            async with session.get(url=top_list_url,
                                    proxy='http://{}'.format(proxy_dict['proxy']),
-                                   timeout=10,
+                                   timeout=15,
                                    ) as response:
                 # result.append({'proxy_dict': proxy_dict, 'status': response.status})
-                print('代理:{} 访问结果{}'.format(proxy_dict['proxy'], response))
+                print('代理:{} 访问成功,结果{}'.format(proxy_dict['proxy'], response.json()))
         except Exception as e:
             print(e)
             print('代理:{} 访问失败，原因{}'.format(proxy_dict['proxy'], e))
 
-request_times = 1
+request_times = 100
 
 client = MongoClient('localhost', 27017)
 db = client.Proxy
 collection = db.UsefulProxy
-proxy_list = list(collection.find({}, {'proxy':1, '_id':0}))[-10:-8]
+proxy_list = list(collection.find({}, {'proxy':1, '_id':0}))
 
 while request_times > 0:
     # random.shuffle(proxy_list)
