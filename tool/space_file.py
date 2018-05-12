@@ -28,12 +28,12 @@ top_list_url = 'http://123.206.219.117/peipeindex/top/getlist?type=3'
 async def my_request(proxy_dict):
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get(url=top_list_url,
-                                   proxy='http://{}'.format(proxy_dict['proxy']),
+            async with session.get(url=top_list_url,proxy='http://{}'.format(proxy_dict['proxy']),
+                                    headers=headers,
                                    timeout=15,
                                    ) as response:
                 # result.append({'proxy_dict': proxy_dict, 'status': response.status})
-                print('代理:{} 访问成功,结果{}'.format(proxy_dict['proxy'], response.json()))
+                print('代理:{} 访问成功,结果{}'.format(proxy_dict['proxy'], list(response.json())))
         except Exception as e:
             print(e)
             print('代理:{} 访问失败，原因{}'.format(proxy_dict['proxy'], e))
