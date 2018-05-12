@@ -65,18 +65,14 @@ class ScrapyCloudmusicSpiderMiddleware(object):
 
 class FirefoxMiddleware(object):
     options = webdriver.FirefoxOptions()  # 指定使用的浏览器
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Firefox(options=options)
-    driver.implicitly_wait(11)
+    driver.implicitly_wait(4)
 
     @classmethod
     def process_request(self, request, spider):
         if 'firefox' in request.meta:
-            # self.driver.implicitly_wait(30)
-            self.driver.get(request.url)
-            self.driver.switch_to.frame('contentFrame')
-            body = self.driver.page_source
             try:
                 js = 'window.open("{}");'.format(request.url)
                 self.driver.execute_script(js)
@@ -87,9 +83,11 @@ class FirefoxMiddleware(object):
                 self.driver.switch_to.window(window_name=windows[0])
                 self.driver.close()
             self.driver.switch_to.window(window_name=windows[-1])
-            # driver.switch_to.frame('contentFrame')
-            WebDriverWait(driver=self.driver, timeout=10, poll_frequency=0.5).until(
+
+            WebDriverWait(driver=self.driver, timeout=3, poll_frequency=0.5).until(
                 EC.presence_of_element_located((By.NAME, 'contentFrame')))
+            self.driver.switch_to.frame('contentFrame')
+            body = self.driver.page_source
             return HtmlResponse(request.url, body=body, encoding='utf-8', request=request)
         else:
             return None
@@ -97,3 +95,6 @@ class FirefoxMiddleware(object):
 class MyUserAgentMiddleware(UserAgentMiddleware):
     def process_request(self, request, spider):
         request.headers.setdefault('User-Agent', FakeChromeUA.get_ua)
+
+# class MyPorxyMiddleware():
+#     def process_request(self, request, spider):

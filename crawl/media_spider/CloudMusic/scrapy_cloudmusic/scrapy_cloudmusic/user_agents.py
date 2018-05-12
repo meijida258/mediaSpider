@@ -29,3 +29,5 @@ class FakeChromeUA:
              'AppleWebKit/537.36',
              '(KHTML, like Gecko)',
              cls.chrome_version, 'Safari/537.36'])
+if __name__ == '__main__':
+    fc = FakeChromeUA()
