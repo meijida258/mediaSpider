@@ -1,53 +1,26 @@
-import requests, json
-import asyncio, aiohttp
-from pymongo import MongoClient
-import random
+import requests
 
-t = '1170f864930b85834f2aa482cd1eb447df4d'
-t1 = '8353dcda0ab798494302982f424e2d698fd3'
-k = 'be3d8184176377538b026f9231added9'
-cpsUsername = 'fm_0001'
-h = '01200156fm_0001'
-driveid = '868453026613028'
+headers = {
+        'host': 'music.163.com',
+        'Referer': 'http://music.163.com/search/',
+        'User-Agent':
+        ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        ' (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36')
+        }
+cookies = {'appver': '1.5.2'}
 
-headers = {'User-Agent': 'okhttp/3.8.1',
-            'Accept-Encoding': 'gzip',
-            'Connection': 'Keep-Alive',
-            'host': '123.206.219.117',
-            'k':k,
-            'h':h,
-            't':t,
-            't1':t1,
-            'driveid':driveid,
-            'cpsUsername':cpsUsername}
+def get_artists_songlist(artist_id):
+    url = 'http://music.163.com/api/artist/{}'.format(artist_id)
 
-ip_proxy = {'http':'http://218.59.139.238:8090'}
+    r = requests.get(url, headers=headers, cookies=cookies)
+    hotSongs = r.json()['hotSongs']
+    return hotSongs
 
-top_list_url = 'http://123.206.219.117/peipeindex/top/getlist?type=3'
-
-async def my_request(proxy_dict):
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get(url=top_list_url,proxy='http://{}'.format(proxy_dict['proxy']),
-                                    headers=headers,
-                                   timeout=15,
-                                   ) as response:
-                # result.append({'proxy_dict': proxy_dict, 'status': response.status})
-                print('代理:{} 访问成功,结果{}'.format(proxy_dict['proxy'], list(response.json())))
-        except Exception as e:
-            print(e)
-            print('代理:{} 访问失败，原因{}'.format(proxy_dict['proxy'], e))
-
-request_times = 100
-
-client = MongoClient('localhost', 27017)
-db = client.Proxy
-collection = db.UsefulProxy
-proxy_list = list(collection.find({}, {'proxy':1, '_id':0}))
-
-while request_times > 0:
-    # random.shuffle(proxy_list)
-    loop = asyncio.get_event_loop()
-    tasks = [my_request(proxy_dict) for proxy_dict in proxy_list]
-    loop.run_until_complete(asyncio.wait(tasks))
-    request_times -= 1
+# print(get_artists_songlist(1876))
+# for key, value in headers.items():
+#     print('{}:{}'.format(key, value))
+# print(list(["39.137.77.68:80"]))
+import time
+st = time.clock()
+print(requests.get('http://localhost:6324/proxy_get?count=1&score=30').json()[0])
+print(time.clock() - st)

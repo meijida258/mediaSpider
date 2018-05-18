@@ -14,7 +14,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware
-from .user_agents import FakeChromeUA
+from .getUserAgent import FakeChromeUA
+
+import requests
+
 class ScrapyCloudmusicSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
@@ -68,7 +71,7 @@ class FirefoxMiddleware(object):
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     driver = webdriver.Firefox(options=options)
-    driver.implicitly_wait(4)
+    driver.implicitly_wait(5)
 
     @classmethod
     def process_request(self, request, spider):
@@ -94,7 +97,13 @@ class FirefoxMiddleware(object):
 
 class MyUserAgentMiddleware(UserAgentMiddleware):
     def process_request(self, request, spider):
+        print('used user agentagentagentagentagentagentagentagentagentagent')
         request.headers.setdefault('User-Agent', FakeChromeUA.get_ua)
 
-# class MyPorxyMiddleware():
-#     def process_request(self, request, spider):
+class MyPorxyMiddleware():
+    def process_request(self, request, spider):
+        try:
+            proxy = list(requests.get('http://localhost/proxy_get?count=1&score=30').text)[0]
+            request.meta['proxy'] = 'http://{}'.format(proxy)
+        except:
+            pass

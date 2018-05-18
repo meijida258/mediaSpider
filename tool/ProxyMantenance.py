@@ -489,7 +489,7 @@ if __name__ == '__main__':
     proc_ = ProxyCheck_()  # 异步    proc = ProxyCheck() # 多进程
     prom_ = ProxyManage_() # 异步    prom = ProxyManage() # 多进程
     prou = ProxyUse()
-    # prog.main()
+    prog.main()
     proc_.main()
     prom_.main()
     # print(mop.sourceProxies.find().count())

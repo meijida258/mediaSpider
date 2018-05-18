@@ -2,7 +2,7 @@
 
 from scrapy import spiders, Request, FormRequest
 import re, json
-from ..comment_params_get import pg
+from ..getParams import pg
 from ..items import MusicItem, MusicCommentsItem, ArtistItem
 import random, itertools
 
@@ -13,7 +13,7 @@ class CloudMusic(spiders.Spider):
     artist_base_url = 'http://music.163.com/#/artist?id={}'
     music_base_url = 'http://music.163.com/#/song?id={}'
     comment_base_url = 'http://music.163.com/weapi/v1/resource/comments/R_SO_4_{}?csrf_token='
-    artist_country_ids = {u'华语组合/乐队': 1003}
+    artist_country_ids = {u'华语男歌手': 1001}
     wait_crawl = {u'华语男歌手': 1001, u'华语女歌手': 1002, u'华语组合/乐队': 1003,
                   u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003,
                                u'日本男歌手': 6001, u'日本女歌手': 6002, u'日本组合/乐队': 6003,
@@ -44,8 +44,7 @@ class CloudMusic(spiders.Spider):
             request.meta['from_country_ind'] = artists_page_param[0]
             yield request
 
-    def parse_artists_id(self, response):
-        # 找到所有歌手id、名字->(id, name)
+    def parse_artists_id(self, response):# 找到所有歌手id、名字->(id, name)
         artists = re.findall(r'<a href="\s*/artist\?id=(\d+)" class="nm nm-icn f-thide s-fc0" title=".*?的音乐">(.*?)</a>', response.text)
         for artist in artists:
             # 实例歌手item，保存数据
@@ -57,9 +56,11 @@ class CloudMusic(spiders.Spider):
             # 用url组装request
             url = self.artist_base_url.format(artist[0]) # 用id组合url
             request = Request(url=url, callback=self.parse_music_id, dont_filter=True)
-            request.meta['firefox'] = True
+            # request.meta['firefox'] = True
             request.meta['artist_id'] = artist[0]
             yield request
+
+    def parse_album_id(self, response): # 通过artist_id获得歌手的专辑
 
     def parse_music_id(self, response):
         source_artist_music_list = response.xpath(

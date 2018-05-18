@@ -768,3 +768,147 @@ JavaScript warning: http://s3.music.126.net/web/s/core.js?08e66699f107989d25f8d5
 JavaScript warning: http://s3.music.126.net/web/s/core.js?08e66699f107989d25f8d5d5df242407, line 94: unreachable code after return statement
 JavaScript warning: http://s3.music.126.net/web/s/core.js?08e66699f107989d25f8d5d5df242407, line 94: unreachable code after return statement
 1526035248282	addons.productaddons	WARN	Failed downloading XML, status: 0, reason: timeout
+1526369429681	geckodriver	INFO	geckodriver 0.20.0
+1526369429790	geckodriver	INFO	Listening on 127.0.0.1:49158
+1526369432883	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.XXtee4QZYQ35"
+*** You are running in headless mode.
+1526369437094	Marionette	INFO	Enabled via --marionette
+1526369442724	Marionette	INFO	Listening on port 49168
+1526369443002	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526440048511	geckodriver	INFO	geckodriver 0.20.0
+1526440048627	geckodriver	INFO	Listening on 127.0.0.1:56343
+1526440051482	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.fDMDyZoVCREf"
+*** You are running in headless mode.
+1526440055532	Marionette	INFO	Enabled via --marionette
+1526440061234	Marionette	INFO	Listening on port 56352
+1526440061582	Marionette	WARN	TLS certificate errors will be ignored for this session
+1526458900737	geckodriver	INFO	geckodriver 0.20.0
+1526458900749	geckodriver	INFO	Listening on 127.0.0.1:58966
+1526458903777	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.PlzBxTcIfvE4"
+*** You are running in headless mode.
+1526458905266	Marionette	INFO	Enabled via --marionette
+1526458906956	Marionette	INFO	Listening on port 58975
+1526458906976	Marionette	WARN	TLS certificate errors will be ignored for this session
+1526458941623	geckodriver	INFO	geckodriver 0.20.0
+1526458941635	geckodriver	INFO	Listening on 127.0.0.1:59012
+1526458944651	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.zxKHCAgnr6To"
+*** You are running in headless mode.
+1526458945614	Marionette	INFO	Enabled via --marionette
+1526458948680	Marionette	INFO	Listening on port 59024
+1526458948796	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526521501466	geckodriver	INFO	geckodriver 0.20.0
+1526521501590	geckodriver	INFO	Listening on 127.0.0.1:64795
+1526521504622	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.pvgdbvUWU5GT"
+*** You are running in headless mode.
+1526521508936	Marionette	INFO	Enabled via --marionette
+1526521514908	Marionette	INFO	Listening on port 64804
+1526521515286	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526551852821	geckodriver	INFO	geckodriver 0.20.0
+1526551852952	geckodriver	INFO	Listening on 127.0.0.1:63744
+1526551855746	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.H9pJ8faupfED"
+*** You are running in headless mode.
+1526551859878	Marionette	INFO	Enabled via --marionette
+1526551862386	Marionette	INFO	Listening on port 63760
+1526551863342	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526608780535	geckodriver	INFO	geckodriver 0.20.0
+1526608780781	geckodriver	INFO	Listening on 127.0.0.1:63649
+1526608783050	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.zN7Gntxo5efr"
+*** You are running in headless mode.
+1526608789338	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 1328, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1328, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1526608807408	Marionette	INFO	Listening on port 63660
+1526608810694	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526609080824	addons.productaddons	WARN	Failed downloading via XHR, status: 0, reason: error
+1526609348787	geckodriver	INFO	geckodriver 0.20.0
+1526609348798	geckodriver	INFO	Listening on 127.0.0.1:60792
+1526609351820	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.QiQmnr52x9p0"
+*** You are running in headless mode.
+1526609353024	Marionette	INFO	Enabled via --marionette
+1526609358594	Marionette	INFO	Listening on port 60801
+1526609359140	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526618649305	geckodriver	INFO	geckodriver 0.20.0
+1526618649616	geckodriver	INFO	Listening on 127.0.0.1:49570
+1526618652241	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.HyQnORlFtSBF"
+*** You are running in headless mode.
+1526618659768	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 3660, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 3568, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+console.error: 
+  Could not write session state file 
+  Message: Error: _initWorker called too early! Please read the session file from disk first.
+  Stack:
+    _initWorker/<@resource:///modules/sessionstore/SessionFile.jsm:344:15
+_initWorker@resource:///modules/sessionstore/SessionFile.jsm:337:12
+_postToWorker@resource:///modules/sessionstore/SessionFile.jsm:361:11
+write@resource:///modules/sessionstore/SessionFile.jsm:401:19
+write@resource:///modules/sessionstore/SessionFile.jsm:73:12
+_writeState@resource:///modules/sessionstore/SessionSaver.jsm:363:12
+_saveState@resource:///modules/sessionstore/SessionSaver.jsm:301:12
+_saveStateAsync@resource:///modules/sessionstore/SessionSaver.jsm:347:5
+saveStateAsyncWhenIdle@resource:///modules/sessionstore/SessionSaver.jsm:198:9
+
+  _initWorker/<@resource:///modules/sessionstore/SessionFile.jsm:344:15
+_initWorker@resource:///modules/sessionstore/SessionFile.jsm:337:12
+_postToWorker@resource:///modules/sessionstore/SessionFile.jsm:361:11
+write@resource:///modules/sessionstore/SessionFile.jsm:401:19
+write@resource:///modules/sessionstore/SessionFile.jsm:73:12
+_writeState@resource:///modules/sessionstore/SessionSaver.jsm:363:12
+_saveState@resource:///modules/sessionstore/SessionSaver.jsm:301:12
+_saveStateAsync@resource:///modules/sessionstore/SessionSaver.jsm:347:5
+saveStateAsyncWhenIdle@resource:///modules/sessionstore/SessionSaver.jsm:198:9
+
+1526618683442	Marionette	INFO	Listening on port 49586
+1526618684204	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526631907099	geckodriver	INFO	geckodriver 0.20.0
+1526631907111	geckodriver	INFO	Listening on 127.0.0.1:50958
+1526631909589	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.kk3zVg5AibTN"
+*** You are running in headless mode.
+1526631914522	Marionette	INFO	Enabled via --marionette
+1526631922902	Marionette	INFO	Listening on port 50968
+1526631924026	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?41b5125468f99d22c34a8daaf731443a, line 94: unreachable code after return statement
+1526632120816	addons.productaddons	WARN	Failed downloading XML, status: 0, reason: error
+1526632123240	addons.productaddons	WARN	Failed downloading via XHR, status: 0, reason: error

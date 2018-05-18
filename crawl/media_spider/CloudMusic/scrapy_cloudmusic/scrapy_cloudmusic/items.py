@@ -17,6 +17,7 @@ class MusicCommentsItem(scrapy.Item):
     total_comments = scrapy.Field()
     hot_comments = scrapy.Field()
     music_id = scrapy.Field()
+    artist_id = scrapy.Field()
 
 class MusicItem(scrapy.Item):
     artist_id = scrapy.Field()
@@ -30,3 +31,9 @@ class ArtistItem(scrapy.Item):
     artist_name = scrapy.Field()
     artist_id = scrapy.Field()
     artist_from_country = scrapy.Field()
+
+class AlbumItem(scrapy.Item):
+    artist_id = scrapy.Field()
+    album_id = scrapy.Field()
+    album_title = scrapy.Field()
+    album_size = scrapy.Field()
