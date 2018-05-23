@@ -15,8 +15,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware
 from .getUserAgent import FakeChromeUA
+from scrapy.downloadermiddlewares.retry import RetryMiddleware
+from scrapy.utils.response import response_status_message
 
-import requests
+from sys import path
+path.append('C:\ProxyPool\WebApi')
+from apis import get_proxy
+import redis
+import random
 
 class ScrapyCloudmusicSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -97,13 +103,57 @@ class FirefoxMiddleware(object):
 
 class MyUserAgentMiddleware(UserAgentMiddleware):
     def process_request(self, request, spider):
-        print('used user agentagentagentagentagentagentagentagentagentagent')
         request.headers.setdefault('User-Agent', FakeChromeUA.get_ua)
 
 class MyPorxyMiddleware():
+    redis_conn = redis.StrictRedis(host='localhost', port=6379, db=3)
     def process_request(self, request, spider):
+        # 保持redis连接
         try:
-            proxy = list(requests.get('http://localhost/proxy_get?count=1&score=30').text)[0]
-            request.meta['proxy'] = 'http://{}'.format(proxy)
+            self.redis_conn.ping()
         except:
-            pass
+            self.redis_conn = redis.StrictRedis(host='localhost', port=6379, db=3)
+
+        # 根据代理失败次数进行判断
+        if request.meta.setdefault('proxy_failed_times', 0) == 4:
+            print('连续四次访问出错，不使用代理访问')
+            # del request.meta['proxy']
+            request.meta['proxy'] = random.choice['','http://192.168.2.100:8081']
+        else:
+            try:
+                proxy = get_proxy(1, self.redis_conn, 4)[0]
+            except:
+                proxy = random.choice['','http://192.168.2.100:8081']
+            request.meta['proxy'] = 'http://{}'.format(proxy)
+
+
+class MyRetryMiddleware(RetryMiddleware):
+    def process_response(self, request, response, spider):
+        if request.meta.get('dont_retry', False):
+            return response
+        if response.status in self.retry_http_codes:
+            reason = response_status_message(response.status)
+            return self._retry(request, reason, spider) or response
+
+        # 继承的重试middleware,用于是返回json结果的请求，检验结果，判断是否获取数据成功
+        if request.meta.setdefault('json_result', False):
+            try:
+                response_json = json.loads(response.body_as_unicode())
+            except:
+                reason = response_status_message('502') # 未收到json结果，返回502错误
+                request.meta['proxy_failed_times'] = 0
+                return self._retry(request, reason, spider) # 重新请求
+            if int(response_json['code']) == 200:
+                return response
+            else:
+                print('json result error')
+                reason = response_status_message('502') # 收到错误的json结果，返回502错误
+                request.meta['proxy_failed_times'] = 0
+                return self._retry(request, reason, spider) # 重新请求
+        return response
+
+    def process_exception(self, request, exception, spider):
+        if isinstance(exception, self.EXCEPTIONS_TO_RETRY) \
+                and not request.meta.get('dont_retry', False):
+            request.meta['proxy_failed_times'] += 1
+            return self._retry(request, exception, spider)

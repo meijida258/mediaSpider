@@ -58,8 +58,11 @@ ROBOTSTXT_OBEY = False
 # 需要调用js的用firefox获取
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
     'scrapy_cloudmusic.middlewares.FirefoxMiddleware': 100,
-    'scrapy_cloudmusic.middlewares.MyUserAgentMiddleware': 102
+    'scrapy_cloudmusic.middlewares.MyUserAgentMiddleware': 102,
+    'scrapy_cloudmusic.middlewares.MyPorxyMiddleware': 103,
+    'scrapy_cloudmusic.middlewares.MyRetryMiddleware':501,
 }
 
 
@@ -101,4 +104,4 @@ ITEM_PIPELINES = {
 
 # 访问失败重试次数
 RETRY_ENABLED = True
-RETRY_TIMES = 3
+RETRY_TIMES = 5

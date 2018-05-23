@@ -1,9 +1,8 @@
 # 通过所有
 
-from scrapy import spiders, Request, FormRequest
+from scrapy import spiders, Request
 import re, json
-from ..getParams import pg
-from ..items import MusicItem, MusicCommentsItem, ArtistItem
+from ..items import MusicItem, MusicCommentsItem, ArtistItem, AlbumItem
 import random, itertools
 
 class CloudMusic(spiders.Spider):
@@ -12,7 +11,7 @@ class CloudMusic(spiders.Spider):
     artists_base_url = 'http://music.163.com/#/discover/artist/cat?id={}&initial={}'
     artist_base_url = 'http://music.163.com/#/artist?id={}'
     music_base_url = 'http://music.163.com/#/song?id={}'
-    comment_base_url = 'http://music.163.com/weapi/v1/resource/comments/R_SO_4_{}?csrf_token='
+    comment_base_url = 'http://music.163.com/api/v1/resource/comments/R_SO_4_{}?csrf_token='
     artist_country_ids = {u'华语男歌手': 1001}
     wait_crawl = {u'华语男歌手': 1001, u'华语女歌手': 1002, u'华语组合/乐队': 1003,
                   u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003,
@@ -22,7 +21,7 @@ class CloudMusic(spiders.Spider):
 
     download_delay = random.uniform(1, 3) # 下载间隔
 
-    initial_nums = list(range(65, 91))
+    initial_nums = list(range(65, 66))
     initial_nums.append(0)
 
     # artists_page_params = ((country_id, initial_num) for country_id in artist_country_ids.values()
@@ -54,52 +53,56 @@ class CloudMusic(spiders.Spider):
             artist_item['artist_from_country'] = list(self.artist_country_ids.keys())[list(self.artist_country_ids.values()).index(response.meta['from_country_ind'])]
             yield artist_item
             # 用url组装request
-            url = self.artist_base_url.format(artist[0]) # 用id组合url
-            request = Request(url=url, callback=self.parse_music_id, dont_filter=True)
-            # request.meta['firefox'] = True
+            url = 'http://music.163.com/api/artist/albums/{}?offset=0&limit=50'.format(artist[0]) # 用id组合url
+            request = Request(url=url, callback=self.parse_album_id, dont_filter=True)
             request.meta['artist_id'] = artist[0]
+            request.meta['json_result'] = True
             yield request
 
     def parse_album_id(self, response): # 通过artist_id获得歌手的专辑
+        response_json = json.loads(response.body_as_unicode())
+        album_item = AlbumItem()
+        for album in response_json['hotAlbums']:
+            album_item['artist_id'] = response.meta['artist_id']
+            album_item['album_title'] = album['name']
+            album_item['album_id'] = album['id']
+            album_item['album_size'] = album['size']
+            yield album_item
+            url = 'http://music.163.com/api/album/{}'.format(album_item['album_id'])
+            request = Request(url=url, callback=self.parse_music_id, dont_filter=True)
+            request.meta['artist_id'] = album_item['artist_id']
+            request.meta['json_result'] = True
+            yield request
 
     def parse_music_id(self, response):
-        source_artist_music_list = response.xpath(
-            '//*[@id="artist-top50"]/div[2]/div[1]/div[1]/div[1]/table/tbody/tr')
-        for each_tr in source_artist_music_list:
+        response_json = json.loads(response.body_as_unicode())
+        for music in response_json['album']['songs']:
             # 实例歌曲item，保存数据
             music_item = MusicItem()
-            music_item['artist_id'] = response.meta['artist_id']
-            music_id_url = each_tr.xpath('.//span[@class="txt"]/a/@href').extract_first()
-            music_id = music_id_url.split('=')[-1]
-            music_item['music_id'] = music_id
-            music_item['music_title'] = each_tr.xpath('.//span[@class="txt"]/a/b/@title').extract_first()
-            music_item['music_duration'] = each_tr.xpath('.//span[@class="u-dur "]/text()').extract_first()
-            music_item['music_album_title'] = each_tr.xpath('.//div[@class="text"]/a/@title').extract_first()
-            music_album_id_url = each_tr.xpath('.//div[@class="text"]/a/@href').extract_first()
-            try:
-                music_item['music_album_id'] = music_album_id_url.split('=')[-1]
-            except:
-                music_item['music_album_id'] = None
+            music_item['artist_id'] = [artist['id'] for artist in music['artists']] # 多个作者保存列表
+            music_item['music_id'] = music['id']
+            music_item['music_title'] = music['name']
+            music_item['music_popularity'] = music['popularity']
+            music_item['music_duration'] = music['duration']
+            music_item['music_mp3Url'] = music['mp3Url']
+            music_item['music_album_title'] = response_json['album']['name']
+            music_item['music_album_id'] = response_json['album']['id']
             yield music_item
             # 用url组装request
-            # form_request = FormRequest(url=self.comment_base_url.format(music_id), formdata=self.comments_params,
-            #                   callback=self.get_music_comment, dont_filter=True)
-            # form_request.meta['music_id'] = music_id
-            # yield form_request
+            form_request = Request(url='http://music.163.com/api/v1/resource/comments/R_SO_4_{0}/?rid=R_SO_4_{0}&offset=0&total=false&limit=20'.format(music['id']),
+                                       callback=self.get_music_comment, dont_filter=True)
+            form_request.meta['music_id'] = music['id']
+            yield form_request
 
 
 
     def get_music_comment(self, response):
-        result = json.loads(response.text)
+        result = json.loads(response.body_as_unicode())
         item = MusicCommentsItem()
         item['total_comments'] = result['total']
-        hot_comments = []
-        try:
-            hot_comments_ = result['hotComments']
-            for comment in hot_comments_:
-                hot_comments.append('|'.join([comment['user']['nickname'], comment['likedCount'], comment['content']]))
-        except:
-            pass
+        hot_comments = list()
+        for comment in result['hotComments']:
+            hot_comments.append('|'.join([comment['user']['nickname'], comment['likedCount'], comment['content']]))
         item['hot_comments'] = hot_comments
         item['music_id'] = response.meta['music_id']
         yield item

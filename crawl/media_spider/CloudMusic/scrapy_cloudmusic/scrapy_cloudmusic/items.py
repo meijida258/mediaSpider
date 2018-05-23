@@ -26,6 +26,8 @@ class MusicItem(scrapy.Item):
     music_album_id = scrapy.Field()
     music_album_title = scrapy.Field()
     music_duration = scrapy.Field()
+    music_popularity = scrapy.Field()
+    music_mp3Url = scrapy.Field()
 
 class ArtistItem(scrapy.Item):
     artist_name = scrapy.Field()
