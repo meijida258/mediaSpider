@@ -26,7 +26,6 @@ ip_proxy = {'http':'http://192.168.2.100:8081'}
 top_list_url = 'http://123.206.219.117/peipeindex/top/getlist?type={}'
 
 # print(requests.get(top_list_url, headers=headers, proxies=ip_proxy).json())
-# exit()
 
 # 并发使用代理访问
 async def my_request(proxy_dict):

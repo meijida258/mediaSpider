@@ -19,30 +19,20 @@ class ScrapyCloudmusicPipeline(object):
 
     def process_item(self, item, spider):
         if isinstance(item, MusicItem):
-            if not self.is_repeat(dict(item), self.music_collection):
+            if self.music_collection.find({'music_id': item['music_id']}).count() == 0:
                 self.music_collection.insert(dict(item))
         elif isinstance(item, MusicCommentsItem):
-            if not self.is_repeat(dict(item), self.comments_collection):
+            if self.comments_collection.find({'music_id': item['music_id']}).count() == 0:
                 self.comments_collection.insert(dict(item))
         elif isinstance(item, ArtistItem):
-            if not self.is_repeat(dict(item), self.artist_collection):
-                # self.artist_collection.insert(dict(item))
-                print(dict(item))
+            if self.artist_collection.find({'artist_id': item['artist_id']}).count() == 0:
+                self.artist_collection.insert(dict(item))
         elif isinstance(item, AlbumItem):
-            if not self.is_repeat(dict(item), self.album_collection):
+            if self.album_collection.find({'album_id': item['album_id']}).count() == 0:
                 self.album_collection.insert(dict(item))
         return item
 
-    def is_repeat(self, item, collection):
-        if collection.find({'artist_id':item['artist_id']}).count() == 0:
-            return False
-        else:
-            return True
-
 if __name__ == '__main__':
+
     scp = ScrapyCloudmusicPipeline()
-    # print(list(scp.artist_collection.aggregate(
-    #     [
-    #         {'$group':{'_id':'$artist_from_country', 'count':{'$sum':1}}}
-    #     ]
-    # )))
+

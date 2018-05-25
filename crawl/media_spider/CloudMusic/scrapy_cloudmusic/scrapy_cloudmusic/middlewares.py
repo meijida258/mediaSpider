@@ -23,6 +23,8 @@ path.append('C:\ProxyPool\WebApi')
 from apis import get_proxy
 import redis
 import random
+import time
+import json
 
 class ScrapyCloudmusicSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -103,7 +105,7 @@ class FirefoxMiddleware(object):
 
 class MyUserAgentMiddleware(UserAgentMiddleware):
     def process_request(self, request, spider):
-        request.headers.setdefault('User-Agent', FakeChromeUA.get_ua)
+        request.headers.setdefault('User-Agent', FakeChromeUA.get_ua())
 
 class MyPorxyMiddleware():
     redis_conn = redis.StrictRedis(host='localhost', port=6379, db=3)
@@ -124,6 +126,7 @@ class MyPorxyMiddleware():
                 proxy = get_proxy(1, self.redis_conn, 4)[0]
             except:
                 proxy = random.choice['','http://192.168.2.100:8081']
+            time.sleep(random.uniform(0.5,1))
             request.meta['proxy'] = 'http://{}'.format(proxy)
 
 
@@ -155,5 +158,8 @@ class MyRetryMiddleware(RetryMiddleware):
     def process_exception(self, request, exception, spider):
         if isinstance(exception, self.EXCEPTIONS_TO_RETRY) \
                 and not request.meta.get('dont_retry', False):
-            request.meta['proxy_failed_times'] += 1
+            try:
+                request.meta['proxy_failed_times'] += 1
+            except:
+                pass
             return self._retry(request, exception, spider)

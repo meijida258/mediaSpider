@@ -9,9 +9,6 @@ class CloudMusic(spiders.Spider):
     name = 'cloudmusic'
     allowed_domains = ['music.163.com']
     artists_base_url = 'http://music.163.com/#/discover/artist/cat?id={}&initial={}'
-    artist_base_url = 'http://music.163.com/#/artist?id={}'
-    music_base_url = 'http://music.163.com/#/song?id={}'
-    comment_base_url = 'http://music.163.com/api/v1/resource/comments/R_SO_4_{}?csrf_token='
     artist_country_ids = {u'华语男歌手': 1001}
     wait_crawl = {u'华语男歌手': 1001, u'华语女歌手': 1002, u'华语组合/乐队': 1003,
                   u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003,
@@ -19,19 +16,15 @@ class CloudMusic(spiders.Spider):
                                u'韩国男歌手': 7001, u'韩国女歌手': 7002, u'韩国组合/乐队': 7003,
                                u'其他男歌手': 4001, u'其他女歌手': 4002, u'其他组合/乐队': 4003}
 
-    download_delay = random.uniform(1, 3) # 下载间隔
+    download_delay = random.uniform(0.5, 1) # 下载间隔/
 
-    initial_nums = list(range(65, 66))
+    initial_nums = list(range(65, 91))
     initial_nums.append(0)
 
-    # artists_page_params = ((country_id, initial_num) for country_id in artist_country_ids.values()
-    #                                                 for initial_num in initial_nums) # 国籍id与首字母num生成所有组合
     artists_page_params = itertools.product(artist_country_ids.values(), initial_nums)
 
-    # comment_params不随歌曲id变化，用类属性来保存
-    comments_params = pg.get_params_data()
 
-    def start_requests(self):
+    def start_requests(self): # 通过歌手页获取歌手信息
         for artists_page_param in self.artists_page_params:
             # 通过国籍id和首字母组合url
             url = self.artists_base_url.format(artists_page_param[0], artists_page_param[1])
@@ -74,7 +67,7 @@ class CloudMusic(spiders.Spider):
             request.meta['json_result'] = True
             yield request
 
-    def parse_music_id(self, response):
+    def parse_music_id(self, response): # 通过album_id获得歌手专辑下的所有歌
         response_json = json.loads(response.body_as_unicode())
         for music in response_json['album']['songs']:
             # 实例歌曲item，保存数据
@@ -89,20 +82,26 @@ class CloudMusic(spiders.Spider):
             music_item['music_album_id'] = response_json['album']['id']
             yield music_item
             # 用url组装request
-            form_request = Request(url='http://music.163.com/api/v1/resource/comments/R_SO_4_{0}/?rid=R_SO_4_{0}&offset=0&total=false&limit=20'.format(music['id']),
+            request = Request(url='http://music.163.com/api/v1/resource/comments/R_SO_4_{0}/?rid=R_SO_4_{0}&offset=0&total=false&limit=10'.format(music['id']),
                                        callback=self.get_music_comment, dont_filter=True)
-            form_request.meta['music_id'] = music['id']
-            yield form_request
+            request.meta['music_id'] = music['id']
+            request.meta['artist_id'] = response.meta['artist_id']
+            yield request
 
 
 
-    def get_music_comment(self, response):
+    def get_music_comment(self, response): # 通过music_id获取评论，默认获取热评，没有热评获取评论
         result = json.loads(response.body_as_unicode())
         item = MusicCommentsItem()
         item['total_comments'] = result['total']
-        hot_comments = list()
-        for comment in result['hotComments']:
-            hot_comments.append('|'.join([comment['user']['nickname'], comment['likedCount'], comment['content']]))
-        item['hot_comments'] = hot_comments
+        comments = list()
+        if result['hotComments']:
+            for comment in result['hotComments']:
+                comments.append('|'.join([comment['user']['nickname'], str(comment['likedCount']), comment['content']]))
+        else:
+            for comment in result['comments']:
+                comments.append('|'.join([comment['user']['nickname'], str(comment['likedCount']), comment['content']]))
+        item['music_comments'] = comments
         item['music_id'] = response.meta['music_id']
+        item['artist_id'] = response.meta['artist_id']
         yield item
