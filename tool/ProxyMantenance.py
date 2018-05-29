@@ -269,17 +269,20 @@ class ProxyCheck_:
 
     def do_get(self):
         proxy_dicts = mop.sourceProxies.find()
-        if proxy_dicts.count() > 1000:
-            result = proxy_dicts[:1000]
+        print('当前获得的未测试代理ip数为：{}'.format(proxy_dicts.count()))
+        if proxy_dicts.count() > 500:
+            result = list(proxy_dicts)[:500]
+            return result
         elif proxy_dicts.count() == 0:
             return None
         else:
-            result = proxy_dicts
-        return result
+            return list(proxy_dicts)
+
     def main(self):
         proxy_dicts = self.do_get()
         if not proxy_dicts:
             return
+        print('正在测试的代理ip数为：{}'.format(len(proxy_dicts)))
         loop = asyncio.get_event_loop()
         result = []
         tasks = [self.manage_proxy(proxy_dict, result) for proxy_dict in proxy_dicts]
@@ -489,6 +492,7 @@ if __name__ == '__main__':
     prog.main()
     proc_.main()
     prom_.main()
+    # print(mop.sourceProxies.find().count())
 else:
     mop = MongoPro()
     prog = ProxyGet()

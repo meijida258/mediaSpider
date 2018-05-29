@@ -1,12 +1,20 @@
-from selenium import webdriver
-import time
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+from operator import methodcaller
+import inspect
 
-def a(b):
-    print(b.__name__())
+def a_0():
+    pass
+class A:
+    def a_0(self):
+        print(1)
 
+    def b_0(self):
+        print(2)
+def b_0():
+    pass
 
-c ={123:2}
-a(c)
+def c_0():
+    pass
+
+m = [func for name, func in inspect.getmembers(A, inspect.isfunction)]
+for i in m:
+    att

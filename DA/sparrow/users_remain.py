@@ -7,12 +7,12 @@
 import sys
 import os
 
-PACKAGE_PARENT = '..'
+PACKAGE_PARENT = '.'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
-from sparrow.daily_analysis import at
-from sparrow.tools import get_datetime
+from daily_analysis import at
+from tools import get_datetime
 from pymongo import MongoClient
 import time, datetime
 import bson, pandas, numpy
@@ -56,9 +56,9 @@ class UsersRemain:
 
     # 查询某天登录的用户
     def login_user_query(self, off_day):
-        start_date = get_datetime(time.time(), off_day)
-        end_date = get_datetime(time.time(), off_day-1)
-        print('查询新用户{}留存情况'.format(start_date))
+        start_date = get_datetime(time.time(), off_day+1)
+        end_date = get_datetime(time.time(), off_day)
+        print('查询{}新用户留存情况'.format(start_date))
         login_users = mon.users_login_log.aggregate(
             [
                 {'$match':{'date':{'$gte':datetime.datetime(start_date[0], start_date[1], start_date[2], 0, 0),
@@ -91,12 +91,38 @@ class UsersRemain:
     def deal_remain_result_to_dataframe(self, data ,keys):
         return pandas.DataFrame(data=data, columns=keys)
 
+    def any_days_deal(self, data):
+        result = {}
+        for every_day_data in data:
+            for channel in every_day_data.keys():
+                try:
+                    result[channel] += numpy.array(every_day_data[channel])
+                except:
+                    result[channel] = numpy.array(every_day_data[channel])
+        return result
+
 
 
     def write_result_to_csv(self, file_path, dataframe):
         dataframe.to_csv(file_path, index=False, sep=',')
         print('保存{}完成'.format(file_path.split('/')[-1]))
 
+    def deal_remain_result_to_dict(self, keys, data):
+        result = {}
+        for index in range(0, len(keys)):
+            result[keys[index]] = [data[0][index], data[1][index], data[2][index]]
+        return result
+
+    def main(self, off_day, remain_query_list, result_type):
+        result = self.remain_user_query(off_day, remain_query_list)
+        keys, data = self.deal_remain_result_to_chart(result)
+        if result_type == 'data_frame':
+            data_frame = self.deal_remain_result_to_dataframe(data=data, keys=keys)
+            return data_frame
+        elif result_type == 'source_data_type':
+            return [keys, data]
+        elif result_type == 'dict_type':
+            return self.deal_remain_result_to_dict(list(keys), data)
 
 class Mongo:
     def __init__(self):
@@ -105,6 +131,7 @@ class Mongo:
         self.db = self.client.sparrow_analysis
         self.game_daily_log = self.db.game_daily_log
         self.users_daily_log = self.db.users_daily_log
+        self.reamin_data = self.db.users_remain
         # 主数据集
         self.db2 = self.client.sparrow_main
         self.users = self.db2.users
@@ -114,13 +141,21 @@ if __name__ == '__main__':
     ur = UsersRemain()
     mon = Mongo()
     # 查询的时间，向前推off_day天，remain_query_list隔天
-    off_day = 10
-    remain_query_list = [1,3,7]
-    result = ur.remain_user_query(off_day, remain_query_list)
-    keys, data = ur.deal_remain_result_to_chart(result)
-    data_frame = ur.deal_remain_result_to_dataframe(data=data, keys=keys)
+    # off_day = 15
+    # remain_query_list = [1,3,7]
+    # data_frame = ur.main(off_day=off_day, remain_query_list=remain_query_list)
 
-    ur.write_result_to_csv('a.csv', data_frame)
+    # 查询多天
+    start_day, end_day = 10, 12
+    remain_query_list = [1, 3, 7]
+    result = []
+    for off_day in range(start_day, end_day):
+        source_data = ur.main(off_day=off_day, remain_query_list=remain_query_list, result_type='dict_type')
+        result.append(source_data)
+    deal_result_dict = ur.any_days_deal(result)
+    deal_result_dict_value_array = numpy.array(list(deal_result_dict.values()))
+    deal_result_data_frame = ur.deal_remain_result_to_dataframe(data=deal_result_dict_value_array.T, keys=deal_result_dict.keys())
+    ur.write_result_to_csv('user_reamin.csv', deal_result_data_frame)
 else:
     ur = UsersRemain()
     mon = Mongo()

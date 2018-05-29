@@ -39,8 +39,10 @@ if __name__ == '__main__':
     client = MongoClient('localhost', 27017)
     db = client.TestDb
     collection = db.TestDicts
-    a = collection.find().count()
-    print (collection.find()[0])
+    collection.insert({'code':1, 'name':['leo', 'lee']})
+    b = list(collection.find({'code':1}))
+    print(b)
+    print(b[0]['name'])
     # mon.remove_dict('a', 1000, collection)
 else:
     mon = MongoSet()

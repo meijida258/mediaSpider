@@ -55,6 +55,17 @@ ROBOTSTXT_OBEY = False
 #    'scrapy_cloudmusic.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
+# 需要调用js的用firefox获取
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
+    'scrapy_cloudmusic.middlewares.FirefoxMiddleware': 100,
+    'scrapy_cloudmusic.middlewares.MyUserAgentMiddleware': 102,
+    'scrapy_cloudmusic.middlewares.MyPorxyMiddleware': 103,
+    'scrapy_cloudmusic.middlewares.MyRetryMiddleware':501,
+}
+
+
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -66,7 +77,10 @@ ROBOTSTXT_OBEY = False
 #ITEM_PIPELINES = {
 #    'scrapy_cloudmusic.pipelines.ScrapyCloudmusicPipeline': 300,
 #}
+ITEM_PIPELINES = {
+   'scrapy_cloudmusic.pipelines.ScrapyCloudmusicPipeline': 300,
 
+}
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
@@ -88,7 +102,6 @@ ROBOTSTXT_OBEY = False
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# 需要调用js的用firefox获取
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy_cloudmusic.middlewares.FirefoxMiddleware': 100
-}
+# 访问失败重试次数
+RETRY_ENABLED = True
+RETRY_TIMES = 5

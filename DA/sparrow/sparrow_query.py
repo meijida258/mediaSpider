@@ -1,16 +1,16 @@
 import sys
 import os
 
-PACKAGE_PARENT = '..'
+PACKAGE_PARENT = '.'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
 # 过滤数据脚本
 from pymongo import MongoClient
 import time, datetime, requests
 from multiprocessing.dummy import Pool
-from bson.objectid import ObjectId
-from sparrow.daily_analysis import Analysis as daily_Analysis
-from sparrow.daily_analysis import AnalysisTool as Analysis_Tool
+from daily_analysis import Analysis as daily_Analysis
+from daily_analysis import AnalysisTools as Analysis_Tool
 data_file_save_path = 'D:/sparrow_data'
 
 url_headers = {'Authorization':'Token 8103598e41ea781aaa1567e8c44ec50e84b2bc5fc6f8f4e696eb2e49ad188f4d',
