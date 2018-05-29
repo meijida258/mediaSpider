@@ -1,10 +1,20 @@
-import random
-import re
-import redis, json
-import requests
-import string
+from operator import methodcaller
+import inspect
 
-redis_conn = redis.StrictRedis('localhost', 6379)
+def a_0():
+    pass
+class A:
+    def a_0(self):
+        print(1)
 
-for i in range(6,11):
-    redis_conn.lpush('cloudmusic:start_urls', 'http://127.0.0.1:24423/{}'.format(i))
+    def b_0(self):
+        print(2)
+def b_0():
+    pass
+
+def c_0():
+    pass
+
+m = [func for name, func in inspect.getmembers(A, inspect.isfunction)]
+for i in m:
+    att

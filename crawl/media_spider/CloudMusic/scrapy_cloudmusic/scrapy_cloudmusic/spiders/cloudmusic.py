@@ -9,14 +9,14 @@ class CloudMusic(spiders.Spider):
     name = 'cloudmusic'
     allowed_domains = ['music.163.com']
     artists_base_url = 'http://music.163.com/#/discover/artist/cat?id={}&initial={}'
-    artist_country_ids = {u'华语男歌手': 1001}
+    artist_country_ids = {u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003}
     wait_crawl = {u'华语男歌手': 1001, u'华语女歌手': 1002, u'华语组合/乐队': 1003,
                   u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003,
                                u'日本男歌手': 6001, u'日本女歌手': 6002, u'日本组合/乐队': 6003,
                                u'韩国男歌手': 7001, u'韩国女歌手': 7002, u'韩国组合/乐队': 7003,
                                u'其他男歌手': 4001, u'其他女歌手': 4002, u'其他组合/乐队': 4003}
 
-    download_delay = random.uniform(0.5, 1) # 下载间隔/
+    download_delay = random.uniform(0.3, 0.6) # 下载间隔/
 
     initial_nums = list(range(65, 91))
     initial_nums.append(0)
