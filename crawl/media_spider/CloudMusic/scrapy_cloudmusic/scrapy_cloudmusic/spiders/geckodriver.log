@@ -1118,3 +1118,137 @@ JavaScript warning: http://s3.music.126.net/web/s/core.js?2d008d1145747aa0f5385c
 JavaScript warning: http://s3.music.126.net/web/s/core.js?2d008d1145747aa0f5385c601dc1ecc2, line 94: unreachable code after return statement
 JavaScript warning: http://s3.music.126.net/web/s/core.js?2d008d1145747aa0f5385c601dc1ecc2, line 94: unreachable code after return statement
 JavaScript warning: http://s3.music.126.net/web/s/core.js?2d008d1145747aa0f5385c601dc1ecc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?0488457f39775b69a15dc158d996d344, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?0488457f39775b69a15dc158d996d344, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?4163110cb3eb7756160d48dcbd99b92c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?4163110cb3eb7756160d48dcbd99b92c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?4163110cb3eb7756160d48dcbd99b92c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?4163110cb3eb7756160d48dcbd99b92c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?122282965d0c23bc71c9dfb1cc8c5747, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?122282965d0c23bc71c9dfb1cc8c5747, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?122282965d0c23bc71c9dfb1cc8c5747, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?122282965d0c23bc71c9dfb1cc8c5747, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+1528193601477	geckodriver	INFO	geckodriver 0.20.0
+1528193601638	geckodriver	INFO	Listening on 127.0.0.1:49648
+1528193604557	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.SWje30UIo9pI"
+*** You are running in headless mode.
+1528193609022	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 5892, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6072, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6072, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1528193617974	Marionette	INFO	Listening on port 49661
+1528193619190	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?a00eafd0edb5d0422d73399c8a0932ba, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?e071a9614bfbdfe44c5f85d046cbefc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?e071a9614bfbdfe44c5f85d046cbefc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?e071a9614bfbdfe44c5f85d046cbefc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?e071a9614bfbdfe44c5f85d046cbefc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?e071a9614bfbdfe44c5f85d046cbefc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?e071a9614bfbdfe44c5f85d046cbefc2, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?aea2531428b35be7f4c89337193750c5, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?aea2531428b35be7f4c89337193750c5, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?acad6e83fe6f991104f40576c001942a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?acad6e83fe6f991104f40576c001942a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?acad6e83fe6f991104f40576c001942a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?acad6e83fe6f991104f40576c001942a, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+1528528863489	geckodriver	INFO	geckodriver 0.20.0
+1528528863551	geckodriver	INFO	Listening on 127.0.0.1:50542
+1528528866637	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.7yF9iaagAg9Q"
+*** You are running in headless mode.
+1528528871118	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 1440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1528528878604	Marionette	INFO	Listening on port 50585
+1528528879076	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?df519ba9f1713f9e4b4cb42fbff614e0, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?d9dd8122bc1d35ee5c32afb20318419b, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?d9dd8122bc1d35ee5c32afb20318419b, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?d9dd8122bc1d35ee5c32afb20318419b, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?d9dd8122bc1d35ee5c32afb20318419b, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?87b003eab82237956cb69913c9a02a2f, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?87b003eab82237956cb69913c9a02a2f, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?87b003eab82237956cb69913c9a02a2f, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?87b003eab82237956cb69913c9a02a2f, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?3de81c96a5b174f93293dfee06dea8b8, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?3de81c96a5b174f93293dfee06dea8b8, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?3de81c96a5b174f93293dfee06dea8b8, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?3de81c96a5b174f93293dfee06dea8b8, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?bb534e5661eb5c3ff3a0b30451655365, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?bb534e5661eb5c3ff3a0b30451655365, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?bb534e5661eb5c3ff3a0b30451655365, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?bb534e5661eb5c3ff3a0b30451655365, line 94: unreachable code after return statement
+1529377214316	geckodriver	INFO	geckodriver 0.20.0
+1529377214404	geckodriver	INFO	Listening on 127.0.0.1:50941
+1529377217423	mozrunner::runner	INFO	Running command: "E:\\360Downloads\\firefox.exe" "-marionette" "--headless" "--disable-gpu" "-profile" "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\rust_mozprofile.f1YMcPipnudZ"
+*** You are running in headless mode.
+1529377221236	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 3272, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1529377232760	Marionette	INFO	Listening on port 50950
+1529377233544	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript warning: http://s3.music.126.net/web/s/core.js?7127be8f3271d71d6a07b634f835cbbb, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?7127be8f3271d71d6a07b634f835cbbb, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?7127be8f3271d71d6a07b634f835cbbb, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?7127be8f3271d71d6a07b634f835cbbb, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?5cef7fbd3544142477118696e0e9bb5c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?5cef7fbd3544142477118696e0e9bb5c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?5cef7fbd3544142477118696e0e9bb5c, line 94: unreachable code after return statement
+JavaScript warning: http://s3.music.126.net/web/s/core.js?5cef7fbd3544142477118696e0e9bb5c, line 94: unreachable code after return statement
+[Parent 3272, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x15008D,name=PBrowser::Msg_UpdateNativeWindowHandle) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x150080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x15008D,name=PBrowser::Msg_UpdateNativeWindowHandle) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x150080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x15008D,name=PBrowser::Msg_UpdateNativeWindowHandle) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x150080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x15008D,name=PBrowser::Msg_UpdateNativeWindowHandle) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x150080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x15008D,name=PBrowser::Msg_UpdateNativeWindowHandle) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x150080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 7124, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7124, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 3272, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
+[Child 6852, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6852, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346

@@ -1,6 +1,4 @@
-
 from pymongo import MongoClient
-
 
 class MongoSet:
     def __init__(self):

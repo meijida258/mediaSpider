@@ -103,6 +103,8 @@ if __name__ == '__main__':
     play_df = um.get_play_log(start_date, end_date)
     # 礼物
     gift_df = um.get_gift_log(start_date, end_date)
+    print(gift_df)
+    exit()
     gift_sum_df = um.get_user_gift_sum(gift_df)
     # 合并数据
     pay_and_play_log = pandas.merge(play_df, pay_sum_df, how='outer',on=['user_id'])

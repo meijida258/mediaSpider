@@ -24,10 +24,11 @@ class TestHTTPHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(result).encode('utf-8'))  # 输出响应内容
         else:
-            initial = re.findall(r'/([a-z])', self.path)[0]
-            result = {'code': 1, 'artists': []}
-            result['artists'] = [{'artist_name': initial + str(name)} for name in
-                                 range(10)]
+            print(self.path)
+            # initial = re.findall(r'/([a-z])', self.path)[0]
+            # result = {'code': 1, 'artists': []}
+            # result['artists'] = [{'artist_name': initial + str(name)} for name in
+            #                      range(10)]
             # self.protocal_version = 'HTTP/1.1'  # 设置协议版本
             # if 'q' in self.path.lower():
             #     self.send_response(504)  # 设置响应状态码
@@ -35,7 +36,7 @@ class TestHTTPHandler(BaseHTTPRequestHandler):
             self.send_response(200)  # 设置响应状态码
             self.send_header('Content-Type', 'application/json')  # 设置响应头
             self.end_headers()
-            self.wfile.write(json.dumps(result).encode('utf-8'))  # 输出响应内容
+            # self.wfile.write(json.dumps(result).encode('utf-8'))  # 输出响应内容
 
 def start_server(port):
     http_server = HTTPServer(('localhost', int(port)), TestHTTPHandler)

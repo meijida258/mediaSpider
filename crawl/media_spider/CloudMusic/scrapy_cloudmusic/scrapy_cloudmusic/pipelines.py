@@ -33,6 +33,5 @@ class ScrapyCloudmusicPipeline(object):
         return item
 
 if __name__ == '__main__':
-
     scp = ScrapyCloudmusicPipeline()
-
+    # print(scp.artist_collection.find({'artist_from_country':'欧美女歌手'}).count())
