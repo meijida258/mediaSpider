@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 from pymongo import MongoClient
-from .items import ArtistItem, MusicItem, MusicCommentsItem, AlbumItem
+# from .items import ArtistItem, MusicItem, MusicCommentsItem, AlbumItem
 
 class ScrapyCloudmusicPipeline(object):
     def __init__(self):
@@ -33,6 +33,5 @@ class ScrapyCloudmusicPipeline(object):
         return item
 
 if __name__ == '__main__':
-
     scp = ScrapyCloudmusicPipeline()
-
+    print(scp.artist_collection.find({'artist_from_country':'其他女歌手'}).count())

@@ -4,8 +4,8 @@ import pygame, sys, random
 import math, time
 from operator import itemgetter
 
-width = 300
-length = 200
+width = 600
+length = 400
 FPS = 15
 pygame.init()
 
@@ -13,7 +13,7 @@ total_step = 0
 
 fpsClock = pygame.time.Clock()
 
-screen = pygame.display.set_mode((width, length), 0, 32)
+# screen = pygame.display.set_mode((width, length), 0, 32)
 
 pygame.display.set_caption('TCS')
 
@@ -341,51 +341,57 @@ def find_final_path():
             else:
                 return (total_pos[0][0], total_pos[0][1] + 20)
 
-while True:
-    temp_total_pos.clear()
-    temp_total_pos = total_pos[:]
-    screen.fill((255,255,255))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-    # 随机刷新苹果
-    if not apple:
-        apple_appear_1st()
-        apple = True
+# while True:
+#     temp_total_pos.clear()
+#     temp_total_pos = total_pos[:]
+#     screen.fill((255,255,255))
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             pygame.quit()
+#             exit()
+#     # 随机刷新苹果
+#     if not apple:
+#         apple_appear_1st()
+#         apple = True
+#
+#     # 先找一次路，以苹果为目标，有到苹果的路，返回结果;
+#     # 没有到苹果的路，以尾巴为目标，返回结果;
+#     final_path = find_final_path()
+#     print(final_path)
+#     temp_apple_pos = (apple_pos[0], apple_pos[1])
+#     print('最终确定路线：' + str( total_pos[0]) + '---->' + str(final_path) + '身体：' + str(total_pos[1]) + '苹果：' + str(apple_pos) + '尾巴：' + str(total_pos[-1]))
+#     direction = AI_direction_set(total_pos, final_path)
+#
+#     # 移动/判断是否吃到苹果
+#     weiba_pos = total_pos[-1]
+#     auto_move(direction)
+#     if eat_apple(total_pos, apple_pos):# 吃到苹果
+#         total_pos.append(weiba_pos) # 加尾巴坐标
+#         total_snake.append(tail) # 加尾巴图片
+#         total_snake[-2] = body  # 替换原有尾巴
+#         #吃了苹果， 立马随机一个
+#         apple_pos = random_apple(total_pos)
+#     # 画新苹果
+#     screen.blit(apple_img, (apple_pos[0], apple_pos[1]))
+#     # pygame.draw.rect(screen, (255, 0, 0), (apple_pos[0], apple_pos[1], 20, 20))
+#     total_step += 1
+#     print('当前实际位置：%s' %(str(total_pos)))
+#     print('蛇长：%s，运行了%s步' % (str(len(total_pos)),str(total_step)))
+#     print('------------------------------------------------')
+#     # 判断是否死亡
+#     dead = is_dead(total_pos)
+#     if not dead:
+#         for i in range(0, len(total_snake)):
+#             screen.blit(total_snake[i], (total_pos[i][0]+1, total_pos[i][1]+1))
+#     else:
+#         pygame.quit()
+#         sys.exit()
+#
+#     pygame.display.update()
+#     # fpsClock.tick(FPS)
 
-    # 先找一次路，以苹果为目标，有到苹果的路，返回结果;
-    # 没有到苹果的路，以尾巴为目标，返回结果;
-    final_path = find_final_path()
-    print(final_path)
-    temp_apple_pos = (apple_pos[0], apple_pos[1])
-    print('最终确定路线：' + str( total_pos[0]) + '---->' + str(final_path) + '身体：' + str(total_pos[1]) + '苹果：' + str(apple_pos) + '尾巴：' + str(total_pos[-1]))
-    direction = AI_direction_set(total_pos, final_path)
-
-    # 移动/判断是否吃到苹果
-    weiba_pos = total_pos[-1]
-    auto_move(direction)
-    if eat_apple(total_pos, apple_pos):# 吃到苹果
-        total_pos.append(weiba_pos) # 加尾巴坐标
-        total_snake.append(tail) # 加尾巴图片
-        total_snake[-2] = body  # 替换原有尾巴
-        #吃了苹果， 立马随机一个
-        apple_pos = random_apple(total_pos)
-    # 画新苹果
-    screen.blit(apple_img, (apple_pos[0], apple_pos[1]))
-    # pygame.draw.rect(screen, (255, 0, 0), (apple_pos[0], apple_pos[1], 20, 20))
-    total_step += 1
-    print('当前实际位置：%s' %(str(total_pos)))
-    print('蛇长：%s，运行了%s步' % (str(len(total_pos)),str(total_step)))
-    print('------------------------------------------------')
-    # 判断是否死亡
-    dead = is_dead(total_pos)
-    if not dead:
-        for i in range(0, len(total_snake)):
-            screen.blit(total_snake[i], (total_pos[i][0]+1, total_pos[i][1]+1))
-    else:
-        pygame.quit()
-        sys.exit()
-
-    pygame.display.update()
-    fpsClock.tick(FPS)
+st = time.clock()
+# print(bfs([(0,0)], (580,340)))
+import cProfile
+print(cProfile.run('bfs([(0,0)], (580,340))'))
+# print(time.clock()-st)

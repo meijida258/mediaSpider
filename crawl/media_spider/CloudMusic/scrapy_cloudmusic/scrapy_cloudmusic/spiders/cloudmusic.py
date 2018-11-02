@@ -9,14 +9,14 @@ class CloudMusic(spiders.Spider):
     name = 'cloudmusic'
     allowed_domains = ['music.163.com']
     artists_base_url = 'http://music.163.com/#/discover/artist/cat?id={}&initial={}'
-    artist_country_ids = {u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003}
+    artist_country_ids = {u'韩国女歌手': 7002,u'其他男歌手': 4001, u'其他女歌手': 4002, u'其他组合/乐队': 4003}
     wait_crawl = {u'华语男歌手': 1001, u'华语女歌手': 1002, u'华语组合/乐队': 1003,
                   u'欧美男歌手': 2001, u'欧美女歌手': 2002, u'欧美组合/乐队': 2003,
                                u'日本男歌手': 6001, u'日本女歌手': 6002, u'日本组合/乐队': 6003,
                                u'韩国男歌手': 7001, u'韩国女歌手': 7002, u'韩国组合/乐队': 7003,
                                u'其他男歌手': 4001, u'其他女歌手': 4002, u'其他组合/乐队': 4003}
 
-    download_delay = random.uniform(0.3, 0.6) # 下载间隔/
+    download_delay = random.uniform(0.1, 0.3) # 下载间隔/
 
     initial_nums = list(range(65, 91))
     initial_nums.append(0)
@@ -72,7 +72,7 @@ class CloudMusic(spiders.Spider):
         for music in response_json['album']['songs']:
             # 实例歌曲item，保存数据
             music_item = MusicItem()
-            music_item['artist_id'] = [artist['id'] for artist in music['artists']] # 多个作者保存列表
+            music_item['artist_id'] = '/'.join([str(artist['id']) for artist in music['artists']]) # 多个作者保存列表
             music_item['music_id'] = music['id']
             music_item['music_title'] = music['name']
             music_item['music_popularity'] = music['popularity']
@@ -82,11 +82,12 @@ class CloudMusic(spiders.Spider):
             music_item['music_album_id'] = response_json['album']['id']
             yield music_item
             # 用url组装request
-            request = Request(url='http://music.163.com/api/v1/resource/comments/R_SO_4_{0}/?rid=R_SO_4_{0}&offset=0&total=false&limit=10'.format(music['id']),
-                                       callback=self.get_music_comment, dont_filter=True)
-            request.meta['music_id'] = music['id']
-            request.meta['artist_id'] = response.meta['artist_id']
-            yield request
+            if music_item['music_popularity'] > 15:
+                request = Request(url='http://music.163.com/api/v1/resource/comments/R_SO_4_{0}/?rid=R_SO_4_{0}&offset=0&total=false&limit=10'.format(music['id']),
+                                           callback=self.get_music_comment, dont_filter=True)
+                request.meta['music_id'] = music['id']
+                request.meta['artist_id'] = response.meta['artist_id']
+                yield request
 
 
 

@@ -26,6 +26,8 @@ import random
 import time
 import json
 
+from .redis_conn import get_redis_conn
+
 class ScrapyCloudmusicSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
@@ -108,13 +110,13 @@ class MyUserAgentMiddleware(UserAgentMiddleware):
         request.headers.setdefault('User-Agent', FakeChromeUA.get_ua())
 
 class MyPorxyMiddleware():
-    redis_conn = redis.StrictRedis(host='localhost', port=6379, db=3)
+    redis_conn = get_redis_conn(host='localhost', port=6379, db=3)
     def process_request(self, request, spider):
         # 保持redis连接
         try:
             self.redis_conn.ping()
         except:
-            self.redis_conn = redis.StrictRedis(host='localhost', port=6379, db=3)
+            self.redis_conn = get_redis_conn(host='localhost', port=6379, db=3)
 
         # 根据代理失败次数进行判断
         if request.meta.setdefault('proxy_failed_times', 0) == 4:
@@ -126,7 +128,7 @@ class MyPorxyMiddleware():
                 proxy = get_proxy(1, self.redis_conn, 4)[0]
             except:
                 proxy = random.choice['','http://192.168.2.100:8081']
-            time.sleep(random.uniform(0.5,1))
+            time.sleep(random.uniform(0.1,0.3))
             request.meta['proxy'] = 'http://{}'.format(proxy)
 
 

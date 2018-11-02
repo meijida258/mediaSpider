@@ -11,7 +11,8 @@ h = '01200156fm_0001'
 driveid = '868453026613028'
 
 headers = {'User-Agent': 'okhttp/3.8.1',
-            'Accept-Encoding': 'gzip',
+            'Accept-Encod'
+            'ing': 'gzip',
             'Connection': 'Keep-Alive',
             'host': '123.206.219.117',
             'k':k,

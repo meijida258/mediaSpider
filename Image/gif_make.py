@@ -35,7 +35,7 @@ def add_word(words):
 
 def make_gif():
     frames = []
-    for image_name in range(0, 145):
+    for image_name in range(144, -1, -1):
         frames.append(imageio.imread('C:\mediaSpider\Image\gif_source/' + '%s.png'%str(image_name)))
     imageio.mimsave('C:\mediaSpider\Image/new.gif', frames, 'GIF', duration=0.1)
 
