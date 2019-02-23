@@ -49,12 +49,15 @@ class UserLotteryLog:
             {'date': 1, 'source': 1, '_id': 0, 'lottery_award.reward':1})
         return list(users_lottery_data)
 
-    def get_users_online_reward_data(self, start_date, end_date):
+    def users_online_reward_data(self, start_date, end_date):
         users_online_reward_data = mongo.online_reward_log.find(
             {'date': {'$gte': start_date - datetime.timedelta(hours=8),
                       '$lte': end_date - datetime.timedelta(hours=8)}},
             {'date': 1, 'source': 1, '_id': 0})
+        return users_online_reward_data
 
+    def get_users_online_reward_data(self, start_date, end_date):
+        users_online_reward_data = self.users_online_reward_data(start_date,end_date)
         daily_online_reward_data = pandas.DataFrame(list(users_online_reward_data))
         daily_online_reward_data['online_award'] = 10
         daily_online_reward_data.rename(columns={'source':'user_id'}, inplace=True)
@@ -64,12 +67,15 @@ class UserLotteryLog:
 
         return online_reward_sum_data
 
-    def get_users_task_reward_data(self, start_date, end_date):
+    def task_reward_data(self, start_date, end_date):
         users_task_reward_data = mongo.daily_task_log.find(
             {'date': {'$gte': start_date - datetime.timedelta(hours=8),
                       '$lte': end_date - datetime.timedelta(hours=8)},
-             'lottery_tickets':0},
-            {'date': 1, 'source': 1, '_id': 0, 'reward':1})
+             'lottery_tickets': 0},
+            {'date': 1, 'source': 1, '_id': 0, 'reward': 1})
+        return users_task_reward_data
+    def get_users_task_reward_data(self, start_date, end_date):
+        users_task_reward_data = self.task_reward_data(start_date,end_date)
         daily_task_data = pandas.DataFrame(list(users_task_reward_data))
         daily_task_data.rename(columns={'source':'user_id', 'reward':'task_award'}, inplace=True)
 
@@ -80,12 +86,15 @@ class UserLotteryLog:
         task_sum_data = task_sum_data.reset_index()
         return task_sum_data
 
-    def get_users_sign_in_data(self, start_date, end_date):
+    def sign_in_log_data(self, start_date, end_date):
         users_sign_in_data = mongo.sign_in_log.find(
             {'date': {'$gte': start_date - datetime.timedelta(hours=8),
                       '$lte': end_date - datetime.timedelta(hours=8)},
-             'lottery_tickets':0},
-            {'date': 1, 'source': 1, '_id': 0, 'reward':1})
+             'lottery_tickets': 0},
+            {'date': 1, 'source': 1, '_id': 0, 'reward': 1})
+        return users_sign_in_data
+    def get_users_sign_in_data(self, start_date, end_date):
+        users_sign_in_data = self.sign_in_log_data(start_date,end_date)
 
         daily_sign_in_data = pandas.DataFrame(list(users_sign_in_data))
         daily_sign_in_data.rename(columns={'source':'user_id', 'reward':'sign_in_reward'}, inplace=True)
@@ -95,12 +104,15 @@ class UserLotteryLog:
         sign_in_sum = sign_in_sum.reset_index()
         return sign_in_sum
 
-    def get_users_pay_data(self, start_date, end_date):
+    def users_pays_data(self, start_date, end_date):
         users_pays_data = mongo.third_pay.find(
             {'pay_date': {'$gte': start_date - datetime.timedelta(hours=8),
-                      '$lte': end_date - datetime.timedelta(hours=8)}},
-            {'source':1, 'price':1, '_id':0, 'pay_date':1}
+                          '$lte': end_date - datetime.timedelta(hours=8)}},
+            {'source': 1, 'price': 1, '_id': 0, 'pay_date': 1}
         )
+        return users_pays_data
+    def get_users_pay_data(self, start_date, end_date):
+        users_pays_data = self.users_pays_data(start_date,end_date)
         daily_pay_data = pandas.DataFrame(list(users_pays_data))
         daily_pay_data.rename(columns={'source':'user_id', 'pay_date':'date'}, inplace=True)
         daily_pay_data['price'] = daily_pay_data['price'].apply(lambda x:x/100)
@@ -210,9 +222,13 @@ class UserLotteryLog:
 
 if __name__ == '__main__':
     mongo = Mongo()
-    start_date, end_date = datetime.datetime(*[2018,9,1, 0,0]), datetime.datetime(*[2018,9,3,0,0])
+    start_date, end_date = datetime.datetime(*[2018,4,1, 0,0]), datetime.datetime(*[2018,12,30,0,0])
     ull = UserLotteryLog()
     users_lottery_data = ull.get_users_lottery_data(start_date, end_date)
+    # df = pandas.DataFrame(users_lottery_data)
+    # df['lottery_award'] = df['lottery_award'].apply(lambda x:x['reward'])
+    # df.to_csv('present_lottery.csv')
+    # exit()
     require_list = ['task', 'online', 'sign_in', 'pay']
     ull.daily_reward_analysis(users_lottery_data,require_list)
 
@@ -220,3 +236,6 @@ if __name__ == '__main__':
     ldf = pandas.DataFrame(lottery_award_data)
     print(ldf.lottery_award.sum())
     print(ldf.lottery_times.sum())
+else:
+    mongo = Mongo()
+    ull = UserLotteryLog()

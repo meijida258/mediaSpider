@@ -45,7 +45,8 @@ class GiftLotteryLog:
         gift_lottery_award = mongo.gift_lottery_log.find(
             {'date': {'$gte': start_date - datetime.timedelta(hours=8),
                       '$lte': end_date - datetime.timedelta(hours=8)}},
-            {'date': 1, 'source': 1, '_id': 0, 'reward':1})
+            {'date': 1, 'source': 1, '_id': 0, 'multi': 1})
+            # {'date': 1, 'source': 1, '_id': 0, 'reward':1})
         return gift_lottery_award
 
     def lottery_analysis(self, gift_lottery_award, gift_lottery_log):
@@ -80,6 +81,7 @@ class GiftLotteryLog:
                       '$lte': end_date - datetime.timedelta(hours=8)},
              'gift.lottery':True},
             {'date': 1, 'source': 1, '_id': 0, 'gift.price': 1,'gift.name':1})
+            # {'date': 1, 'source': 1, '_id': 0})
         return gift_lottery_log
 
     def get_users(self):
@@ -117,16 +119,28 @@ class GiftLotteryLog:
         merged_data = reward_group_by_date.merge(send_group_by_source, on=['date', 'source'])
         merged_data.to_csv('lucky_gift/merged_data.csv')
 
+    def merge_on_log(self, lottery_log, reward_log):
+        lottery_log_df = pandas.DataFrame(list(lottery_log))
+        lottery_log_df = lottery_log_df.reset_index()
+        lottery_log_df.rename(columns={'index':'ind1'},inplace=True)
+        print(lottery_log_df.index)
+        reward_log_df = pandas.DataFrame(list(reward_log))
+        print((reward_log_df.index))
+        merged_log_df = lottery_log_df.merge(reward_log_df, on=['date', 'source'],how='outer')
+        merged_log_df.multi.fillna(0)
+        merged_log_df.to_csv('present_lottery.csv')
 if __name__ == '__main__':
     mongo = Mongo()
-    # mongo.gift_log.create_index([("gift.lottery", pymongo.ASCENDING)])
+    mongo.gift_log.create_index([("gift.lottery", pymongo.ASCENDING)])
     # mongo.gift_log.remove({'date': {'$lte': datetime.datetime(2018, 8, 1, 0, 0)}})
-
-    start_date, end_date = datetime.datetime(*[2018, 9, 1, 0, 0]), datetime.datetime(*[2018, 9, 3, 0, 0])
+    # exit()
+    start_date, end_date = datetime.datetime(*[2018, 12, 1, 0, 0]), datetime.datetime(*[2018,12, 2, 0, 0])
     st_time = time.clock()
     gl = GiftLotteryLog()
     gift_lottery_award = gl.get_gift_lottery_award(start_date, end_date)
     gift_lottery_log = gl.get_gift_lottery_log(start_date, end_date)
+    gl.merge_on_log(gift_lottery_log, gift_lottery_award)
+    exit()
     gl.lottery_analysis(gift_lottery_award, gift_lottery_log)
 
     gl.data_mining()

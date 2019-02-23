@@ -771,3 +771,11 @@ Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr
 Unable to read VR Path Registry from C:\Users\Administrator\AppData\Local\openvr\openvrpaths.vrpath
 [Child 6868, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 *** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+1543401686029	geckodriver	INFO	geckodriver 0.20.0
+1543401686083	geckodriver	INFO	Listening on 127.0.0.1:50880
+1543401820097	geckodriver	INFO	geckodriver 0.20.0
+1543401820109	geckodriver	INFO	Listening on 127.0.0.1:50951
+1543401836885	geckodriver	INFO	geckodriver 0.20.0
+1543401836897	geckodriver	INFO	Listening on 127.0.0.1:50959
+1543401884726	geckodriver	INFO	geckodriver 0.20.0
+1543401884737	geckodriver	INFO	Listening on 127.0.0.1:50973
